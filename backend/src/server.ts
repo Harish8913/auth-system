@@ -13,7 +13,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 async function main() {
-  // Create a new user with a post
   const user = await prisma.user.create({
     data: {
       name: "Alice",
@@ -39,6 +38,7 @@ async function main() {
   });
   console.log("All users:", JSON.stringify(allUsers, null, 2));
 }
+
 main()
   .then(async () => {
     await prisma.$disconnect();
