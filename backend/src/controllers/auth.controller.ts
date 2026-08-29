@@ -5,14 +5,14 @@ export const registerController = async (req: Request, res: Response) => {
   const { body } = req;
 
   try {
-    const user = await prisma.auth.findUnique({
+    const user = await prisma.users.findUnique({
       where: {
         email: body.email,
       },
     });
 
     if (!user) {
-      const createdUser = await prisma.auth.create(body);
+      const createdUser = await prisma.users.create(body);
       return res.status(201).json({ created: createdUser });
     } else {
       return res.status(400).json({ message: "Duplicate email" });
