@@ -13,7 +13,8 @@ datasource db {
 }
 
 model Auth {
-  id String @id @unique @default(uuid())
+  id Int @id @unique @default(autoincrement())
+  logical_id String @unique @default(uuid())
   email String @unique
   userName String
   password String
