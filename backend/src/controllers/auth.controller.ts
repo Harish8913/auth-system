@@ -12,10 +12,12 @@ export const registerController = async (req: Request, res: Response) => {
     });
 
     if (!user) {
-      const createdUser = await prisma.users.create(body);
+      const createdUser = await prisma.users.create({
+        data: body,
+      });
       return res.status(201).json({ created: createdUser });
     } else {
-      return res.status(400).json({ message: "Duplicate email" });
+      return res.status(400).json({ message: "Duplicate email" }); 
     }
   } catch (err) {
     return res.status(500).json({ msg: err });
