@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
 import { prisma } from "../lib/prisma.js";
 
-export const registerController = async (req: Request, res: Response) => {
+export const registerAdmin = async (req: Request, res: Response) => {
   const { body } = req;
 
   try {
@@ -17,7 +17,7 @@ export const registerController = async (req: Request, res: Response) => {
       });
       return res.status(201).json({ created: createdUser });
     } else {
-      return res.status(400).json({ message: "Duplicate email" }); 
+      return res.status(400).json({ message: "Duplicate email" });
     }
   } catch (err) {
     return res.status(500).json({ msg: err });
