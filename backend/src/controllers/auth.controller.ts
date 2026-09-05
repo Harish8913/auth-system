@@ -75,17 +75,33 @@ export const loginUser = async (req: Request, res: Response) => {
     });
 
     if (!userExist)
-      return res.status(401).json({ message: "User Doesn't exist" });
+      return res.status(401).json({ message: "Incorrect Email or Password" });
 
     const isPasswordCorrect = await bcrypt.compare(
       body.password,
       userExist.password,
     );
 
+    const jwtSecret: string = process.env.JWT_SECRET || "";
+
     if (isPasswordCorrect) {
-      
+      jwt.sign(
+        {
+          userName: body.userName,
+        },
+        jwtSecret,
+        { expiresIn: "1h", algorithm: "HS256" },
+        (err, token) => {
+          if (err) return res.status(500).json({ err });
+
+          return res
+            .status(200)
+            .json({ message: "User logged in successfully", token: token });
+        },
+      );
+    } else {
+      return res.status(401).json({ message: "Incorrect Email or Password" });
     }
-    
   } catch (err) {
     return res.status(500).json({ msg: err });
   }
