@@ -10,8 +10,8 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-}
 
+}
 model Users {
   id       Int     @id @unique @default(autoincrement())
   status   String?
