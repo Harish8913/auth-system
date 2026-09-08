@@ -13,13 +13,14 @@ datasource db {
 }
 
 model Users {
-  id         Int    @id @unique @default(autoincrement())
-  logical_id String @unique @default(uuid())
-  email      String @unique
-  userName   String @unique
-  password   String
-  rolesId    Int
-  roles      Roles? @relation(fields: [rolesId], references: [id])
+  id       Int     @id @unique @default(autoincrement())
+  status   String?
+  email    String  @unique
+  userName String  @unique
+  password String
+  refresh  String? @unique
+  rolesId  Int?
+  roles    Roles?  @relation(fields: [rolesId], references: [id])
 }
 
 model Roles {

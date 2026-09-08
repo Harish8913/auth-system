@@ -46,3 +46,8 @@ export { Prisma }
  * 
  */
 export type Users = Prisma.UsersModel
+/**
+ * Model Roles
+ * 
+ */
+export type Roles = Prisma.RolesModel

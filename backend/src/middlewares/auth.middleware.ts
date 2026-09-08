@@ -7,10 +7,11 @@ export const authCheck = async (
   next: NextFunction,
 ) => {
   const token: string = req.headers.authorization?.split("Bearer ")[1] || "";
-  const jwtSecret = process.env.JWT_SECRET || "";
-  jwt.verify(token, jwtSecret, (err, decoded) => {
-    if(err) return res.status(401).json({err: err})
+  const jwtSecret = process.env.ACCESS_JWT_SECRET || "";
+  jwt.verify(token, jwtSecret, (err) => {
+    if (err) return res.status(401).json({ message: err.message });
   });
+
 
   next();
 };

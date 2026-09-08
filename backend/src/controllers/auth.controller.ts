@@ -66,6 +66,8 @@ export const registerUser = async (req: Request, res: Response) => {
 
 export const loginUser = async (req: Request, res: Response) => {
   const { body } = req;
+  const jwtAccessSecret: string = process.env.ACCESS_JWT_SECRET || "";
+  const jwtRefreshSecret: string = process.env.REFRESH_JWT_SECRET || "";
 
   try {
     const userExist = await prisma.users.findUnique({
@@ -82,14 +84,36 @@ export const loginUser = async (req: Request, res: Response) => {
       userExist.password,
     );
 
-    const jwtSecret: string = process.env.JWT_SECRET || "";
-
     if (isPasswordCorrect) {
+      jwt.sign(
+        { userName: body.userName },
+        jwtRefreshSecret,
+        { expiresIn: "7d", algorithm: "HS256" },
+        async (err, token) => {
+          if (err) return res.status(500).json({ err });
+          if (!token)
+            return res.status(500).json({ message: "Internal Server Error" });
+
+          const refreshTokenHash = await bcrypt.hash(token, 10);
+
+          res.cookie("refresh", token, {
+            httpOnly: true,
+            maxAge: 24 * 60 * 60 * 1000,
+            sameSite: "strict",
+          });
+
+          await prisma.users.update({
+            where: { email: userExist.email },
+            data: { refresh: refreshTokenHash },
+          });
+        },
+      );
+
       jwt.sign(
         {
           userName: body.userName,
         },
-        jwtSecret,
+        jwtAccessSecret,
         { expiresIn: "1h", algorithm: "HS256" },
         (err, token) => {
           if (err) return res.status(500).json({ err });
@@ -104,5 +128,31 @@ export const loginUser = async (req: Request, res: Response) => {
     }
   } catch (err) {
     return res.status(500).json({ msg: err });
+  }
+};
+
+export const refresh = async (req: Request, res: Response) => {
+  const cookie = req.cookies.refresh;
+  const jwtRefreshSecret = process.env.REFRESH_JWT_SECRET || "";
+  const jwtAccessSecret = process.env.ACCESS_JWT_SECRET || "";
+
+  try {
+    if (!cookie) return res.sendStatus(401);
+    const userExist = await prisma.users.findUnique({
+      where: { refresh: cookie },
+    });
+
+    if (!userExist) return res.sendStatus(401);
+
+    jwt.verify(cookie, jwtRefreshSecret);
+    const token = jwt.sign({ userName: userExist.userName }, jwtAccessSecret, {
+      expiresIn: "15m",
+    });
+
+    if (!token) return res.sendStatus(500);
+
+    return res.status(200).json({ token });
+  } catch (err) {
+    return res.status(500).json({ message: err });
   }
 };
