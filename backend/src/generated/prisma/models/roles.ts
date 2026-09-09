@@ -4,7 +4,7 @@
 // biome-ignore-all lint: generated file
 // @ts-nocheck 
 /*
- * This file exports the `Roles` model and its related types.
+ * This file exports the `roles` model and its related types.
  *
  * 🟢 You can import this file directly.
  */
@@ -13,10 +13,10 @@ import type * as $Enums from "../enums.js"
 import type * as Prisma from "../internal/prismaNamespace.js"
 
 /**
- * Model Roles
+ * Model roles
  * 
  */
-export type RolesModel = runtime.Types.Result.DefaultSelection<Prisma.$RolesPayload>
+export type rolesModel = runtime.Types.Result.DefaultSelection<Prisma.$rolesPayload>
 
 export type AggregateRoles = {
   _count: RolesCountAggregateOutputType | null
@@ -77,37 +77,37 @@ export type RolesCountAggregateInputType = {
 
 export type RolesAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Filter which Roles to aggregate.
+   * Filter which roles to aggregate.
    */
-  where?: Prisma.RolesWhereInput
+  where?: Prisma.rolesWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of Roles to fetch.
+   * Determine the order of roles to fetch.
    */
-  orderBy?: Prisma.RolesOrderByWithRelationInput | Prisma.RolesOrderByWithRelationInput[]
+  orderBy?: Prisma.rolesOrderByWithRelationInput | Prisma.rolesOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
    * Sets the start position
    */
-  cursor?: Prisma.RolesWhereUniqueInput
+  cursor?: Prisma.rolesWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` Roles from the position of the cursor.
+   * Take `±n` roles from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` Roles.
+   * Skip the first `n` roles.
    */
   skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Count returned Roles
+   * Count returned roles
   **/
   _count?: true | RolesCountAggregateInputType
   /**
@@ -147,11 +147,11 @@ export type GetRolesAggregateType<T extends RolesAggregateArgs> = {
 
 
 
-export type RolesGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.RolesWhereInput
-  orderBy?: Prisma.RolesOrderByWithAggregationInput | Prisma.RolesOrderByWithAggregationInput[]
+export type rolesGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.rolesWhereInput
+  orderBy?: Prisma.rolesOrderByWithAggregationInput | Prisma.rolesOrderByWithAggregationInput[]
   by: Prisma.RolesScalarFieldEnum[] | Prisma.RolesScalarFieldEnum
-  having?: Prisma.RolesScalarWhereWithAggregatesInput
+  having?: Prisma.rolesScalarWhereWithAggregatesInput
   take?: number
   skip?: number
   _count?: RolesCountAggregateInputType | true
@@ -171,7 +171,7 @@ export type RolesGroupByOutputType = {
   _max: RolesMaxAggregateOutputType | null
 }
 
-export type GetRolesGroupByPayload<T extends RolesGroupByArgs> = Prisma.PrismaPromise<
+export type GetRolesGroupByPayload<T extends rolesGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<RolesGroupByOutputType, T['by']> &
       {
@@ -186,158 +186,158 @@ export type GetRolesGroupByPayload<T extends RolesGroupByArgs> = Prisma.PrismaPr
 
 
 
-export type RolesWhereInput = {
-  AND?: Prisma.RolesWhereInput | Prisma.RolesWhereInput[]
-  OR?: Prisma.RolesWhereInput[]
-  NOT?: Prisma.RolesWhereInput | Prisma.RolesWhereInput[]
-  id?: Prisma.IntFilter<"Roles"> | number
-  description?: Prisma.StringFilter<"Roles"> | string
+export type rolesWhereInput = {
+  AND?: Prisma.rolesWhereInput | Prisma.rolesWhereInput[]
+  OR?: Prisma.rolesWhereInput[]
+  NOT?: Prisma.rolesWhereInput | Prisma.rolesWhereInput[]
+  id?: Prisma.IntFilter<"roles"> | number
+  description?: Prisma.StringFilter<"roles"> | string
   users?: Prisma.UsersListRelationFilter
 }
 
-export type RolesOrderByWithRelationInput = {
+export type rolesOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  users?: Prisma.UsersOrderByRelationAggregateInput
+  users?: Prisma.usersOrderByRelationAggregateInput
 }
 
-export type RolesWhereUniqueInput = Prisma.AtLeast<{
+export type rolesWhereUniqueInput = Prisma.AtLeast<{
   id?: number
-  AND?: Prisma.RolesWhereInput | Prisma.RolesWhereInput[]
-  OR?: Prisma.RolesWhereInput[]
-  NOT?: Prisma.RolesWhereInput | Prisma.RolesWhereInput[]
-  description?: Prisma.StringFilter<"Roles"> | string
+  AND?: Prisma.rolesWhereInput | Prisma.rolesWhereInput[]
+  OR?: Prisma.rolesWhereInput[]
+  NOT?: Prisma.rolesWhereInput | Prisma.rolesWhereInput[]
+  description?: Prisma.StringFilter<"roles"> | string
   users?: Prisma.UsersListRelationFilter
 }, "id">
 
-export type RolesOrderByWithAggregationInput = {
+export type rolesOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  _count?: Prisma.RolesCountOrderByAggregateInput
-  _avg?: Prisma.RolesAvgOrderByAggregateInput
-  _max?: Prisma.RolesMaxOrderByAggregateInput
-  _min?: Prisma.RolesMinOrderByAggregateInput
-  _sum?: Prisma.RolesSumOrderByAggregateInput
+  _count?: Prisma.rolesCountOrderByAggregateInput
+  _avg?: Prisma.rolesAvgOrderByAggregateInput
+  _max?: Prisma.rolesMaxOrderByAggregateInput
+  _min?: Prisma.rolesMinOrderByAggregateInput
+  _sum?: Prisma.rolesSumOrderByAggregateInput
 }
 
-export type RolesScalarWhereWithAggregatesInput = {
-  AND?: Prisma.RolesScalarWhereWithAggregatesInput | Prisma.RolesScalarWhereWithAggregatesInput[]
-  OR?: Prisma.RolesScalarWhereWithAggregatesInput[]
-  NOT?: Prisma.RolesScalarWhereWithAggregatesInput | Prisma.RolesScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"Roles"> | number
-  description?: Prisma.StringWithAggregatesFilter<"Roles"> | string
+export type rolesScalarWhereWithAggregatesInput = {
+  AND?: Prisma.rolesScalarWhereWithAggregatesInput | Prisma.rolesScalarWhereWithAggregatesInput[]
+  OR?: Prisma.rolesScalarWhereWithAggregatesInput[]
+  NOT?: Prisma.rolesScalarWhereWithAggregatesInput | Prisma.rolesScalarWhereWithAggregatesInput[]
+  id?: Prisma.IntWithAggregatesFilter<"roles"> | number
+  description?: Prisma.StringWithAggregatesFilter<"roles"> | string
 }
 
-export type RolesCreateInput = {
+export type rolesCreateInput = {
   description: string
-  users?: Prisma.UsersCreateNestedManyWithoutRolesInput
+  users?: Prisma.usersCreateNestedManyWithoutRolesInput
 }
 
-export type RolesUncheckedCreateInput = {
+export type rolesUncheckedCreateInput = {
   id?: number
   description: string
-  users?: Prisma.UsersUncheckedCreateNestedManyWithoutRolesInput
+  users?: Prisma.usersUncheckedCreateNestedManyWithoutRolesInput
 }
 
-export type RolesUpdateInput = {
+export type rolesUpdateInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  users?: Prisma.UsersUpdateManyWithoutRolesNestedInput
+  users?: Prisma.usersUpdateManyWithoutRolesNestedInput
 }
 
-export type RolesUncheckedUpdateInput = {
+export type rolesUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  users?: Prisma.UsersUncheckedUpdateManyWithoutRolesNestedInput
+  users?: Prisma.usersUncheckedUpdateManyWithoutRolesNestedInput
 }
 
-export type RolesCreateManyInput = {
+export type rolesCreateManyInput = {
   id?: number
   description: string
 }
 
-export type RolesUpdateManyMutationInput = {
+export type rolesUpdateManyMutationInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type RolesUncheckedUpdateManyInput = {
+export type rolesUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type RolesNullableScalarRelationFilter = {
-  is?: Prisma.RolesWhereInput | null
-  isNot?: Prisma.RolesWhereInput | null
+  is?: Prisma.rolesWhereInput | null
+  isNot?: Prisma.rolesWhereInput | null
 }
 
-export type RolesCountOrderByAggregateInput = {
+export type rolesCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   description?: Prisma.SortOrder
 }
 
-export type RolesAvgOrderByAggregateInput = {
+export type rolesAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
 }
 
-export type RolesMaxOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  description?: Prisma.SortOrder
-}
-
-export type RolesMinOrderByAggregateInput = {
+export type rolesMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   description?: Prisma.SortOrder
 }
 
-export type RolesSumOrderByAggregateInput = {
+export type rolesMinOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+}
+
+export type rolesSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
 }
 
-export type RolesCreateNestedOneWithoutUsersInput = {
-  create?: Prisma.XOR<Prisma.RolesCreateWithoutUsersInput, Prisma.RolesUncheckedCreateWithoutUsersInput>
-  connectOrCreate?: Prisma.RolesCreateOrConnectWithoutUsersInput
-  connect?: Prisma.RolesWhereUniqueInput
+export type rolesCreateNestedOneWithoutUsersInput = {
+  create?: Prisma.XOR<Prisma.rolesCreateWithoutUsersInput, Prisma.rolesUncheckedCreateWithoutUsersInput>
+  connectOrCreate?: Prisma.rolesCreateOrConnectWithoutUsersInput
+  connect?: Prisma.rolesWhereUniqueInput
 }
 
-export type RolesUpdateOneWithoutUsersNestedInput = {
-  create?: Prisma.XOR<Prisma.RolesCreateWithoutUsersInput, Prisma.RolesUncheckedCreateWithoutUsersInput>
-  connectOrCreate?: Prisma.RolesCreateOrConnectWithoutUsersInput
-  upsert?: Prisma.RolesUpsertWithoutUsersInput
-  disconnect?: Prisma.RolesWhereInput | boolean
-  delete?: Prisma.RolesWhereInput | boolean
-  connect?: Prisma.RolesWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.RolesUpdateToOneWithWhereWithoutUsersInput, Prisma.RolesUpdateWithoutUsersInput>, Prisma.RolesUncheckedUpdateWithoutUsersInput>
+export type rolesUpdateOneWithoutUsersNestedInput = {
+  create?: Prisma.XOR<Prisma.rolesCreateWithoutUsersInput, Prisma.rolesUncheckedCreateWithoutUsersInput>
+  connectOrCreate?: Prisma.rolesCreateOrConnectWithoutUsersInput
+  upsert?: Prisma.rolesUpsertWithoutUsersInput
+  disconnect?: Prisma.rolesWhereInput | boolean
+  delete?: Prisma.rolesWhereInput | boolean
+  connect?: Prisma.rolesWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.rolesUpdateToOneWithWhereWithoutUsersInput, Prisma.rolesUpdateWithoutUsersInput>, Prisma.rolesUncheckedUpdateWithoutUsersInput>
 }
 
-export type RolesCreateWithoutUsersInput = {
+export type rolesCreateWithoutUsersInput = {
   description: string
 }
 
-export type RolesUncheckedCreateWithoutUsersInput = {
+export type rolesUncheckedCreateWithoutUsersInput = {
   id?: number
   description: string
 }
 
-export type RolesCreateOrConnectWithoutUsersInput = {
-  where: Prisma.RolesWhereUniqueInput
-  create: Prisma.XOR<Prisma.RolesCreateWithoutUsersInput, Prisma.RolesUncheckedCreateWithoutUsersInput>
+export type rolesCreateOrConnectWithoutUsersInput = {
+  where: Prisma.rolesWhereUniqueInput
+  create: Prisma.XOR<Prisma.rolesCreateWithoutUsersInput, Prisma.rolesUncheckedCreateWithoutUsersInput>
 }
 
-export type RolesUpsertWithoutUsersInput = {
-  update: Prisma.XOR<Prisma.RolesUpdateWithoutUsersInput, Prisma.RolesUncheckedUpdateWithoutUsersInput>
-  create: Prisma.XOR<Prisma.RolesCreateWithoutUsersInput, Prisma.RolesUncheckedCreateWithoutUsersInput>
-  where?: Prisma.RolesWhereInput
+export type rolesUpsertWithoutUsersInput = {
+  update: Prisma.XOR<Prisma.rolesUpdateWithoutUsersInput, Prisma.rolesUncheckedUpdateWithoutUsersInput>
+  create: Prisma.XOR<Prisma.rolesCreateWithoutUsersInput, Prisma.rolesUncheckedCreateWithoutUsersInput>
+  where?: Prisma.rolesWhereInput
 }
 
-export type RolesUpdateToOneWithWhereWithoutUsersInput = {
-  where?: Prisma.RolesWhereInput
-  data: Prisma.XOR<Prisma.RolesUpdateWithoutUsersInput, Prisma.RolesUncheckedUpdateWithoutUsersInput>
+export type rolesUpdateToOneWithWhereWithoutUsersInput = {
+  where?: Prisma.rolesWhereInput
+  data: Prisma.XOR<Prisma.rolesUpdateWithoutUsersInput, Prisma.rolesUncheckedUpdateWithoutUsersInput>
 }
 
-export type RolesUpdateWithoutUsersInput = {
+export type rolesUpdateWithoutUsersInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type RolesUncheckedUpdateWithoutUsersInput = {
+export type rolesUncheckedUpdateWithoutUsersInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -369,44 +369,44 @@ export type RolesCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extens
  * RolesCountOutputType without action
  */
 export type RolesCountOutputTypeCountUsersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UsersWhereInput
+  where?: Prisma.usersWhereInput
 }
 
 
-export type RolesSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+export type rolesSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   description?: boolean
-  users?: boolean | Prisma.Roles$usersArgs<ExtArgs>
+  users?: boolean | Prisma.roles$usersArgs<ExtArgs>
   _count?: boolean | Prisma.RolesCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["roles"]>
 
-export type RolesSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+export type rolesSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   description?: boolean
 }, ExtArgs["result"]["roles"]>
 
-export type RolesSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+export type rolesSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   description?: boolean
 }, ExtArgs["result"]["roles"]>
 
-export type RolesSelectScalar = {
+export type rolesSelectScalar = {
   id?: boolean
   description?: boolean
 }
 
-export type RolesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "description", ExtArgs["result"]["roles"]>
-export type RolesInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  users?: boolean | Prisma.Roles$usersArgs<ExtArgs>
+export type rolesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "description", ExtArgs["result"]["roles"]>
+export type rolesInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  users?: boolean | Prisma.roles$usersArgs<ExtArgs>
   _count?: boolean | Prisma.RolesCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type RolesIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type RolesIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type rolesIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type rolesIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
-export type $RolesPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  name: "Roles"
+export type $rolesPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  name: "roles"
   objects: {
-    users: Prisma.$UsersPayload<ExtArgs>[]
+    users: Prisma.$usersPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -415,18 +415,18 @@ export type $RolesPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   composites: {}
 }
 
-export type RolesGetPayload<S extends boolean | null | undefined | RolesDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$RolesPayload, S>
+export type rolesGetPayload<S extends boolean | null | undefined | rolesDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$rolesPayload, S>
 
-export type RolesCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
-  Omit<RolesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+export type rolesCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
+  Omit<rolesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
     select?: RolesCountAggregateInputType | true
   }
 
-export interface RolesDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Roles'], meta: { name: 'Roles' } }
+export interface rolesDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['roles'], meta: { name: 'roles' } }
   /**
    * Find zero or one Roles that matches the filter.
-   * @param {RolesFindUniqueArgs} args - Arguments to find a Roles
+   * @param {rolesFindUniqueArgs} args - Arguments to find a Roles
    * @example
    * // Get one Roles
    * const roles = await prisma.roles.findUnique({
@@ -435,12 +435,12 @@ export interface RolesDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    *   }
    * })
    */
-  findUnique<T extends RolesFindUniqueArgs>(args: Prisma.SelectSubset<T, RolesFindUniqueArgs<ExtArgs>>): Prisma.Prisma__RolesClient<runtime.Types.Result.GetResult<Prisma.$RolesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  findUnique<T extends rolesFindUniqueArgs>(args: Prisma.SelectSubset<T, rolesFindUniqueArgs<ExtArgs>>): Prisma.Prisma__rolesClient<runtime.Types.Result.GetResult<Prisma.$rolesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find one Roles that matches the filter or throw an error with `error.code='P2025'`
    * if no matches were found.
-   * @param {RolesFindUniqueOrThrowArgs} args - Arguments to find a Roles
+   * @param {rolesFindUniqueOrThrowArgs} args - Arguments to find a Roles
    * @example
    * // Get one Roles
    * const roles = await prisma.roles.findUniqueOrThrow({
@@ -449,13 +449,13 @@ export interface RolesDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    *   }
    * })
    */
-  findUniqueOrThrow<T extends RolesFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, RolesFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__RolesClient<runtime.Types.Result.GetResult<Prisma.$RolesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  findUniqueOrThrow<T extends rolesFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, rolesFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__rolesClient<runtime.Types.Result.GetResult<Prisma.$rolesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find the first Roles that matches the filter.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {RolesFindFirstArgs} args - Arguments to find a Roles
+   * @param {rolesFindFirstArgs} args - Arguments to find a Roles
    * @example
    * // Get one Roles
    * const roles = await prisma.roles.findFirst({
@@ -464,14 +464,14 @@ export interface RolesDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    *   }
    * })
    */
-  findFirst<T extends RolesFindFirstArgs>(args?: Prisma.SelectSubset<T, RolesFindFirstArgs<ExtArgs>>): Prisma.Prisma__RolesClient<runtime.Types.Result.GetResult<Prisma.$RolesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  findFirst<T extends rolesFindFirstArgs>(args?: Prisma.SelectSubset<T, rolesFindFirstArgs<ExtArgs>>): Prisma.Prisma__rolesClient<runtime.Types.Result.GetResult<Prisma.$rolesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find the first Roles that matches the filter or
    * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {RolesFindFirstOrThrowArgs} args - Arguments to find a Roles
+   * @param {rolesFindFirstOrThrowArgs} args - Arguments to find a Roles
    * @example
    * // Get one Roles
    * const roles = await prisma.roles.findFirstOrThrow({
@@ -480,13 +480,13 @@ export interface RolesDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    *   }
    * })
    */
-  findFirstOrThrow<T extends RolesFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, RolesFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__RolesClient<runtime.Types.Result.GetResult<Prisma.$RolesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  findFirstOrThrow<T extends rolesFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, rolesFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__rolesClient<runtime.Types.Result.GetResult<Prisma.$rolesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find zero or more Roles that matches the filter.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {RolesFindManyArgs} args - Arguments to filter and select certain fields only.
+   * @param {rolesFindManyArgs} args - Arguments to filter and select certain fields only.
    * @example
    * // Get all Roles
    * const roles = await prisma.roles.findMany()
@@ -498,11 +498,11 @@ export interface RolesDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    * const rolesWithIdOnly = await prisma.roles.findMany({ select: { id: true } })
    * 
    */
-  findMany<T extends RolesFindManyArgs>(args?: Prisma.SelectSubset<T, RolesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RolesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+  findMany<T extends rolesFindManyArgs>(args?: Prisma.SelectSubset<T, rolesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$rolesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
   /**
    * Create a Roles.
-   * @param {RolesCreateArgs} args - Arguments to create a Roles.
+   * @param {rolesCreateArgs} args - Arguments to create a Roles.
    * @example
    * // Create one Roles
    * const Roles = await prisma.roles.create({
@@ -512,11 +512,11 @@ export interface RolesDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    * })
    * 
    */
-  create<T extends RolesCreateArgs>(args: Prisma.SelectSubset<T, RolesCreateArgs<ExtArgs>>): Prisma.Prisma__RolesClient<runtime.Types.Result.GetResult<Prisma.$RolesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  create<T extends rolesCreateArgs>(args: Prisma.SelectSubset<T, rolesCreateArgs<ExtArgs>>): Prisma.Prisma__rolesClient<runtime.Types.Result.GetResult<Prisma.$rolesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Create many Roles.
-   * @param {RolesCreateManyArgs} args - Arguments to create many Roles.
+   * @param {rolesCreateManyArgs} args - Arguments to create many Roles.
    * @example
    * // Create many Roles
    * const roles = await prisma.roles.createMany({
@@ -526,11 +526,11 @@ export interface RolesDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    * })
    *     
    */
-  createMany<T extends RolesCreateManyArgs>(args?: Prisma.SelectSubset<T, RolesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  createMany<T extends rolesCreateManyArgs>(args?: Prisma.SelectSubset<T, rolesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
    * Create many Roles and returns the data saved in the database.
-   * @param {RolesCreateManyAndReturnArgs} args - Arguments to create many Roles.
+   * @param {rolesCreateManyAndReturnArgs} args - Arguments to create many Roles.
    * @example
    * // Create many Roles
    * const roles = await prisma.roles.createManyAndReturn({
@@ -550,11 +550,11 @@ export interface RolesDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    * Read more here: https://pris.ly/d/null-undefined
    * 
    */
-  createManyAndReturn<T extends RolesCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, RolesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RolesPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+  createManyAndReturn<T extends rolesCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, rolesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$rolesPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Delete a Roles.
-   * @param {RolesDeleteArgs} args - Arguments to delete one Roles.
+   * @param {rolesDeleteArgs} args - Arguments to delete one Roles.
    * @example
    * // Delete one Roles
    * const Roles = await prisma.roles.delete({
@@ -564,11 +564,11 @@ export interface RolesDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    * })
    * 
    */
-  delete<T extends RolesDeleteArgs>(args: Prisma.SelectSubset<T, RolesDeleteArgs<ExtArgs>>): Prisma.Prisma__RolesClient<runtime.Types.Result.GetResult<Prisma.$RolesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  delete<T extends rolesDeleteArgs>(args: Prisma.SelectSubset<T, rolesDeleteArgs<ExtArgs>>): Prisma.Prisma__rolesClient<runtime.Types.Result.GetResult<Prisma.$rolesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Update one Roles.
-   * @param {RolesUpdateArgs} args - Arguments to update one Roles.
+   * @param {rolesUpdateArgs} args - Arguments to update one Roles.
    * @example
    * // Update one Roles
    * const roles = await prisma.roles.update({
@@ -581,11 +581,11 @@ export interface RolesDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    * })
    * 
    */
-  update<T extends RolesUpdateArgs>(args: Prisma.SelectSubset<T, RolesUpdateArgs<ExtArgs>>): Prisma.Prisma__RolesClient<runtime.Types.Result.GetResult<Prisma.$RolesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  update<T extends rolesUpdateArgs>(args: Prisma.SelectSubset<T, rolesUpdateArgs<ExtArgs>>): Prisma.Prisma__rolesClient<runtime.Types.Result.GetResult<Prisma.$rolesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Delete zero or more Roles.
-   * @param {RolesDeleteManyArgs} args - Arguments to filter Roles to delete.
+   * @param {rolesDeleteManyArgs} args - Arguments to filter Roles to delete.
    * @example
    * // Delete a few Roles
    * const { count } = await prisma.roles.deleteMany({
@@ -595,13 +595,13 @@ export interface RolesDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    * })
    * 
    */
-  deleteMany<T extends RolesDeleteManyArgs>(args?: Prisma.SelectSubset<T, RolesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  deleteMany<T extends rolesDeleteManyArgs>(args?: Prisma.SelectSubset<T, rolesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
    * Update zero or more Roles.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {RolesUpdateManyArgs} args - Arguments to update one or more rows.
+   * @param {rolesUpdateManyArgs} args - Arguments to update one or more rows.
    * @example
    * // Update many Roles
    * const roles = await prisma.roles.updateMany({
@@ -614,11 +614,11 @@ export interface RolesDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    * })
    * 
    */
-  updateMany<T extends RolesUpdateManyArgs>(args: Prisma.SelectSubset<T, RolesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  updateMany<T extends rolesUpdateManyArgs>(args: Prisma.SelectSubset<T, rolesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
    * Update zero or more Roles and returns the data updated in the database.
-   * @param {RolesUpdateManyAndReturnArgs} args - Arguments to update many Roles.
+   * @param {rolesUpdateManyAndReturnArgs} args - Arguments to update many Roles.
    * @example
    * // Update many Roles
    * const roles = await prisma.roles.updateManyAndReturn({
@@ -644,11 +644,11 @@ export interface RolesDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    * Read more here: https://pris.ly/d/null-undefined
    * 
    */
-  updateManyAndReturn<T extends RolesUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, RolesUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RolesPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+  updateManyAndReturn<T extends rolesUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, rolesUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$rolesPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Create or update one Roles.
-   * @param {RolesUpsertArgs} args - Arguments to update or create a Roles.
+   * @param {rolesUpsertArgs} args - Arguments to update or create a Roles.
    * @example
    * // Update or create a Roles
    * const roles = await prisma.roles.upsert({
@@ -663,14 +663,14 @@ export interface RolesDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    *   }
    * })
    */
-  upsert<T extends RolesUpsertArgs>(args: Prisma.SelectSubset<T, RolesUpsertArgs<ExtArgs>>): Prisma.Prisma__RolesClient<runtime.Types.Result.GetResult<Prisma.$RolesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  upsert<T extends rolesUpsertArgs>(args: Prisma.SelectSubset<T, rolesUpsertArgs<ExtArgs>>): Prisma.Prisma__rolesClient<runtime.Types.Result.GetResult<Prisma.$rolesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
   /**
    * Count the number of Roles.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {RolesCountArgs} args - Arguments to filter Roles to count.
+   * @param {rolesCountArgs} args - Arguments to filter Roles to count.
    * @example
    * // Count the number of Roles
    * const count = await prisma.roles.count({
@@ -679,8 +679,8 @@ export interface RolesDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    *   }
    * })
   **/
-  count<T extends RolesCountArgs>(
-    args?: Prisma.Subset<T, RolesCountArgs>,
+  count<T extends rolesCountArgs>(
+    args?: Prisma.Subset<T, rolesCountArgs>,
   ): Prisma.PrismaPromise<
     T extends runtime.Types.Utils.Record<'select', any>
       ? T['select'] extends true
@@ -719,7 +719,7 @@ export interface RolesDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    * Group by Roles.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {RolesGroupByArgs} args - Group by arguments.
+   * @param {rolesGroupByArgs} args - Group by arguments.
    * @example
    * // Group by city, order by createdAt, get count
    * const result = await prisma.user.groupBy({
@@ -734,14 +734,14 @@ export interface RolesDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    * 
   **/
   groupBy<
-    T extends RolesGroupByArgs,
+    T extends rolesGroupByArgs,
     HasSelectOrTake extends Prisma.Or<
       Prisma.Extends<'skip', Prisma.Keys<T>>,
       Prisma.Extends<'take', Prisma.Keys<T>>
     >,
     OrderByArg extends Prisma.True extends HasSelectOrTake
-      ? { orderBy: RolesGroupByArgs['orderBy'] }
-      : { orderBy?: RolesGroupByArgs['orderBy'] },
+      ? { orderBy: rolesGroupByArgs['orderBy'] }
+      : { orderBy?: rolesGroupByArgs['orderBy'] },
     OrderFields extends Prisma.ExcludeUnderscoreKeys<Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>>,
     ByFields extends Prisma.MaybeTupleToUnion<T['by']>,
     ByValid extends Prisma.Has<ByFields, OrderFields>,
@@ -790,22 +790,22 @@ export interface RolesDelegate<ExtArgs extends runtime.Types.Extensions.Internal
           ? never
           : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
       }[OrderFields]
-  >(args: Prisma.SubsetIntersection<T, RolesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRolesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  >(args: Prisma.SubsetIntersection<T, rolesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRolesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
 /**
- * Fields of the Roles model
+ * Fields of the roles model
  */
-readonly fields: RolesFieldRefs;
+readonly fields: rolesFieldRefs;
 }
 
 /**
- * The delegate class that acts as a "Promise-like" for Roles.
+ * The delegate class that acts as a "Promise-like" for roles.
  * Why is this prefixed with `Prisma__`?
  * Because we want to prevent naming conflicts as mentioned in
  * https://github.com/prisma/prisma-client-js/issues/707
  */
-export interface Prisma__RolesClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+export interface Prisma__rolesClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  users<T extends Prisma.Roles$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Roles$usersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UsersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  users<T extends Prisma.roles$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.roles$usersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -832,441 +832,441 @@ export interface Prisma__RolesClient<T, Null = never, ExtArgs extends runtime.Ty
 
 
 /**
- * Fields of the Roles model
+ * Fields of the roles model
  */
-export interface RolesFieldRefs {
-  readonly id: Prisma.FieldRef<"Roles", 'Int'>
-  readonly description: Prisma.FieldRef<"Roles", 'String'>
+export interface rolesFieldRefs {
+  readonly id: Prisma.FieldRef<"roles", 'Int'>
+  readonly description: Prisma.FieldRef<"roles", 'String'>
 }
     
 
 // Custom InputTypes
 /**
- * Roles findUnique
+ * roles findUnique
  */
-export type RolesFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type rolesFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Roles
+   * Select specific fields to fetch from the roles
    */
-  select?: Prisma.RolesSelect<ExtArgs> | null
+  select?: Prisma.rolesSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Roles
+   * Omit specific fields from the roles
    */
-  omit?: Prisma.RolesOmit<ExtArgs> | null
+  omit?: Prisma.rolesOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.RolesInclude<ExtArgs> | null
+  include?: Prisma.rolesInclude<ExtArgs> | null
   /**
-   * Filter, which Roles to fetch.
+   * Filter, which roles to fetch.
    */
-  where: Prisma.RolesWhereUniqueInput
+  where: Prisma.rolesWhereUniqueInput
 }
 
 /**
- * Roles findUniqueOrThrow
+ * roles findUniqueOrThrow
  */
-export type RolesFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type rolesFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Roles
+   * Select specific fields to fetch from the roles
    */
-  select?: Prisma.RolesSelect<ExtArgs> | null
+  select?: Prisma.rolesSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Roles
+   * Omit specific fields from the roles
    */
-  omit?: Prisma.RolesOmit<ExtArgs> | null
+  omit?: Prisma.rolesOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.RolesInclude<ExtArgs> | null
+  include?: Prisma.rolesInclude<ExtArgs> | null
   /**
-   * Filter, which Roles to fetch.
+   * Filter, which roles to fetch.
    */
-  where: Prisma.RolesWhereUniqueInput
+  where: Prisma.rolesWhereUniqueInput
 }
 
 /**
- * Roles findFirst
+ * roles findFirst
  */
-export type RolesFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type rolesFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Roles
+   * Select specific fields to fetch from the roles
    */
-  select?: Prisma.RolesSelect<ExtArgs> | null
+  select?: Prisma.rolesSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Roles
+   * Omit specific fields from the roles
    */
-  omit?: Prisma.RolesOmit<ExtArgs> | null
+  omit?: Prisma.rolesOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.RolesInclude<ExtArgs> | null
+  include?: Prisma.rolesInclude<ExtArgs> | null
   /**
-   * Filter, which Roles to fetch.
+   * Filter, which roles to fetch.
    */
-  where?: Prisma.RolesWhereInput
+  where?: Prisma.rolesWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of Roles to fetch.
+   * Determine the order of roles to fetch.
    */
-  orderBy?: Prisma.RolesOrderByWithRelationInput | Prisma.RolesOrderByWithRelationInput[]
+  orderBy?: Prisma.rolesOrderByWithRelationInput | Prisma.rolesOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
-   * Sets the position for searching for Roles.
+   * Sets the position for searching for roles.
    */
-  cursor?: Prisma.RolesWhereUniqueInput
+  cursor?: Prisma.rolesWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` Roles from the position of the cursor.
+   * Take `±n` roles from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` Roles.
+   * Skip the first `n` roles.
    */
   skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    * 
-   * Filter by unique combinations of Roles.
+   * Filter by unique combinations of roles.
    */
   distinct?: Prisma.RolesScalarFieldEnum | Prisma.RolesScalarFieldEnum[]
 }
 
 /**
- * Roles findFirstOrThrow
+ * roles findFirstOrThrow
  */
-export type RolesFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type rolesFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Roles
+   * Select specific fields to fetch from the roles
    */
-  select?: Prisma.RolesSelect<ExtArgs> | null
+  select?: Prisma.rolesSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Roles
+   * Omit specific fields from the roles
    */
-  omit?: Prisma.RolesOmit<ExtArgs> | null
+  omit?: Prisma.rolesOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.RolesInclude<ExtArgs> | null
+  include?: Prisma.rolesInclude<ExtArgs> | null
   /**
-   * Filter, which Roles to fetch.
+   * Filter, which roles to fetch.
    */
-  where?: Prisma.RolesWhereInput
+  where?: Prisma.rolesWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of Roles to fetch.
+   * Determine the order of roles to fetch.
    */
-  orderBy?: Prisma.RolesOrderByWithRelationInput | Prisma.RolesOrderByWithRelationInput[]
+  orderBy?: Prisma.rolesOrderByWithRelationInput | Prisma.rolesOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
-   * Sets the position for searching for Roles.
+   * Sets the position for searching for roles.
    */
-  cursor?: Prisma.RolesWhereUniqueInput
+  cursor?: Prisma.rolesWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` Roles from the position of the cursor.
+   * Take `±n` roles from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` Roles.
+   * Skip the first `n` roles.
    */
   skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    * 
-   * Filter by unique combinations of Roles.
+   * Filter by unique combinations of roles.
    */
   distinct?: Prisma.RolesScalarFieldEnum | Prisma.RolesScalarFieldEnum[]
 }
 
 /**
- * Roles findMany
+ * roles findMany
  */
-export type RolesFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type rolesFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Roles
+   * Select specific fields to fetch from the roles
    */
-  select?: Prisma.RolesSelect<ExtArgs> | null
+  select?: Prisma.rolesSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Roles
+   * Omit specific fields from the roles
    */
-  omit?: Prisma.RolesOmit<ExtArgs> | null
+  omit?: Prisma.rolesOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.RolesInclude<ExtArgs> | null
+  include?: Prisma.rolesInclude<ExtArgs> | null
   /**
-   * Filter, which Roles to fetch.
+   * Filter, which roles to fetch.
    */
-  where?: Prisma.RolesWhereInput
+  where?: Prisma.rolesWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of Roles to fetch.
+   * Determine the order of roles to fetch.
    */
-  orderBy?: Prisma.RolesOrderByWithRelationInput | Prisma.RolesOrderByWithRelationInput[]
+  orderBy?: Prisma.rolesOrderByWithRelationInput | Prisma.rolesOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
-   * Sets the position for listing Roles.
+   * Sets the position for listing roles.
    */
-  cursor?: Prisma.RolesWhereUniqueInput
+  cursor?: Prisma.rolesWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` Roles from the position of the cursor.
+   * Take `±n` roles from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` Roles.
+   * Skip the first `n` roles.
    */
   skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    * 
-   * Filter by unique combinations of Roles.
+   * Filter by unique combinations of roles.
    */
   distinct?: Prisma.RolesScalarFieldEnum | Prisma.RolesScalarFieldEnum[]
 }
 
 /**
- * Roles create
+ * roles create
  */
-export type RolesCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type rolesCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Roles
+   * Select specific fields to fetch from the roles
    */
-  select?: Prisma.RolesSelect<ExtArgs> | null
+  select?: Prisma.rolesSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Roles
+   * Omit specific fields from the roles
    */
-  omit?: Prisma.RolesOmit<ExtArgs> | null
+  omit?: Prisma.rolesOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.RolesInclude<ExtArgs> | null
+  include?: Prisma.rolesInclude<ExtArgs> | null
   /**
-   * The data needed to create a Roles.
+   * The data needed to create a roles.
    */
-  data: Prisma.XOR<Prisma.RolesCreateInput, Prisma.RolesUncheckedCreateInput>
+  data: Prisma.XOR<Prisma.rolesCreateInput, Prisma.rolesUncheckedCreateInput>
 }
 
 /**
- * Roles createMany
+ * roles createMany
  */
-export type RolesCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type rolesCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * The data used to create many Roles.
+   * The data used to create many roles.
    */
-  data: Prisma.RolesCreateManyInput | Prisma.RolesCreateManyInput[]
+  data: Prisma.rolesCreateManyInput | Prisma.rolesCreateManyInput[]
   skipDuplicates?: boolean
 }
 
 /**
- * Roles createManyAndReturn
+ * roles createManyAndReturn
  */
-export type RolesCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type rolesCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Roles
+   * Select specific fields to fetch from the roles
    */
-  select?: Prisma.RolesSelectCreateManyAndReturn<ExtArgs> | null
+  select?: Prisma.rolesSelectCreateManyAndReturn<ExtArgs> | null
   /**
-   * Omit specific fields from the Roles
+   * Omit specific fields from the roles
    */
-  omit?: Prisma.RolesOmit<ExtArgs> | null
+  omit?: Prisma.rolesOmit<ExtArgs> | null
   /**
-   * The data used to create many Roles.
+   * The data used to create many roles.
    */
-  data: Prisma.RolesCreateManyInput | Prisma.RolesCreateManyInput[]
+  data: Prisma.rolesCreateManyInput | Prisma.rolesCreateManyInput[]
   skipDuplicates?: boolean
 }
 
 /**
- * Roles update
+ * roles update
  */
-export type RolesUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type rolesUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Roles
+   * Select specific fields to fetch from the roles
    */
-  select?: Prisma.RolesSelect<ExtArgs> | null
+  select?: Prisma.rolesSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Roles
+   * Omit specific fields from the roles
    */
-  omit?: Prisma.RolesOmit<ExtArgs> | null
+  omit?: Prisma.rolesOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.RolesInclude<ExtArgs> | null
+  include?: Prisma.rolesInclude<ExtArgs> | null
   /**
-   * The data needed to update a Roles.
+   * The data needed to update a roles.
    */
-  data: Prisma.XOR<Prisma.RolesUpdateInput, Prisma.RolesUncheckedUpdateInput>
+  data: Prisma.XOR<Prisma.rolesUpdateInput, Prisma.rolesUncheckedUpdateInput>
   /**
-   * Choose, which Roles to update.
+   * Choose, which roles to update.
    */
-  where: Prisma.RolesWhereUniqueInput
+  where: Prisma.rolesWhereUniqueInput
 }
 
 /**
- * Roles updateMany
+ * roles updateMany
  */
-export type RolesUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type rolesUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * The data used to update Roles.
+   * The data used to update roles.
    */
-  data: Prisma.XOR<Prisma.RolesUpdateManyMutationInput, Prisma.RolesUncheckedUpdateManyInput>
+  data: Prisma.XOR<Prisma.rolesUpdateManyMutationInput, Prisma.rolesUncheckedUpdateManyInput>
   /**
-   * Filter which Roles to update
+   * Filter which roles to update
    */
-  where?: Prisma.RolesWhereInput
+  where?: Prisma.rolesWhereInput
   /**
-   * Limit how many Roles to update.
+   * Limit how many roles to update.
    */
   limit?: number
 }
 
 /**
- * Roles updateManyAndReturn
+ * roles updateManyAndReturn
  */
-export type RolesUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type rolesUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Roles
+   * Select specific fields to fetch from the roles
    */
-  select?: Prisma.RolesSelectUpdateManyAndReturn<ExtArgs> | null
+  select?: Prisma.rolesSelectUpdateManyAndReturn<ExtArgs> | null
   /**
-   * Omit specific fields from the Roles
+   * Omit specific fields from the roles
    */
-  omit?: Prisma.RolesOmit<ExtArgs> | null
+  omit?: Prisma.rolesOmit<ExtArgs> | null
   /**
-   * The data used to update Roles.
+   * The data used to update roles.
    */
-  data: Prisma.XOR<Prisma.RolesUpdateManyMutationInput, Prisma.RolesUncheckedUpdateManyInput>
+  data: Prisma.XOR<Prisma.rolesUpdateManyMutationInput, Prisma.rolesUncheckedUpdateManyInput>
   /**
-   * Filter which Roles to update
+   * Filter which roles to update
    */
-  where?: Prisma.RolesWhereInput
+  where?: Prisma.rolesWhereInput
   /**
-   * Limit how many Roles to update.
+   * Limit how many roles to update.
    */
   limit?: number
 }
 
 /**
- * Roles upsert
+ * roles upsert
  */
-export type RolesUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type rolesUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Roles
+   * Select specific fields to fetch from the roles
    */
-  select?: Prisma.RolesSelect<ExtArgs> | null
+  select?: Prisma.rolesSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Roles
+   * Omit specific fields from the roles
    */
-  omit?: Prisma.RolesOmit<ExtArgs> | null
+  omit?: Prisma.rolesOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.RolesInclude<ExtArgs> | null
+  include?: Prisma.rolesInclude<ExtArgs> | null
   /**
-   * The filter to search for the Roles to update in case it exists.
+   * The filter to search for the roles to update in case it exists.
    */
-  where: Prisma.RolesWhereUniqueInput
+  where: Prisma.rolesWhereUniqueInput
   /**
-   * In case the Roles found by the `where` argument doesn't exist, create a new Roles with this data.
+   * In case the roles found by the `where` argument doesn't exist, create a new roles with this data.
    */
-  create: Prisma.XOR<Prisma.RolesCreateInput, Prisma.RolesUncheckedCreateInput>
+  create: Prisma.XOR<Prisma.rolesCreateInput, Prisma.rolesUncheckedCreateInput>
   /**
-   * In case the Roles was found with the provided `where` argument, update it with this data.
+   * In case the roles was found with the provided `where` argument, update it with this data.
    */
-  update: Prisma.XOR<Prisma.RolesUpdateInput, Prisma.RolesUncheckedUpdateInput>
+  update: Prisma.XOR<Prisma.rolesUpdateInput, Prisma.rolesUncheckedUpdateInput>
 }
 
 /**
- * Roles delete
+ * roles delete
  */
-export type RolesDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type rolesDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Roles
+   * Select specific fields to fetch from the roles
    */
-  select?: Prisma.RolesSelect<ExtArgs> | null
+  select?: Prisma.rolesSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Roles
+   * Omit specific fields from the roles
    */
-  omit?: Prisma.RolesOmit<ExtArgs> | null
+  omit?: Prisma.rolesOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.RolesInclude<ExtArgs> | null
+  include?: Prisma.rolesInclude<ExtArgs> | null
   /**
-   * Filter which Roles to delete.
+   * Filter which roles to delete.
    */
-  where: Prisma.RolesWhereUniqueInput
+  where: Prisma.rolesWhereUniqueInput
 }
 
 /**
- * Roles deleteMany
+ * roles deleteMany
  */
-export type RolesDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type rolesDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Filter which Roles to delete
+   * Filter which roles to delete
    */
-  where?: Prisma.RolesWhereInput
+  where?: Prisma.rolesWhereInput
   /**
-   * Limit how many Roles to delete.
+   * Limit how many roles to delete.
    */
   limit?: number
 }
 
 /**
- * Roles.users
+ * roles.users
  */
-export type Roles$usersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type roles$usersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Users
+   * Select specific fields to fetch from the users
    */
-  select?: Prisma.UsersSelect<ExtArgs> | null
+  select?: Prisma.usersSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Users
+   * Omit specific fields from the users
    */
-  omit?: Prisma.UsersOmit<ExtArgs> | null
+  omit?: Prisma.usersOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UsersInclude<ExtArgs> | null
-  where?: Prisma.UsersWhereInput
-  orderBy?: Prisma.UsersOrderByWithRelationInput | Prisma.UsersOrderByWithRelationInput[]
-  cursor?: Prisma.UsersWhereUniqueInput
+  include?: Prisma.usersInclude<ExtArgs> | null
+  where?: Prisma.usersWhereInput
+  orderBy?: Prisma.usersOrderByWithRelationInput | Prisma.usersOrderByWithRelationInput[]
+  cursor?: Prisma.usersWhereUniqueInput
   take?: number
   skip?: number
   distinct?: Prisma.UsersScalarFieldEnum | Prisma.UsersScalarFieldEnum[]
 }
 
 /**
- * Roles without action
+ * roles without action
  */
-export type RolesDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type rolesDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Roles
+   * Select specific fields to fetch from the roles
    */
-  select?: Prisma.RolesSelect<ExtArgs> | null
+  select?: Prisma.rolesSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Roles
+   * Omit specific fields from the roles
    */
-  omit?: Prisma.RolesOmit<ExtArgs> | null
+  omit?: Prisma.rolesOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.RolesInclude<ExtArgs> | null
+  include?: Prisma.rolesInclude<ExtArgs> | null
 }

@@ -1,7 +1,8 @@
 import type { Request, Response } from "express";
 import { prisma } from "../lib/prisma.js";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import crypto from "node:crypto";
+import { signJwt } from "../services/token.service.js";
 
 export const registerAdmin = async (req: Request, res: Response) => {
   const reqBody = req.body;
@@ -67,7 +68,6 @@ export const registerUser = async (req: Request, res: Response) => {
 export const loginUser = async (req: Request, res: Response) => {
   const { body } = req;
   const jwtAccessSecret: string = process.env.ACCESS_JWT_SECRET || "";
-  const jwtRefreshSecret: string = process.env.REFRESH_JWT_SECRET || "";
 
   try {
     const userExist = await prisma.users.findUnique({
@@ -85,44 +85,39 @@ export const loginUser = async (req: Request, res: Response) => {
     );
 
     if (isPasswordCorrect) {
-      jwt.sign(
-        { userName: body.userName },
-        jwtRefreshSecret,
-        { expiresIn: "7d", algorithm: "HS256" },
-        async (err, token) => {
-          if (err) return res.status(500).json({ err });
-          if (!token)
-            return res.status(500).json({ message: "Internal Server Error" });
+      const refreshToken = crypto.randomBytes(32).toString("hex");
+      const tokenHash = crypto
+        .createHash("sha256")
+        .update(refreshToken)
+        .digest("hex");
 
-          const refreshTokenHash = await bcrypt.hash(token, 10);
+      const sessionBody = {
+        userId: userExist.id,
+        token_hash: tokenHash,
+        expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+      };
 
-          res.cookie("refresh", token, {
-            httpOnly: true,
-            maxAge: 24 * 60 * 60 * 1000,
-            sameSite: "strict",
-          });
+      const createdSession = await prisma.sessions.create({
+        data: sessionBody,
+      });
 
-          await prisma.users.update({
-            where: { email: userExist.email },
-            data: { refresh: refreshTokenHash },
-          });
-        },
-      );
+      if (createdSession) {
+        res.cookie("refresh", refreshToken, {
+          maxAge: 7 * 60 * 60 * 1000,
+          secure: true,
+          httpOnly: true,
+        });
+      }
 
-      jwt.sign(
-        {
-          userName: body.userName,
-        },
-        jwtAccessSecret,
-        { expiresIn: "1h", algorithm: "HS256" },
-        (err, token) => {
-          if (err) return res.status(500).json({ err });
+      const accessToken = signJwt({ userName: userExist.id }, jwtAccessSecret, {
+        expiresIn: "15m",
+        algorithm: "HS256",
+      });
 
-          return res
-            .status(200)
-            .json({ message: "User logged in successfully", token: token });
-        },
-      );
+      if (!accessToken)
+        return res.status(500).json({ message: "Internal Server Error" });
+
+      return res.status(200).json({ accessToken });
     } else {
       return res.status(401).json({ message: "Incorrect Email or Password" });
     }
@@ -132,27 +127,32 @@ export const loginUser = async (req: Request, res: Response) => {
 };
 
 export const refresh = async (req: Request, res: Response) => {
-  const cookie = req.cookies.refresh;
-  const jwtRefreshSecret = process.env.REFRESH_JWT_SECRET || "";
   const jwtAccessSecret = process.env.ACCESS_JWT_SECRET || "";
-
+  const refreshToken = req.cookies?.refresh;
   try {
-    if (!cookie) return res.sendStatus(401);
-    const userExist = await prisma.users.findUnique({
-      where: { refresh: cookie },
+    if (!refreshToken) return res.sendStatus(401);
+    const tokenHash = crypto
+      .createHash("sha256")
+      .update(refreshToken)
+      .digest("hex");
+
+    const foundSession = await prisma.sessions.findUnique({
+      where: { token_hash: tokenHash },
+      include: { users: { include: { roles: true } } },
     });
 
-    if (!userExist) return res.sendStatus(401);
+    const jwtToken = signJwt(
+      { userId: foundSession?.users.id },
+      jwtAccessSecret,
+      { expiresIn: "1h", algorithm: "HS256" },
+    );
 
-    jwt.verify(cookie, jwtRefreshSecret);
-    const token = jwt.sign({ userName: userExist.userName }, jwtAccessSecret, {
-      expiresIn: "15m",
-    });
+    if (!foundSession) return res.status(401).json({ message: "UNAUTHORIZED" });
+    console.log("Session", foundSession);
 
-    if (!token) return res.sendStatus(500);
-
-    return res.status(200).json({ token });
+    return res.status(200).json({ token: jwtToken });
   } catch (err) {
-    return res.status(500).json({ message: err });
+    console.log(err);
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 };

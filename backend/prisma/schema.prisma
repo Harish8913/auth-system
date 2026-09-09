@@ -10,21 +10,29 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-
 }
-model Users {
-  id       Int     @id @unique @default(autoincrement())
+
+model users {
+  id       Int        @id @unique @default(autoincrement())
+  userName String     @unique
+  email    String     @unique
   status   String?
-  email    String  @unique
-  userName String  @unique
   password String
-  refresh  String? @unique
   rolesId  Int?
-  roles    Roles?  @relation(fields: [rolesId], references: [id])
+  roles    roles?     @relation(fields: [rolesId], references: [id])
+  sessions sessions[]
 }
 
-model Roles {
+model sessions {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  token_hash String   @unique
+  expiresAt  DateTime
+  users      users    @relation(fields: [userId], references: [id])
+}
+
+model roles {
   id          Int     @id @default(autoincrement())
   description String
-  users       Users[]
+  users       users[]
 }
