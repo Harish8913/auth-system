@@ -2,7 +2,8 @@ import type { Request, Response } from "express";
 import { prisma } from "../lib/prisma.js";
 import bcrypt from "bcrypt";
 import crypto from "node:crypto";
-import { signJwt } from "../services/token.service.js";
+import { signJwt } from "../utils/signJwt.util.js";
+import { refreshTokenHash } from "../utils/refreshTokenHash.util.js";
 
 export const registerAdmin = async (req: Request, res: Response) => {
   const reqBody = req.body;
@@ -86,14 +87,11 @@ export const loginUser = async (req: Request, res: Response) => {
 
     if (isPasswordCorrect) {
       const refreshToken = crypto.randomBytes(32).toString("hex");
-      const tokenHash = crypto
-        .createHash("sha256")
-        .update(refreshToken)
-        .digest("hex");
+      const token_hash = refreshTokenHash(refreshToken);
 
       const sessionBody = {
         userId: userExist.id,
-        token_hash: tokenHash,
+        token_hash,
         expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
       };
 
@@ -131,13 +129,10 @@ export const refresh = async (req: Request, res: Response) => {
   const refreshToken = req.cookies?.refresh;
   try {
     if (!refreshToken) return res.sendStatus(401);
-    const tokenHash = crypto
-      .createHash("sha256")
-      .update(refreshToken)
-      .digest("hex");
+    const token_hash = refreshTokenHash(refreshToken);
 
     const foundSession = await prisma.sessions.findUnique({
-      where: { token_hash: tokenHash },
+      where: { token_hash },
       include: { users: { include: { roles: true } } },
     });
 
@@ -148,11 +143,24 @@ export const refresh = async (req: Request, res: Response) => {
     );
 
     if (!foundSession) return res.status(401).json({ message: "UNAUTHORIZED" });
-    console.log("Session", foundSession);
-
     return res.status(200).json({ token: jwtToken });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+export const logout = async (req: Request, res: Response) => {
+  const refresh = req.cookies?.refresh;
+  if (!refresh) return res.status(401).json({ message: "Unauthorized" });
+
+  try {
+    const token_hash = refreshTokenHash(refresh);
+    await prisma.sessions.delete({ where: { token_hash } });
+
+    return res.sendStatus(204);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: err });
   }
 };
