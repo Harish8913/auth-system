@@ -87,8 +87,10 @@ export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof Us
 export const SessionsScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  familyId: 'familyId',
   token_hash: 'token_hash',
-  expiresAt: 'expiresAt'
+  expiresAt: 'expiresAt',
+  isRevoked: 'isRevoked'
 } as const
 
 export type SessionsScalarFieldEnum = (typeof SessionsScalarFieldEnum)[keyof typeof SessionsScalarFieldEnum]

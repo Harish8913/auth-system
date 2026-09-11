@@ -26,9 +26,11 @@ model users {
 model sessions {
   id         Int      @id @default(autoincrement())
   userId     Int
+  familyId   String?  @unique @default(uuid())
   token_hash String   @unique
   expiresAt  DateTime
-  users      users    @relation(fields: [userId], references: [id])
+  isRevoked  Boolean?
+  users      users?   @relation(fields: [userId], references: [id])
 }
 
 model roles {

@@ -104,6 +104,7 @@ export const loginUser = async (req: Request, res: Response) => {
           maxAge: 7 * 60 * 60 * 1000,
           secure: true,
           httpOnly: true,
+          sameSite: "none",
         });
       }
 
@@ -130,19 +131,53 @@ export const refresh = async (req: Request, res: Response) => {
   try {
     if (!refreshToken) return res.sendStatus(401);
     const token_hash = refreshTokenHash(refreshToken);
-
     const foundSession = await prisma.sessions.findUnique({
       where: { token_hash },
-      include: { users: { include: { roles: true } } },
+      include: { users: true },
     });
 
+    if (!foundSession) return res.status(401).json({ message: "UNAUTHORIZED" });
+
+    if (foundSession.isRevoked) {
+      await prisma.sessions.updateMany({
+        where: { familyId: foundSession.familyId },
+        data: { isRevoked: true },
+      });
+
+      return res.status(401).json({ message: "UNAUTHORIZED, LOGIN AGAIN" });
+    }
+
+    const new_refreshtoken = crypto.randomBytes(32).toString("hex");
+    const new_refreshtoken_hash = refreshTokenHash(new_refreshtoken);
+
     const jwtToken = signJwt(
-      { userId: foundSession?.users.id },
+      { userId: foundSession?.users?.id },
       jwtAccessSecret,
       { expiresIn: "1h", algorithm: "HS256" },
     );
 
-    if (!foundSession) return res.status(401).json({ message: "UNAUTHORIZED" });
+    res.cookie("refresh", new_refreshtoken, {
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+      httpOnly: true,
+      sameSite: "none",
+      secure: true,
+    });
+
+    await prisma.sessions.update({
+      where: { token_hash },
+      data: { isRevoked: true },
+    });
+
+    await prisma.sessions.create({
+      data: {
+        familyId: foundSession.familyId,
+        isRevoked: false,
+        token_hash: new_refreshtoken_hash,
+        expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+        userId: foundSession.userId,
+      },
+    });
+
     return res.status(200).json({ token: jwtToken });
   } catch (err) {
     console.log(err);

@@ -383,9 +383,9 @@ export type usersSumOrderByAggregateInput = {
   rolesId?: Prisma.SortOrder
 }
 
-export type UsersScalarRelationFilter = {
-  is?: Prisma.usersWhereInput
-  isNot?: Prisma.usersWhereInput
+export type UsersNullableScalarRelationFilter = {
+  is?: Prisma.usersWhereInput | null
+  isNot?: Prisma.usersWhereInput | null
 }
 
 export type UsersListRelationFilter = {
@@ -428,10 +428,12 @@ export type usersCreateNestedOneWithoutSessionsInput = {
   connect?: Prisma.usersWhereUniqueInput
 }
 
-export type usersUpdateOneRequiredWithoutSessionsNestedInput = {
+export type usersUpdateOneWithoutSessionsNestedInput = {
   create?: Prisma.XOR<Prisma.usersCreateWithoutSessionsInput, Prisma.usersUncheckedCreateWithoutSessionsInput>
   connectOrCreate?: Prisma.usersCreateOrConnectWithoutSessionsInput
   upsert?: Prisma.usersUpsertWithoutSessionsInput
+  disconnect?: Prisma.usersWhereInput | boolean
+  delete?: Prisma.usersWhereInput | boolean
   connect?: Prisma.usersWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.usersUpdateToOneWithWhereWithoutSessionsInput, Prisma.usersUpdateWithoutSessionsInput>, Prisma.usersUncheckedUpdateWithoutSessionsInput>
 }

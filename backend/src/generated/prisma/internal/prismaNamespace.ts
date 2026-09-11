@@ -682,8 +682,10 @@ export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof Us
 export const SessionsScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  familyId: 'familyId',
   token_hash: 'token_hash',
-  expiresAt: 'expiresAt'
+  expiresAt: 'expiresAt',
+  isRevoked: 'isRevoked'
 } as const
 
 export type SessionsScalarFieldEnum = (typeof SessionsScalarFieldEnum)[keyof typeof SessionsScalarFieldEnum]
@@ -766,6 +768,13 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'DateTime[]'
  */
 export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
