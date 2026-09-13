@@ -10,8 +10,6 @@ export const authCheck = async (
   const jwtSecret = process.env.ACCESS_JWT_SECRET || "";
   jwt.verify(token, jwtSecret, (err) => {
     if (err) return res.status(401).json({ message: err.message });
+    next();
   });
-
-
-  next();
 };

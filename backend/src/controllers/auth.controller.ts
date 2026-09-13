@@ -131,57 +131,78 @@ export const refresh = async (req: Request, res: Response) => {
   try {
     if (!refreshToken) return res.sendStatus(401);
     const token_hash = refreshTokenHash(refreshToken);
-    const foundSession = await prisma.sessions.findUnique({
-      where: { token_hash },
-      include: { users: true },
-    });
 
-    if (!foundSession) return res.status(401).json({ message: "UNAUTHORIZED" });
+    const results = await prisma.$transaction(async (tx) => {
+      const foundSession = await tx.sessions.findUnique({
+        where: { token_hash },
+        include: { users: true },
+      });
 
-    if (foundSession.isRevoked) {
-      await prisma.sessions.updateMany({
-        where: { familyId: foundSession.familyId },
+      if (!foundSession) throw new Error("SESSION_NOT_FOUND");
+
+      if (foundSession.isRevoked) {
+        await tx.sessions.updateMany({
+          where: { familyId: foundSession.familyId },
+          data: { isRevoked: true },
+        });
+
+        throw new Error("SESSION_REVOKED");
+      }
+
+      const new_refreshtoken = crypto.randomBytes(32).toString("hex");
+      const new_refreshtoken_hash = refreshTokenHash(new_refreshtoken);
+
+      await tx.sessions.update({
+        where: { token_hash },
         data: { isRevoked: true },
       });
 
-      return res.status(401).json({ message: "UNAUTHORIZED, LOGIN AGAIN" });
-    }
+      await tx.sessions.create({
+        data: {
+          familyId: foundSession.familyId,
+          isRevoked: false,
+          token_hash: new_refreshtoken_hash,
+          expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+          userId: foundSession.userId,
+        },
+      });
 
-    const new_refreshtoken = crypto.randomBytes(32).toString("hex");
-    const new_refreshtoken_hash = refreshTokenHash(new_refreshtoken);
+      return {
+        refresh_token: new_refreshtoken,
+        userId: foundSession.users?.id,
+      };
+    });
 
-    const jwtToken = signJwt(
-      { userId: foundSession?.users?.id },
-      jwtAccessSecret,
-      { expiresIn: "1h", algorithm: "HS256" },
-    );
+    const jwtToken = signJwt({ userId: results?.userId }, jwtAccessSecret, {
+      expiresIn: "1h",
+      algorithm: "HS256",
+    });
 
-    res.cookie("refresh", new_refreshtoken, {
+    res.cookie("refresh", results.refresh_token, {
       maxAge: 7 * 24 * 60 * 60 * 1000,
       httpOnly: true,
       sameSite: "none",
       secure: true,
     });
 
-    await prisma.sessions.update({
-      where: { token_hash },
-      data: { isRevoked: true },
-    });
-
-    await prisma.sessions.create({
-      data: {
-        familyId: foundSession.familyId,
-        isRevoked: false,
-        token_hash: new_refreshtoken_hash,
-        expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-        userId: foundSession.userId,
-      },
-    });
-
     return res.status(200).json({ token: jwtToken });
   } catch (err) {
-    console.log(err);
-    return res.status(500).json({ error: "Internal Server Error" });
+    if (err instanceof Error) {
+      switch (err.message) {
+        case "SESSION_NOT_FOUND":
+        case "SESSION_EXPIRED":
+        case "SESSION_REVOKED":
+          return res.status(401).json({
+            message: "UNAUTHORIZED",
+          });
+      }
+    }
+
+    console.error(err);
+
+    return res.status(500).json({
+      error: "Internal Server Error",
+    });
   }
 };
 
@@ -192,6 +213,13 @@ export const logout = async (req: Request, res: Response) => {
   try {
     const token_hash = refreshTokenHash(refresh);
     await prisma.sessions.delete({ where: { token_hash } });
+
+    res.clearCookie("refresh", {
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+      httpOnly: true,
+      sameSite: "none",
+      secure: true,
+    });
 
     return res.sendStatus(204);
   } catch (err) {
