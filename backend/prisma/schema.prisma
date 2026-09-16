@@ -13,14 +13,13 @@ datasource db {
 }
 
 model users {
-  id       Int        @id @unique @default(autoincrement())
-  userName String     @unique
-  email    String     @unique
-  status   String?
-  password String
-  rolesId  Int?
-  roles    roles?     @relation(fields: [rolesId], references: [id])
-  sessions sessions[]
+  id           Int           @id @unique @default(autoincrement())
+  userName     String        @unique
+  email        String        @unique
+  status       String?
+  passwordHash String
+  sessions     sessions[]
+  usersRoles   users_roles[]
 }
 
 model sessions {
@@ -30,11 +29,28 @@ model sessions {
   token_hash String   @unique
   expiresAt  DateTime
   isRevoked  Boolean? @default(false)
-  users      users?   @relation(fields: [userId], references: [id])
+  users      users    @relation(fields: [userId], references: [id])
 }
 
 model roles {
-  id          Int     @id @default(autoincrement())
-  description String
-  users       users[]
+  id          Int           @id @default(autoincrement())
+  description Role          @default(GUEST)
+  usersRoles  users_roles[]
+}
+
+model users_roles {
+  userId Int
+  roleId Int
+
+  user users @relation(fields: [userId], references: [id])
+  role roles @relation(fields: [roleId], references: [id])
+  
+  @@id([userId, roleId])
+}
+
+enum Role {
+  ADMIN
+  MANAGER
+  EMPLOYEE
+  GUEST
 }

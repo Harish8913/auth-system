@@ -17,8 +17,9 @@ export const registerAdmin = async (req: Request, res: Response) => {
 
     const hash = await bcrypt.hash(req.body.password, 10);
     const body = {
-      ...reqBody,
-      password: hash,
+      userName: reqBody.userName,
+      email: reqBody.email,
+      passwordHash: hash,
     };
 
     console.log(hash.length);
@@ -32,7 +33,11 @@ export const registerAdmin = async (req: Request, res: Response) => {
       return res.status(400).json({ message: "Duplicate email" });
     }
   } catch (err) {
-    return res.status(500).json({ msg: err });
+    console.error(err);
+
+    return res.status(500).json({
+      message: err instanceof Error ? err.message : String(err),
+    });
   }
 };
 
@@ -48,8 +53,9 @@ export const registerUser = async (req: Request, res: Response) => {
 
     const hash = await bcrypt.hash(reqBody.password, 10);
     const body = {
-      ...reqBody,
-      password: hash,
+      userName: reqBody.userName,
+      email: reqBody.email,
+      passwordHash: hash,
     };
 
     if (!user) {
@@ -62,7 +68,11 @@ export const registerUser = async (req: Request, res: Response) => {
       return res.status(400).json({ message: "Duplicate email" });
     }
   } catch (err) {
-    return res.status(500).json({ msg: err });
+    console.error(err);
+
+    return res.status(500).json({
+      message: err instanceof Error ? err.message : String(err),
+    });
   }
 };
 
@@ -82,7 +92,7 @@ export const loginUser = async (req: Request, res: Response) => {
 
     const isPasswordCorrect = await bcrypt.compare(
       body.password,
-      userExist.password,
+      userExist.passwordHash,
     );
 
     if (isPasswordCorrect) {
@@ -128,6 +138,7 @@ export const loginUser = async (req: Request, res: Response) => {
 export const refresh = async (req: Request, res: Response) => {
   const jwtAccessSecret = process.env.ACCESS_JWT_SECRET || "";
   const refreshToken = req.cookies?.refresh;
+  const currentTime = new Date();
   try {
     if (!refreshToken) return res.sendStatus(401);
     const token_hash = refreshTokenHash(refreshToken);
@@ -140,7 +151,8 @@ export const refresh = async (req: Request, res: Response) => {
 
       if (!foundSession) throw new Error("SESSION_NOT_FOUND");
 
-      if (foundSession.isRevoked) {
+      const expiryDate = new Date(foundSession.expiresAt);
+      if (foundSession.isRevoked || expiryDate < currentTime) {
         await tx.sessions.updateMany({
           where: { familyId: foundSession.familyId },
           data: { isRevoked: true },

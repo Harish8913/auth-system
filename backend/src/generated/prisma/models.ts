@@ -11,4 +11,5 @@
 export type * from './models/users.js'
 export type * from './models/sessions.js'
 export type * from './models/roles.js'
+export type * from './models/users_roles.js'
 export type * from './commonInputTypes.js'

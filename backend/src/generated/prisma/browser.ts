@@ -32,3 +32,8 @@ export type sessions = Prisma.sessionsModel
  * 
  */
 export type roles = Prisma.rolesModel
+/**
+ * Model users_roles
+ * 
+ */
+export type users_roles = Prisma.users_rolesModel
