@@ -13,39 +13,61 @@ datasource db {
 }
 
 model users {
-  id           Int           @id @unique @default(autoincrement())
-  userName     String        @unique
-  email        String        @unique
-  status       String?
-  passwordHash String
-  sessions     sessions[]
-  usersRoles   users_roles[]
+  id                Int                  @id @unique @default(autoincrement())
+  userName          String               @unique
+  email             String               @unique
+  status            String?
+  passwordHash      String
+  sessions          sessions[]
+  usersRoles        roles[]
+  organizationUsers organization_users[]
 }
 
 model sessions {
   id         Int      @id @default(autoincrement())
   userId     Int
-  familyId   String?  @default(uuid())
+  familyId   String   @default(uuid())
   token_hash String   @unique
   expiresAt  DateTime
-  isRevoked  Boolean? @default(false)
+  isRevoked  Boolean  @default(false)
   users      users    @relation(fields: [userId], references: [id])
 }
 
 model roles {
-  id          Int           @id @default(autoincrement())
-  description Role          @default(GUEST)
-  usersRoles  users_roles[]
+  id              Int                  @id @default(autoincrement())
+  description     Role                 @default(GUEST)
+  rolesPermission permissions[]
+  usersRoles      users[]
+  orgRoles        organization_users[]
 }
 
-model users_roles {
+model permissions {
+  id              Int     @id @default(autoincrement())
+  description     String
+  rolesPermission roles[]
+}
+
+model organizations {
+  id                Int                  @id @default(autoincrement())
+  name              String
+  description       String
+  organizationUsers organization_users[]
+}
+
+model organization_users {
+  id Int @id @default(autoincrement())
+
   userId Int
+  orgId  Int
   roleId Int
 
-  user users @relation(fields: [userId], references: [id])
-  role roles @relation(fields: [roleId], references: [id])
-  
-  @@id([userId, roleId])
+  user         users         @relation(fields: [userId], references: [id])
+  organization organizations @relation(fields: [orgId], references: [id])
+  role         roles[]
+
+  @@unique([userId, orgId, roleId])
+  @@index([userId])
+  @@index([orgId])
 }
 
 enum Role {
