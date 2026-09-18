@@ -33,7 +33,17 @@ export type sessions = Prisma.sessionsModel
  */
 export type roles = Prisma.rolesModel
 /**
- * Model users_roles
+ * Model permissions
  * 
  */
-export type users_roles = Prisma.users_rolesModel
+export type permissions = Prisma.permissionsModel
+/**
+ * Model organizations
+ * 
+ */
+export type organizations = Prisma.organizationsModel
+/**
+ * Model organization_users
+ * 
+ */
+export type organization_users = Prisma.organization_usersModel

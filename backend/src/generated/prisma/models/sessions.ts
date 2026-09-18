@@ -192,10 +192,10 @@ export type sessionsGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 export type SessionsGroupByOutputType = {
   id: number
   userId: number
-  familyId: string | null
+  familyId: string
   token_hash: string
   expiresAt: Date
-  isRevoked: boolean | null
+  isRevoked: boolean
   _count: SessionsCountAggregateOutputType | null
   _avg: SessionsAvgAggregateOutputType | null
   _sum: SessionsSumAggregateOutputType | null
@@ -224,20 +224,20 @@ export type sessionsWhereInput = {
   NOT?: Prisma.sessionsWhereInput | Prisma.sessionsWhereInput[]
   id?: Prisma.IntFilter<"sessions"> | number
   userId?: Prisma.IntFilter<"sessions"> | number
-  familyId?: Prisma.StringNullableFilter<"sessions"> | string | null
+  familyId?: Prisma.StringFilter<"sessions"> | string
   token_hash?: Prisma.StringFilter<"sessions"> | string
   expiresAt?: Prisma.DateTimeFilter<"sessions"> | Date | string
-  isRevoked?: Prisma.BoolNullableFilter<"sessions"> | boolean | null
+  isRevoked?: Prisma.BoolFilter<"sessions"> | boolean
   users?: Prisma.XOR<Prisma.UsersScalarRelationFilter, Prisma.usersWhereInput>
 }
 
 export type sessionsOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  familyId?: Prisma.SortOrderInput | Prisma.SortOrder
+  familyId?: Prisma.SortOrder
   token_hash?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
-  isRevoked?: Prisma.SortOrderInput | Prisma.SortOrder
+  isRevoked?: Prisma.SortOrder
   users?: Prisma.usersOrderByWithRelationInput
 }
 
@@ -248,19 +248,19 @@ export type sessionsWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.sessionsWhereInput[]
   NOT?: Prisma.sessionsWhereInput | Prisma.sessionsWhereInput[]
   userId?: Prisma.IntFilter<"sessions"> | number
-  familyId?: Prisma.StringNullableFilter<"sessions"> | string | null
+  familyId?: Prisma.StringFilter<"sessions"> | string
   expiresAt?: Prisma.DateTimeFilter<"sessions"> | Date | string
-  isRevoked?: Prisma.BoolNullableFilter<"sessions"> | boolean | null
+  isRevoked?: Prisma.BoolFilter<"sessions"> | boolean
   users?: Prisma.XOR<Prisma.UsersScalarRelationFilter, Prisma.usersWhereInput>
 }, "id" | "token_hash">
 
 export type sessionsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  familyId?: Prisma.SortOrderInput | Prisma.SortOrder
+  familyId?: Prisma.SortOrder
   token_hash?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
-  isRevoked?: Prisma.SortOrderInput | Prisma.SortOrder
+  isRevoked?: Prisma.SortOrder
   _count?: Prisma.sessionsCountOrderByAggregateInput
   _avg?: Prisma.sessionsAvgOrderByAggregateInput
   _max?: Prisma.sessionsMaxOrderByAggregateInput
@@ -274,69 +274,69 @@ export type sessionsScalarWhereWithAggregatesInput = {
   NOT?: Prisma.sessionsScalarWhereWithAggregatesInput | Prisma.sessionsScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"sessions"> | number
   userId?: Prisma.IntWithAggregatesFilter<"sessions"> | number
-  familyId?: Prisma.StringNullableWithAggregatesFilter<"sessions"> | string | null
+  familyId?: Prisma.StringWithAggregatesFilter<"sessions"> | string
   token_hash?: Prisma.StringWithAggregatesFilter<"sessions"> | string
   expiresAt?: Prisma.DateTimeWithAggregatesFilter<"sessions"> | Date | string
-  isRevoked?: Prisma.BoolNullableWithAggregatesFilter<"sessions"> | boolean | null
+  isRevoked?: Prisma.BoolWithAggregatesFilter<"sessions"> | boolean
 }
 
 export type sessionsCreateInput = {
-  familyId?: string | null
+  familyId?: string
   token_hash: string
   expiresAt: Date | string
-  isRevoked?: boolean | null
+  isRevoked?: boolean
   users: Prisma.usersCreateNestedOneWithoutSessionsInput
 }
 
 export type sessionsUncheckedCreateInput = {
   id?: number
   userId: number
-  familyId?: string | null
+  familyId?: string
   token_hash: string
   expiresAt: Date | string
-  isRevoked?: boolean | null
+  isRevoked?: boolean
 }
 
 export type sessionsUpdateInput = {
-  familyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  familyId?: Prisma.StringFieldUpdateOperationsInput | string
   token_hash?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  isRevoked?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  isRevoked?: Prisma.BoolFieldUpdateOperationsInput | boolean
   users?: Prisma.usersUpdateOneRequiredWithoutSessionsNestedInput
 }
 
 export type sessionsUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.IntFieldUpdateOperationsInput | number
-  familyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  familyId?: Prisma.StringFieldUpdateOperationsInput | string
   token_hash?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  isRevoked?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  isRevoked?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type sessionsCreateManyInput = {
   id?: number
   userId: number
-  familyId?: string | null
+  familyId?: string
   token_hash: string
   expiresAt: Date | string
-  isRevoked?: boolean | null
+  isRevoked?: boolean
 }
 
 export type sessionsUpdateManyMutationInput = {
-  familyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  familyId?: Prisma.StringFieldUpdateOperationsInput | string
   token_hash?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  isRevoked?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  isRevoked?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type sessionsUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.IntFieldUpdateOperationsInput | number
-  familyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  familyId?: Prisma.StringFieldUpdateOperationsInput | string
   token_hash?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  isRevoked?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  isRevoked?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type SessionsListRelationFilter = {
@@ -432,23 +432,23 @@ export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
 }
 
-export type NullableBoolFieldUpdateOperationsInput = {
-  set?: boolean | null
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
 }
 
 export type sessionsCreateWithoutUsersInput = {
-  familyId?: string | null
+  familyId?: string
   token_hash: string
   expiresAt: Date | string
-  isRevoked?: boolean | null
+  isRevoked?: boolean
 }
 
 export type sessionsUncheckedCreateWithoutUsersInput = {
   id?: number
-  familyId?: string | null
+  familyId?: string
   token_hash: string
   expiresAt: Date | string
-  isRevoked?: boolean | null
+  isRevoked?: boolean
 }
 
 export type sessionsCreateOrConnectWithoutUsersInput = {
@@ -483,41 +483,41 @@ export type sessionsScalarWhereInput = {
   NOT?: Prisma.sessionsScalarWhereInput | Prisma.sessionsScalarWhereInput[]
   id?: Prisma.IntFilter<"sessions"> | number
   userId?: Prisma.IntFilter<"sessions"> | number
-  familyId?: Prisma.StringNullableFilter<"sessions"> | string | null
+  familyId?: Prisma.StringFilter<"sessions"> | string
   token_hash?: Prisma.StringFilter<"sessions"> | string
   expiresAt?: Prisma.DateTimeFilter<"sessions"> | Date | string
-  isRevoked?: Prisma.BoolNullableFilter<"sessions"> | boolean | null
+  isRevoked?: Prisma.BoolFilter<"sessions"> | boolean
 }
 
 export type sessionsCreateManyUsersInput = {
   id?: number
-  familyId?: string | null
+  familyId?: string
   token_hash: string
   expiresAt: Date | string
-  isRevoked?: boolean | null
+  isRevoked?: boolean
 }
 
 export type sessionsUpdateWithoutUsersInput = {
-  familyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  familyId?: Prisma.StringFieldUpdateOperationsInput | string
   token_hash?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  isRevoked?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  isRevoked?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type sessionsUncheckedUpdateWithoutUsersInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  familyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  familyId?: Prisma.StringFieldUpdateOperationsInput | string
   token_hash?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  isRevoked?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  isRevoked?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type sessionsUncheckedUpdateManyWithoutUsersInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  familyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  familyId?: Prisma.StringFieldUpdateOperationsInput | string
   token_hash?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  isRevoked?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  isRevoked?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 
@@ -580,10 +580,10 @@ export type $sessionsPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     userId: number
-    familyId: string | null
+    familyId: string
     token_hash: string
     expiresAt: Date
-    isRevoked: boolean | null
+    isRevoked: boolean
   }, ExtArgs["result"]["sessions"]>
   composites: {}
 }

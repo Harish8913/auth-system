@@ -9,7 +9,6 @@ import {
 
 const router = Router();
 
-router.post("/register", registerAdmin);
 router.post("/user", registerUser);
 router.post("/auth", loginUser);
 router.post("/refresh", refresh);

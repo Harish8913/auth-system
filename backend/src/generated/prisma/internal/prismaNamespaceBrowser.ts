@@ -54,7 +54,9 @@ export const ModelName = {
   users: 'users',
   sessions: 'sessions',
   roles: 'roles',
-  users_roles: 'users_roles'
+  permissions: 'permissions',
+  organizations: 'organizations',
+  organization_users: 'organization_users'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -104,12 +106,31 @@ export const RolesScalarFieldEnum = {
 export type RolesScalarFieldEnum = (typeof RolesScalarFieldEnum)[keyof typeof RolesScalarFieldEnum]
 
 
-export const Users_rolesScalarFieldEnum = {
+export const PermissionsScalarFieldEnum = {
+  id: 'id',
+  description: 'description'
+} as const
+
+export type PermissionsScalarFieldEnum = (typeof PermissionsScalarFieldEnum)[keyof typeof PermissionsScalarFieldEnum]
+
+
+export const OrganizationsScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description'
+} as const
+
+export type OrganizationsScalarFieldEnum = (typeof OrganizationsScalarFieldEnum)[keyof typeof OrganizationsScalarFieldEnum]
+
+
+export const Organization_usersScalarFieldEnum = {
+  id: 'id',
   userId: 'userId',
+  orgId: 'orgId',
   roleId: 'roleId'
 } as const
 
-export type Users_rolesScalarFieldEnum = (typeof Users_rolesScalarFieldEnum)[keyof typeof Users_rolesScalarFieldEnum]
+export type Organization_usersScalarFieldEnum = (typeof Organization_usersScalarFieldEnum)[keyof typeof Organization_usersScalarFieldEnum]
 
 
 export const SortOrder = {
