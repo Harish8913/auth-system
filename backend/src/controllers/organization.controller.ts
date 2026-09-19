@@ -16,16 +16,20 @@ export const registerOrg = async (
       .status(200)
       .json({ message: "Organization Registered Successfully" });
   } catch (err) {
-    if (err instanceof Prisma.PrismaClientKnownRequestError) {
+    if (err instanceof Prisma.PrismaClientKnownRequestError) { 
       if (err.code === "P2002") {
-        console.error(
-          `Creation Failed: A RECORD WITH ${err.meta?.target} already exists`,
-        );
+        return res.status(400).json({
+          message: `Creation Failed: A RECORD already exists`,
+        });
       } else {
-        console.error(`Prisma error occured ${err.code}`, err.message);
+        return res.status(400).json({
+          message: `Prisma error occured ${err.code} --- ${err.message}`,
+        });
       }
     } else {
-      console.error("UNEXPECTED ERROR OCCURED", err);
+      return res
+        .status(500)
+        .json({ message: `UNEXPECTED ERROR OCCURED: ${err}` });
     }
   }
 };
