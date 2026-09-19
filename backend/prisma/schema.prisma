@@ -30,7 +30,7 @@ model sessions {
   token_hash String   @unique
   expiresAt  DateTime
   isRevoked  Boolean  @default(false)
-  users      users    @relation(fields: [userId], references: [id])
+  users      users    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model roles {
@@ -61,8 +61,8 @@ model organization_users {
   orgId  Int
   roleId Int
 
-  user         users         @relation(fields: [userId], references: [id])
-  organization organizations @relation(fields: [orgId], references: [id])
+  user         users         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organization organizations @relation(fields: [orgId], references: [id], onDelete: Cascade)
   role         roles[]
 
   @@unique([userId, orgId, roleId])
