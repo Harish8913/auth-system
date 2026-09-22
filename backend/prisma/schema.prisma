@@ -23,6 +23,12 @@ model users {
   organizationUsers organization_users[]
 }
 
+model guest {
+  id     Int         @id @default(autoincrement())
+  email  String
+  status GuestStatus
+}
+
 model sessions {
   id         Int      @id @default(autoincrement())
   userId     Int
@@ -75,4 +81,9 @@ enum Role {
   MANAGER
   EMPLOYEE
   GUEST
+}
+
+enum GuestStatus {
+  PENDING
+  ACCEPTED
 }

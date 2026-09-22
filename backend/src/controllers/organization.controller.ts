@@ -8,15 +8,21 @@ export const registerOrg = async (
   res: Response,
 ) => {
   const { body } = req;
+  const { adminDetails } = body;
 
   try {
-    await prisma.organizations.create({ data: body });
+    await prisma.$transaction(async (ax) => {
+      await ax.organizations.create({ data: body });
+      await ax.guest.create({ data: adminDetails });
+    });
+
+    
 
     return res
       .status(200)
       .json({ message: "Organization Registered Successfully" });
   } catch (err) {
-    if (err instanceof Prisma.PrismaClientKnownRequestError) { 
+    if (err instanceof Prisma.PrismaClientKnownRequestError) {
       if (err.code === "P2002") {
         return res.status(400).json({
           message: `Creation Failed: A RECORD already exists`,

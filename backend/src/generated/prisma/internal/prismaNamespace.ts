@@ -385,6 +385,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   users: 'users',
+  guest: 'guest',
   sessions: 'sessions',
   roles: 'roles',
   permissions: 'permissions',
@@ -405,7 +406,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "users" | "sessions" | "roles" | "permissions" | "organizations" | "organization_users"
+    modelProps: "users" | "guest" | "sessions" | "roles" | "permissions" | "organizations" | "organization_users"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -480,6 +481,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.usersCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.UsersCountAggregateOutputType> | number
+        }
+      }
+    }
+    guest: {
+      payload: Prisma.$guestPayload<ExtArgs>
+      fields: Prisma.guestFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.guestFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$guestPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.guestFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$guestPayload>
+        }
+        findFirst: {
+          args: Prisma.guestFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$guestPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.guestFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$guestPayload>
+        }
+        findMany: {
+          args: Prisma.guestFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$guestPayload>[]
+        }
+        create: {
+          args: Prisma.guestCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$guestPayload>
+        }
+        createMany: {
+          args: Prisma.guestCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.guestCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$guestPayload>[]
+        }
+        delete: {
+          args: Prisma.guestDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$guestPayload>
+        }
+        update: {
+          args: Prisma.guestUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$guestPayload>
+        }
+        deleteMany: {
+          args: Prisma.guestDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.guestUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.guestUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$guestPayload>[]
+        }
+        upsert: {
+          args: Prisma.guestUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$guestPayload>
+        }
+        aggregate: {
+          args: Prisma.GuestAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGuest>
+        }
+        groupBy: {
+          args: Prisma.guestGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GuestGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.guestCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GuestCountAggregateOutputType> | number
         }
       }
     }
@@ -903,6 +978,15 @@ export const UsersScalarFieldEnum = {
 export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
 
 
+export const GuestScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  status: 'status'
+} as const
+
+export type GuestScalarFieldEnum = (typeof GuestScalarFieldEnum)[keyof typeof GuestScalarFieldEnum]
+
+
 export const SessionsScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -1005,6 +1089,20 @@ export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 
  * Reference to a field of type 'String[]'
  */
 export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
+    
+
+
+/**
+ * Reference to a field of type 'GuestStatus'
+ */
+export type EnumGuestStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GuestStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'GuestStatus[]'
+ */
+export type ListEnumGuestStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GuestStatus[]'>
     
 
 
@@ -1167,6 +1265,7 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   users?: Prisma.usersOmit
+  guest?: Prisma.guestOmit
   sessions?: Prisma.sessionsOmit
   roles?: Prisma.rolesOmit
   permissions?: Prisma.permissionsOmit
