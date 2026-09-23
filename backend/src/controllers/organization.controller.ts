@@ -16,8 +16,6 @@ export const registerOrg = async (
       await ax.guest.create({ data: adminDetails });
     });
 
-    
-
     return res
       .status(200)
       .json({ message: "Organization Registered Successfully" });
