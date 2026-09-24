@@ -2,6 +2,7 @@ import { prisma } from "../lib/prisma.js";
 import type { Request, Response } from "express";
 import type { RegisterOrgBody } from "../types/organization.types.js";
 import { Prisma } from "../generated/prisma/client.js";
+import * as z from "zod";
 
 export const registerOrg = async (
   req: Request<{}, {}, RegisterOrgBody>,
