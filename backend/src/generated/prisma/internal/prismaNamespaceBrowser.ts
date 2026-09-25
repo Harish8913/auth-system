@@ -89,6 +89,8 @@ export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof Us
 
 export const GuestScalarFieldEnum = {
   id: 'id',
+  name: 'name',
+  roleDescription: 'roleDescription',
   email: 'email',
   status: 'status'
 } as const
@@ -127,6 +129,7 @@ export type PermissionsScalarFieldEnum = (typeof PermissionsScalarFieldEnum)[key
 export const OrganizationsScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  email: 'email',
   description: 'description'
 } as const
 

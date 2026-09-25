@@ -36,18 +36,24 @@ export type GuestSumAggregateOutputType = {
 
 export type GuestMinAggregateOutputType = {
   id: number | null
+  name: string | null
+  roleDescription: string | null
   email: string | null
-  status: $Enums.GuestStatus | null
+  status: string | null
 }
 
 export type GuestMaxAggregateOutputType = {
   id: number | null
+  name: string | null
+  roleDescription: string | null
   email: string | null
-  status: $Enums.GuestStatus | null
+  status: string | null
 }
 
 export type GuestCountAggregateOutputType = {
   id: number
+  name: number
+  roleDescription: number
   email: number
   status: number
   _all: number
@@ -64,18 +70,24 @@ export type GuestSumAggregateInputType = {
 
 export type GuestMinAggregateInputType = {
   id?: true
+  name?: true
+  roleDescription?: true
   email?: true
   status?: true
 }
 
 export type GuestMaxAggregateInputType = {
   id?: true
+  name?: true
+  roleDescription?: true
   email?: true
   status?: true
 }
 
 export type GuestCountAggregateInputType = {
   id?: true
+  name?: true
+  roleDescription?: true
   email?: true
   status?: true
   _all?: true
@@ -169,8 +181,10 @@ export type guestGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 
 export type GuestGroupByOutputType = {
   id: number
+  name: string
+  roleDescription: string
   email: string
-  status: $Enums.GuestStatus
+  status: string
   _count: GuestCountAggregateOutputType | null
   _avg: GuestAvgAggregateOutputType | null
   _sum: GuestSumAggregateOutputType | null
@@ -198,12 +212,16 @@ export type guestWhereInput = {
   OR?: Prisma.guestWhereInput[]
   NOT?: Prisma.guestWhereInput | Prisma.guestWhereInput[]
   id?: Prisma.IntFilter<"guest"> | number
+  name?: Prisma.StringFilter<"guest"> | string
+  roleDescription?: Prisma.StringFilter<"guest"> | string
   email?: Prisma.StringFilter<"guest"> | string
-  status?: Prisma.EnumGuestStatusFilter<"guest"> | $Enums.GuestStatus
+  status?: Prisma.StringFilter<"guest"> | string
 }
 
 export type guestOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  roleDescription?: Prisma.SortOrder
   email?: Prisma.SortOrder
   status?: Prisma.SortOrder
 }
@@ -213,12 +231,16 @@ export type guestWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.guestWhereInput | Prisma.guestWhereInput[]
   OR?: Prisma.guestWhereInput[]
   NOT?: Prisma.guestWhereInput | Prisma.guestWhereInput[]
+  name?: Prisma.StringFilter<"guest"> | string
+  roleDescription?: Prisma.StringFilter<"guest"> | string
   email?: Prisma.StringFilter<"guest"> | string
-  status?: Prisma.EnumGuestStatusFilter<"guest"> | $Enums.GuestStatus
+  status?: Prisma.StringFilter<"guest"> | string
 }, "id">
 
 export type guestOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  roleDescription?: Prisma.SortOrder
   email?: Prisma.SortOrder
   status?: Prisma.SortOrder
   _count?: Prisma.guestCountOrderByAggregateInput
@@ -233,51 +255,69 @@ export type guestScalarWhereWithAggregatesInput = {
   OR?: Prisma.guestScalarWhereWithAggregatesInput[]
   NOT?: Prisma.guestScalarWhereWithAggregatesInput | Prisma.guestScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"guest"> | number
+  name?: Prisma.StringWithAggregatesFilter<"guest"> | string
+  roleDescription?: Prisma.StringWithAggregatesFilter<"guest"> | string
   email?: Prisma.StringWithAggregatesFilter<"guest"> | string
-  status?: Prisma.EnumGuestStatusWithAggregatesFilter<"guest"> | $Enums.GuestStatus
+  status?: Prisma.StringWithAggregatesFilter<"guest"> | string
 }
 
 export type guestCreateInput = {
+  name: string
+  roleDescription: string
   email: string
-  status: $Enums.GuestStatus
+  status?: string
 }
 
 export type guestUncheckedCreateInput = {
   id?: number
+  name: string
+  roleDescription: string
   email: string
-  status: $Enums.GuestStatus
+  status?: string
 }
 
 export type guestUpdateInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  roleDescription?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumGuestStatusFieldUpdateOperationsInput | $Enums.GuestStatus
+  status?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type guestUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  roleDescription?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumGuestStatusFieldUpdateOperationsInput | $Enums.GuestStatus
+  status?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type guestCreateManyInput = {
   id?: number
+  name: string
+  roleDescription: string
   email: string
-  status: $Enums.GuestStatus
+  status?: string
 }
 
 export type guestUpdateManyMutationInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  roleDescription?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumGuestStatusFieldUpdateOperationsInput | $Enums.GuestStatus
+  status?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type guestUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  roleDescription?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumGuestStatusFieldUpdateOperationsInput | $Enums.GuestStatus
+  status?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type guestCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  roleDescription?: Prisma.SortOrder
   email?: Prisma.SortOrder
   status?: Prisma.SortOrder
 }
@@ -288,12 +328,16 @@ export type guestAvgOrderByAggregateInput = {
 
 export type guestMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  roleDescription?: Prisma.SortOrder
   email?: Prisma.SortOrder
   status?: Prisma.SortOrder
 }
 
 export type guestMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  roleDescription?: Prisma.SortOrder
   email?: Prisma.SortOrder
   status?: Prisma.SortOrder
 }
@@ -302,45 +346,51 @@ export type guestSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
 }
 
-export type EnumGuestStatusFieldUpdateOperationsInput = {
-  set?: $Enums.GuestStatus
-}
-
 
 
 export type guestSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  name?: boolean
+  roleDescription?: boolean
   email?: boolean
   status?: boolean
 }, ExtArgs["result"]["guest"]>
 
 export type guestSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  name?: boolean
+  roleDescription?: boolean
   email?: boolean
   status?: boolean
 }, ExtArgs["result"]["guest"]>
 
 export type guestSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  name?: boolean
+  roleDescription?: boolean
   email?: boolean
   status?: boolean
 }, ExtArgs["result"]["guest"]>
 
 export type guestSelectScalar = {
   id?: boolean
+  name?: boolean
+  roleDescription?: boolean
   email?: boolean
   status?: boolean
 }
 
-export type guestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "status", ExtArgs["result"]["guest"]>
+export type guestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "roleDescription" | "email" | "status", ExtArgs["result"]["guest"]>
 
 export type $guestPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "guest"
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
+    name: string
+    roleDescription: string
     email: string
-    status: $Enums.GuestStatus
+    status: string
   }, ExtArgs["result"]["guest"]>
   composites: {}
 }
@@ -765,8 +815,10 @@ export interface Prisma__guestClient<T, Null = never, ExtArgs extends runtime.Ty
  */
 export interface guestFieldRefs {
   readonly id: Prisma.FieldRef<"guest", 'Int'>
+  readonly name: Prisma.FieldRef<"guest", 'String'>
+  readonly roleDescription: Prisma.FieldRef<"guest", 'String'>
   readonly email: Prisma.FieldRef<"guest", 'String'>
-  readonly status: Prisma.FieldRef<"guest", 'GuestStatus'>
+  readonly status: Prisma.FieldRef<"guest", 'String'>
 }
     
 

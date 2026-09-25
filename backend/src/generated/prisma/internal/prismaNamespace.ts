@@ -980,6 +980,8 @@ export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof Us
 
 export const GuestScalarFieldEnum = {
   id: 'id',
+  name: 'name',
+  roleDescription: 'roleDescription',
   email: 'email',
   status: 'status'
 } as const
@@ -1018,6 +1020,7 @@ export type PermissionsScalarFieldEnum = (typeof PermissionsScalarFieldEnum)[key
 export const OrganizationsScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  email: 'email',
   description: 'description'
 } as const
 
@@ -1089,20 +1092,6 @@ export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 
  * Reference to a field of type 'String[]'
  */
 export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
-    
-
-
-/**
- * Reference to a field of type 'GuestStatus'
- */
-export type EnumGuestStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GuestStatus'>
-    
-
-
-/**
- * Reference to a field of type 'GuestStatus[]'
- */
-export type ListEnumGuestStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GuestStatus[]'>
     
 
 

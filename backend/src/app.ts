@@ -19,9 +19,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", authRoutes);
+app.use("/api", orgRoutes);
 app.use(authCheck);
 app.use("/api", healthRoutes);
 app.use("/api", serviceRoutes);
-app.use("/api", orgRoutes);
 
 export default app;

@@ -17,11 +17,3 @@ export const Role = {
 } as const
 
 export type Role = (typeof Role)[keyof typeof Role]
-
-
-export const GuestStatus = {
-  PENDING: 'PENDING',
-  ACCEPTED: 'ACCEPTED'
-} as const
-
-export type GuestStatus = (typeof GuestStatus)[keyof typeof GuestStatus]

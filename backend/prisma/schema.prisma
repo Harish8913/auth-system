@@ -24,11 +24,11 @@ model users {
 }
 
 model guest {
-  id              Int         @id @default(autoincrement())
+  id              Int    @id @default(autoincrement())
   name            String
   roleDescription String
   email           String
-  status          GuestStatus
+  status          String @default("PENDING")
 }
 
 model sessions {
@@ -58,6 +58,7 @@ model permissions {
 model organizations {
   id                Int                  @id @default(autoincrement())
   name              String               @unique
+  email             String               @unique
   description       String
   organizationUsers organization_users[]
 }
@@ -83,9 +84,4 @@ enum Role {
   MANAGER
   EMPLOYEE
   GUEST
-}
-
-enum GuestStatus {
-  PENDING
-  ACCEPTED
 }
