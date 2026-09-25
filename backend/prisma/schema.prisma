@@ -24,9 +24,11 @@ model users {
 }
 
 model guest {
-  id     Int         @id @default(autoincrement())
-  email  String
-  status GuestStatus
+  id              Int         @id @default(autoincrement())
+  name            String
+  roleDescription String
+  email           String
+  status          GuestStatus
 }
 
 model sessions {

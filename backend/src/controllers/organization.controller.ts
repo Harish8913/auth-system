@@ -1,19 +1,39 @@
 import { prisma } from "../lib/prisma.js";
 import type { Request, Response } from "express";
-import type { RegisterOrgBody } from "../types/organization.types.js";
 import { Prisma } from "../generated/prisma/client.js";
-import * as z from "zod";
+import { OrganizationSchema } from "../schema/organization.schema.js";
+import type { OrganizationType } from "../schema/organization.schema.js";
 
 export const registerOrg = async (
-  req: Request<{}, {}, RegisterOrgBody>,
+  req: Request<{}, {}, OrganizationType>,
   res: Response,
 ) => {
-  const { body } = req;
-  const { adminDetails } = body;
+  const result = OrganizationSchema.safeParse(req.body);
+
+  if (!result.success) {
+    return res.status(400).json({ message: result.error.format() });
+  }
+  
+  const { adminDetails } = req.body;
+
+  let roleDescription;
+  switch (adminDetails.role) {
+    case 1001:
+      roleDescription = "ADMIN";
+    default:
+      roleDescription = "GUEST";
+  }
+
+  const guestDTO = {
+    name: adminDetails.name,
+    email: adminDetails.email,
+    status: adminDetails.status,
+    roleDescription,
+  };
 
   try {
     await prisma.$transaction(async (ax) => {
-      await ax.organizations.create({ data: body });
+      await ax.organizations.create({ data: req.body });
       await ax.guest.create({ data: adminDetails });
     });
 
