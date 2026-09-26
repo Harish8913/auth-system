@@ -1,6 +1,5 @@
 import type { OrganizationType } from "../schema/organization.schema.js";
 import { prisma } from "../lib/prisma.js";
-import { email } from "zod";
 
 export const registerOrgService = async (body: OrganizationType) => {
   const { adminDetails } = body;
