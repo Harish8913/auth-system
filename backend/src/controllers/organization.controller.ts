@@ -16,7 +16,7 @@ export const registerOrg = async (
 
   try {
     await registerOrgService(req.body);
-    return res
+    return res 
       .status(200)
       .json({ message: "Organization Registered Successfully" });
   } catch (err) {
