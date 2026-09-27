@@ -118,10 +118,24 @@ export const loginUser = async (req: Request, res: Response) => {
         });
       }
 
-      const accessToken = signJwt({ userName: userExist.id }, jwtAccessSecret, {
-        expiresIn: "15m",
-        algorithm: "HS256",
+      const organizationUser = await prisma.organization_users.findMany({
+        where: { userId: userExist.id },
+        include: { role: true },
       });
+
+      const accessToken = signJwt(
+        {
+          userName: userExist.id,
+          role: organizationUser.map((val) =>
+            val.role.map((val) => val.description),
+          ),
+        },
+        jwtAccessSecret,
+        {
+          expiresIn: "15m",
+          algorithm: "HS256",
+        },
+      );
 
       if (!accessToken)
         return res.status(500).json({ message: "Internal Server Error" });
