@@ -166,7 +166,7 @@ export const refresh = async (req: Request, res: Response) => {
       if (!foundSession) throw new Error("SESSION_NOT_FOUND");
 
       const expiryDate = new Date(foundSession.expiresAt);
-      if (foundSession.isRevoked || expiryDate < currentTime) { 
+      if (foundSession.isRevoked || expiryDate < currentTime) {
         await tx.sessions.updateMany({
           where: { familyId: foundSession.familyId },
           data: { isRevoked: true },
