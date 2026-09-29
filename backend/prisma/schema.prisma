@@ -15,8 +15,7 @@ datasource db {
 model users {
   id                Int                  @id @unique @default(autoincrement())
   userName          String               @unique
-  email             String               @unique
-  status            String?
+  email             String              
   passwordHash      String
   sessions          sessions[]
   usersRoles        roles[]
