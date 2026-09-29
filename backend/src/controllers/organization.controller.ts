@@ -23,7 +23,7 @@ export const registerOrg = async (
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
       if (err.code === "P2002") {
         return res.status(400).json({
-          message: `Creation Failed: A RECORD already exists`,
+          message: `Creation Failed: A Record already exists`,
         });
       } else {
         return res.status(400).json({
