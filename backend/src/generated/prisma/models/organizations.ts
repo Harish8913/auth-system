@@ -209,6 +209,7 @@ export type organizationsWhereInput = {
   email?: Prisma.StringFilter<"organizations"> | string
   description?: Prisma.StringFilter<"organizations"> | string
   organizationUsers?: Prisma.Organization_usersListRelationFilter
+  guests?: Prisma.GuestListRelationFilter
 }
 
 export type organizationsOrderByWithRelationInput = {
@@ -217,6 +218,7 @@ export type organizationsOrderByWithRelationInput = {
   email?: Prisma.SortOrder
   description?: Prisma.SortOrder
   organizationUsers?: Prisma.organization_usersOrderByRelationAggregateInput
+  guests?: Prisma.guestOrderByRelationAggregateInput
 }
 
 export type organizationsWhereUniqueInput = Prisma.AtLeast<{
@@ -228,6 +230,7 @@ export type organizationsWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.organizationsWhereInput | Prisma.organizationsWhereInput[]
   description?: Prisma.StringFilter<"organizations"> | string
   organizationUsers?: Prisma.Organization_usersListRelationFilter
+  guests?: Prisma.GuestListRelationFilter
 }, "id" | "name" | "email">
 
 export type organizationsOrderByWithAggregationInput = {
@@ -257,6 +260,7 @@ export type organizationsCreateInput = {
   email: string
   description: string
   organizationUsers?: Prisma.organization_usersCreateNestedManyWithoutOrganizationInput
+  guests?: Prisma.guestCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUncheckedCreateInput = {
@@ -265,6 +269,7 @@ export type organizationsUncheckedCreateInput = {
   email: string
   description: string
   organizationUsers?: Prisma.organization_usersUncheckedCreateNestedManyWithoutOrganizationInput
+  guests?: Prisma.guestUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUpdateInput = {
@@ -272,6 +277,7 @@ export type organizationsUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   organizationUsers?: Prisma.organization_usersUpdateManyWithoutOrganizationNestedInput
+  guests?: Prisma.guestUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsUncheckedUpdateInput = {
@@ -280,6 +286,7 @@ export type organizationsUncheckedUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   organizationUsers?: Prisma.organization_usersUncheckedUpdateManyWithoutOrganizationNestedInput
+  guests?: Prisma.guestUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsCreateManyInput = {
@@ -300,6 +307,11 @@ export type organizationsUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type OrganizationsScalarRelationFilter = {
+  is?: Prisma.organizationsWhereInput
+  isNot?: Prisma.organizationsWhereInput
 }
 
 export type organizationsCountOrderByAggregateInput = {
@@ -331,9 +343,18 @@ export type organizationsSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
 }
 
-export type OrganizationsScalarRelationFilter = {
-  is?: Prisma.organizationsWhereInput
-  isNot?: Prisma.organizationsWhereInput
+export type organizationsCreateNestedOneWithoutGuestsInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutGuestsInput, Prisma.organizationsUncheckedCreateWithoutGuestsInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutGuestsInput
+  connect?: Prisma.organizationsWhereUniqueInput
+}
+
+export type organizationsUpdateOneRequiredWithoutGuestsNestedInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutGuestsInput, Prisma.organizationsUncheckedCreateWithoutGuestsInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutGuestsInput
+  upsert?: Prisma.organizationsUpsertWithoutGuestsInput
+  connect?: Prisma.organizationsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.organizationsUpdateToOneWithWhereWithoutGuestsInput, Prisma.organizationsUpdateWithoutGuestsInput>, Prisma.organizationsUncheckedUpdateWithoutGuestsInput>
 }
 
 export type organizationsCreateNestedOneWithoutOrganizationUsersInput = {
@@ -350,10 +371,57 @@ export type organizationsUpdateOneRequiredWithoutOrganizationUsersNestedInput = 
   update?: Prisma.XOR<Prisma.XOR<Prisma.organizationsUpdateToOneWithWhereWithoutOrganizationUsersInput, Prisma.organizationsUpdateWithoutOrganizationUsersInput>, Prisma.organizationsUncheckedUpdateWithoutOrganizationUsersInput>
 }
 
+export type organizationsCreateWithoutGuestsInput = {
+  name: string
+  email: string
+  description: string
+  organizationUsers?: Prisma.organization_usersCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsUncheckedCreateWithoutGuestsInput = {
+  id?: number
+  name: string
+  email: string
+  description: string
+  organizationUsers?: Prisma.organization_usersUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsCreateOrConnectWithoutGuestsInput = {
+  where: Prisma.organizationsWhereUniqueInput
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutGuestsInput, Prisma.organizationsUncheckedCreateWithoutGuestsInput>
+}
+
+export type organizationsUpsertWithoutGuestsInput = {
+  update: Prisma.XOR<Prisma.organizationsUpdateWithoutGuestsInput, Prisma.organizationsUncheckedUpdateWithoutGuestsInput>
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutGuestsInput, Prisma.organizationsUncheckedCreateWithoutGuestsInput>
+  where?: Prisma.organizationsWhereInput
+}
+
+export type organizationsUpdateToOneWithWhereWithoutGuestsInput = {
+  where?: Prisma.organizationsWhereInput
+  data: Prisma.XOR<Prisma.organizationsUpdateWithoutGuestsInput, Prisma.organizationsUncheckedUpdateWithoutGuestsInput>
+}
+
+export type organizationsUpdateWithoutGuestsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationUsers?: Prisma.organization_usersUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsUncheckedUpdateWithoutGuestsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  organizationUsers?: Prisma.organization_usersUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
 export type organizationsCreateWithoutOrganizationUsersInput = {
   name: string
   email: string
   description: string
+  guests?: Prisma.guestCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUncheckedCreateWithoutOrganizationUsersInput = {
@@ -361,6 +429,7 @@ export type organizationsUncheckedCreateWithoutOrganizationUsersInput = {
   name: string
   email: string
   description: string
+  guests?: Prisma.guestUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsCreateOrConnectWithoutOrganizationUsersInput = {
@@ -383,6 +452,7 @@ export type organizationsUpdateWithoutOrganizationUsersInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  guests?: Prisma.guestUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsUncheckedUpdateWithoutOrganizationUsersInput = {
@@ -390,6 +460,7 @@ export type organizationsUncheckedUpdateWithoutOrganizationUsersInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  guests?: Prisma.guestUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 
@@ -399,10 +470,12 @@ export type organizationsUncheckedUpdateWithoutOrganizationUsersInput = {
 
 export type OrganizationsCountOutputType = {
   organizationUsers: number
+  guests: number
 }
 
 export type OrganizationsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organizationUsers?: boolean | OrganizationsCountOutputTypeCountOrganizationUsersArgs
+  guests?: boolean | OrganizationsCountOutputTypeCountGuestsArgs
 }
 
 /**
@@ -422,6 +495,13 @@ export type OrganizationsCountOutputTypeCountOrganizationUsersArgs<ExtArgs exten
   where?: Prisma.organization_usersWhereInput
 }
 
+/**
+ * OrganizationsCountOutputType without action
+ */
+export type OrganizationsCountOutputTypeCountGuestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.guestWhereInput
+}
+
 
 export type organizationsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -429,6 +509,7 @@ export type organizationsSelect<ExtArgs extends runtime.Types.Extensions.Interna
   email?: boolean
   description?: boolean
   organizationUsers?: boolean | Prisma.organizations$organizationUsersArgs<ExtArgs>
+  guests?: boolean | Prisma.organizations$guestsArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["organizations"]>
 
@@ -456,6 +537,7 @@ export type organizationsSelectScalar = {
 export type organizationsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "description", ExtArgs["result"]["organizations"]>
 export type organizationsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organizationUsers?: boolean | Prisma.organizations$organizationUsersArgs<ExtArgs>
+  guests?: boolean | Prisma.organizations$guestsArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationsCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type organizationsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -465,6 +547,7 @@ export type $organizationsPayload<ExtArgs extends runtime.Types.Extensions.Inter
   name: "organizations"
   objects: {
     organizationUsers: Prisma.$organization_usersPayload<ExtArgs>[]
+    guests: Prisma.$guestPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -866,6 +949,7 @@ readonly fields: organizationsFieldRefs;
 export interface Prisma__organizationsClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   organizationUsers<T extends Prisma.organizations$organizationUsersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.organizations$organizationUsersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$organization_usersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  guests<T extends Prisma.organizations$guestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.organizations$guestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$guestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1313,6 +1397,30 @@ export type organizations$organizationUsersArgs<ExtArgs extends runtime.Types.Ex
   take?: number
   skip?: number
   distinct?: Prisma.Organization_usersScalarFieldEnum | Prisma.Organization_usersScalarFieldEnum[]
+}
+
+/**
+ * organizations.guests
+ */
+export type organizations$guestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the guest
+   */
+  select?: Prisma.guestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the guest
+   */
+  omit?: Prisma.guestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.guestInclude<ExtArgs> | null
+  where?: Prisma.guestWhereInput
+  orderBy?: Prisma.guestOrderByWithRelationInput | Prisma.guestOrderByWithRelationInput[]
+  cursor?: Prisma.guestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.GuestScalarFieldEnum | Prisma.GuestScalarFieldEnum[]
 }
 
 /**

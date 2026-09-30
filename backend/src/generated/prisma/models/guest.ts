@@ -28,10 +28,12 @@ export type AggregateGuest = {
 
 export type GuestAvgAggregateOutputType = {
   id: number | null
+  orgId: number | null
 }
 
 export type GuestSumAggregateOutputType = {
   id: number | null
+  orgId: number | null
 }
 
 export type GuestMinAggregateOutputType = {
@@ -40,6 +42,7 @@ export type GuestMinAggregateOutputType = {
   roleDescription: string | null
   email: string | null
   status: string | null
+  orgId: number | null
 }
 
 export type GuestMaxAggregateOutputType = {
@@ -48,6 +51,7 @@ export type GuestMaxAggregateOutputType = {
   roleDescription: string | null
   email: string | null
   status: string | null
+  orgId: number | null
 }
 
 export type GuestCountAggregateOutputType = {
@@ -56,16 +60,19 @@ export type GuestCountAggregateOutputType = {
   roleDescription: number
   email: number
   status: number
+  orgId: number
   _all: number
 }
 
 
 export type GuestAvgAggregateInputType = {
   id?: true
+  orgId?: true
 }
 
 export type GuestSumAggregateInputType = {
   id?: true
+  orgId?: true
 }
 
 export type GuestMinAggregateInputType = {
@@ -74,6 +81,7 @@ export type GuestMinAggregateInputType = {
   roleDescription?: true
   email?: true
   status?: true
+  orgId?: true
 }
 
 export type GuestMaxAggregateInputType = {
@@ -82,6 +90,7 @@ export type GuestMaxAggregateInputType = {
   roleDescription?: true
   email?: true
   status?: true
+  orgId?: true
 }
 
 export type GuestCountAggregateInputType = {
@@ -90,6 +99,7 @@ export type GuestCountAggregateInputType = {
   roleDescription?: true
   email?: true
   status?: true
+  orgId?: true
   _all?: true
 }
 
@@ -185,6 +195,7 @@ export type GuestGroupByOutputType = {
   roleDescription: string
   email: string
   status: string
+  orgId: number
   _count: GuestCountAggregateOutputType | null
   _avg: GuestAvgAggregateOutputType | null
   _sum: GuestSumAggregateOutputType | null
@@ -216,6 +227,8 @@ export type guestWhereInput = {
   roleDescription?: Prisma.StringFilter<"guest"> | string
   email?: Prisma.StringFilter<"guest"> | string
   status?: Prisma.StringFilter<"guest"> | string
+  orgId?: Prisma.IntFilter<"guest"> | number
+  organization?: Prisma.XOR<Prisma.OrganizationsScalarRelationFilter, Prisma.organizationsWhereInput>
 }
 
 export type guestOrderByWithRelationInput = {
@@ -224,6 +237,8 @@ export type guestOrderByWithRelationInput = {
   roleDescription?: Prisma.SortOrder
   email?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  orgId?: Prisma.SortOrder
+  organization?: Prisma.organizationsOrderByWithRelationInput
 }
 
 export type guestWhereUniqueInput = Prisma.AtLeast<{
@@ -235,6 +250,8 @@ export type guestWhereUniqueInput = Prisma.AtLeast<{
   roleDescription?: Prisma.StringFilter<"guest"> | string
   email?: Prisma.StringFilter<"guest"> | string
   status?: Prisma.StringFilter<"guest"> | string
+  orgId?: Prisma.IntFilter<"guest"> | number
+  organization?: Prisma.XOR<Prisma.OrganizationsScalarRelationFilter, Prisma.organizationsWhereInput>
 }, "id">
 
 export type guestOrderByWithAggregationInput = {
@@ -243,6 +260,7 @@ export type guestOrderByWithAggregationInput = {
   roleDescription?: Prisma.SortOrder
   email?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  orgId?: Prisma.SortOrder
   _count?: Prisma.guestCountOrderByAggregateInput
   _avg?: Prisma.guestAvgOrderByAggregateInput
   _max?: Prisma.guestMaxOrderByAggregateInput
@@ -259,6 +277,7 @@ export type guestScalarWhereWithAggregatesInput = {
   roleDescription?: Prisma.StringWithAggregatesFilter<"guest"> | string
   email?: Prisma.StringWithAggregatesFilter<"guest"> | string
   status?: Prisma.StringWithAggregatesFilter<"guest"> | string
+  orgId?: Prisma.IntWithAggregatesFilter<"guest"> | number
 }
 
 export type guestCreateInput = {
@@ -266,6 +285,7 @@ export type guestCreateInput = {
   roleDescription: string
   email: string
   status?: string
+  organization: Prisma.organizationsCreateNestedOneWithoutGuestsInput
 }
 
 export type guestUncheckedCreateInput = {
@@ -274,6 +294,7 @@ export type guestUncheckedCreateInput = {
   roleDescription: string
   email: string
   status?: string
+  orgId: number
 }
 
 export type guestUpdateInput = {
@@ -281,6 +302,7 @@ export type guestUpdateInput = {
   roleDescription?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  organization?: Prisma.organizationsUpdateOneRequiredWithoutGuestsNestedInput
 }
 
 export type guestUncheckedUpdateInput = {
@@ -289,6 +311,7 @@ export type guestUncheckedUpdateInput = {
   roleDescription?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  orgId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type guestCreateManyInput = {
@@ -297,6 +320,7 @@ export type guestCreateManyInput = {
   roleDescription: string
   email: string
   status?: string
+  orgId: number
 }
 
 export type guestUpdateManyMutationInput = {
@@ -312,6 +336,7 @@ export type guestUncheckedUpdateManyInput = {
   roleDescription?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  orgId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type guestCountOrderByAggregateInput = {
@@ -320,10 +345,12 @@ export type guestCountOrderByAggregateInput = {
   roleDescription?: Prisma.SortOrder
   email?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  orgId?: Prisma.SortOrder
 }
 
 export type guestAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  orgId?: Prisma.SortOrder
 }
 
 export type guestMaxOrderByAggregateInput = {
@@ -332,6 +359,7 @@ export type guestMaxOrderByAggregateInput = {
   roleDescription?: Prisma.SortOrder
   email?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  orgId?: Prisma.SortOrder
 }
 
 export type guestMinOrderByAggregateInput = {
@@ -340,10 +368,148 @@ export type guestMinOrderByAggregateInput = {
   roleDescription?: Prisma.SortOrder
   email?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  orgId?: Prisma.SortOrder
 }
 
 export type guestSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  orgId?: Prisma.SortOrder
+}
+
+export type GuestListRelationFilter = {
+  every?: Prisma.guestWhereInput
+  some?: Prisma.guestWhereInput
+  none?: Prisma.guestWhereInput
+}
+
+export type guestOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
+export type guestCreateNestedManyWithoutOrganizationInput = {
+  create?: Prisma.XOR<Prisma.guestCreateWithoutOrganizationInput, Prisma.guestUncheckedCreateWithoutOrganizationInput> | Prisma.guestCreateWithoutOrganizationInput[] | Prisma.guestUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.guestCreateOrConnectWithoutOrganizationInput | Prisma.guestCreateOrConnectWithoutOrganizationInput[]
+  createMany?: Prisma.guestCreateManyOrganizationInputEnvelope
+  connect?: Prisma.guestWhereUniqueInput | Prisma.guestWhereUniqueInput[]
+}
+
+export type guestUncheckedCreateNestedManyWithoutOrganizationInput = {
+  create?: Prisma.XOR<Prisma.guestCreateWithoutOrganizationInput, Prisma.guestUncheckedCreateWithoutOrganizationInput> | Prisma.guestCreateWithoutOrganizationInput[] | Prisma.guestUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.guestCreateOrConnectWithoutOrganizationInput | Prisma.guestCreateOrConnectWithoutOrganizationInput[]
+  createMany?: Prisma.guestCreateManyOrganizationInputEnvelope
+  connect?: Prisma.guestWhereUniqueInput | Prisma.guestWhereUniqueInput[]
+}
+
+export type guestUpdateManyWithoutOrganizationNestedInput = {
+  create?: Prisma.XOR<Prisma.guestCreateWithoutOrganizationInput, Prisma.guestUncheckedCreateWithoutOrganizationInput> | Prisma.guestCreateWithoutOrganizationInput[] | Prisma.guestUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.guestCreateOrConnectWithoutOrganizationInput | Prisma.guestCreateOrConnectWithoutOrganizationInput[]
+  upsert?: Prisma.guestUpsertWithWhereUniqueWithoutOrganizationInput | Prisma.guestUpsertWithWhereUniqueWithoutOrganizationInput[]
+  createMany?: Prisma.guestCreateManyOrganizationInputEnvelope
+  set?: Prisma.guestWhereUniqueInput | Prisma.guestWhereUniqueInput[]
+  disconnect?: Prisma.guestWhereUniqueInput | Prisma.guestWhereUniqueInput[]
+  delete?: Prisma.guestWhereUniqueInput | Prisma.guestWhereUniqueInput[]
+  connect?: Prisma.guestWhereUniqueInput | Prisma.guestWhereUniqueInput[]
+  update?: Prisma.guestUpdateWithWhereUniqueWithoutOrganizationInput | Prisma.guestUpdateWithWhereUniqueWithoutOrganizationInput[]
+  updateMany?: Prisma.guestUpdateManyWithWhereWithoutOrganizationInput | Prisma.guestUpdateManyWithWhereWithoutOrganizationInput[]
+  deleteMany?: Prisma.guestScalarWhereInput | Prisma.guestScalarWhereInput[]
+}
+
+export type guestUncheckedUpdateManyWithoutOrganizationNestedInput = {
+  create?: Prisma.XOR<Prisma.guestCreateWithoutOrganizationInput, Prisma.guestUncheckedCreateWithoutOrganizationInput> | Prisma.guestCreateWithoutOrganizationInput[] | Prisma.guestUncheckedCreateWithoutOrganizationInput[]
+  connectOrCreate?: Prisma.guestCreateOrConnectWithoutOrganizationInput | Prisma.guestCreateOrConnectWithoutOrganizationInput[]
+  upsert?: Prisma.guestUpsertWithWhereUniqueWithoutOrganizationInput | Prisma.guestUpsertWithWhereUniqueWithoutOrganizationInput[]
+  createMany?: Prisma.guestCreateManyOrganizationInputEnvelope
+  set?: Prisma.guestWhereUniqueInput | Prisma.guestWhereUniqueInput[]
+  disconnect?: Prisma.guestWhereUniqueInput | Prisma.guestWhereUniqueInput[]
+  delete?: Prisma.guestWhereUniqueInput | Prisma.guestWhereUniqueInput[]
+  connect?: Prisma.guestWhereUniqueInput | Prisma.guestWhereUniqueInput[]
+  update?: Prisma.guestUpdateWithWhereUniqueWithoutOrganizationInput | Prisma.guestUpdateWithWhereUniqueWithoutOrganizationInput[]
+  updateMany?: Prisma.guestUpdateManyWithWhereWithoutOrganizationInput | Prisma.guestUpdateManyWithWhereWithoutOrganizationInput[]
+  deleteMany?: Prisma.guestScalarWhereInput | Prisma.guestScalarWhereInput[]
+}
+
+export type guestCreateWithoutOrganizationInput = {
+  name: string
+  roleDescription: string
+  email: string
+  status?: string
+}
+
+export type guestUncheckedCreateWithoutOrganizationInput = {
+  id?: number
+  name: string
+  roleDescription: string
+  email: string
+  status?: string
+}
+
+export type guestCreateOrConnectWithoutOrganizationInput = {
+  where: Prisma.guestWhereUniqueInput
+  create: Prisma.XOR<Prisma.guestCreateWithoutOrganizationInput, Prisma.guestUncheckedCreateWithoutOrganizationInput>
+}
+
+export type guestCreateManyOrganizationInputEnvelope = {
+  data: Prisma.guestCreateManyOrganizationInput | Prisma.guestCreateManyOrganizationInput[]
+  skipDuplicates?: boolean
+}
+
+export type guestUpsertWithWhereUniqueWithoutOrganizationInput = {
+  where: Prisma.guestWhereUniqueInput
+  update: Prisma.XOR<Prisma.guestUpdateWithoutOrganizationInput, Prisma.guestUncheckedUpdateWithoutOrganizationInput>
+  create: Prisma.XOR<Prisma.guestCreateWithoutOrganizationInput, Prisma.guestUncheckedCreateWithoutOrganizationInput>
+}
+
+export type guestUpdateWithWhereUniqueWithoutOrganizationInput = {
+  where: Prisma.guestWhereUniqueInput
+  data: Prisma.XOR<Prisma.guestUpdateWithoutOrganizationInput, Prisma.guestUncheckedUpdateWithoutOrganizationInput>
+}
+
+export type guestUpdateManyWithWhereWithoutOrganizationInput = {
+  where: Prisma.guestScalarWhereInput
+  data: Prisma.XOR<Prisma.guestUpdateManyMutationInput, Prisma.guestUncheckedUpdateManyWithoutOrganizationInput>
+}
+
+export type guestScalarWhereInput = {
+  AND?: Prisma.guestScalarWhereInput | Prisma.guestScalarWhereInput[]
+  OR?: Prisma.guestScalarWhereInput[]
+  NOT?: Prisma.guestScalarWhereInput | Prisma.guestScalarWhereInput[]
+  id?: Prisma.IntFilter<"guest"> | number
+  name?: Prisma.StringFilter<"guest"> | string
+  roleDescription?: Prisma.StringFilter<"guest"> | string
+  email?: Prisma.StringFilter<"guest"> | string
+  status?: Prisma.StringFilter<"guest"> | string
+  orgId?: Prisma.IntFilter<"guest"> | number
+}
+
+export type guestCreateManyOrganizationInput = {
+  id?: number
+  name: string
+  roleDescription: string
+  email: string
+  status?: string
+}
+
+export type guestUpdateWithoutOrganizationInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  roleDescription?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type guestUncheckedUpdateWithoutOrganizationInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  roleDescription?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type guestUncheckedUpdateManyWithoutOrganizationInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  roleDescription?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -354,6 +520,8 @@ export type guestSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   roleDescription?: boolean
   email?: boolean
   status?: boolean
+  orgId?: boolean
+  organization?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["guest"]>
 
 export type guestSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -362,6 +530,8 @@ export type guestSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   roleDescription?: boolean
   email?: boolean
   status?: boolean
+  orgId?: boolean
+  organization?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["guest"]>
 
 export type guestSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -370,6 +540,8 @@ export type guestSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   roleDescription?: boolean
   email?: boolean
   status?: boolean
+  orgId?: boolean
+  organization?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["guest"]>
 
 export type guestSelectScalar = {
@@ -378,19 +550,32 @@ export type guestSelectScalar = {
   roleDescription?: boolean
   email?: boolean
   status?: boolean
+  orgId?: boolean
 }
 
-export type guestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "roleDescription" | "email" | "status", ExtArgs["result"]["guest"]>
+export type guestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "roleDescription" | "email" | "status" | "orgId", ExtArgs["result"]["guest"]>
+export type guestInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  organization?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
+}
+export type guestIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  organization?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
+}
+export type guestIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  organization?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
+}
 
 export type $guestPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "guest"
-  objects: {}
+  objects: {
+    organization: Prisma.$organizationsPayload<ExtArgs>
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     name: string
     roleDescription: string
     email: string
     status: string
+    orgId: number
   }, ExtArgs["result"]["guest"]>
   composites: {}
 }
@@ -785,6 +970,7 @@ readonly fields: guestFieldRefs;
  */
 export interface Prisma__guestClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  organization<T extends Prisma.organizationsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.organizationsDefaultArgs<ExtArgs>>): Prisma.Prisma__organizationsClient<runtime.Types.Result.GetResult<Prisma.$organizationsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -819,6 +1005,7 @@ export interface guestFieldRefs {
   readonly roleDescription: Prisma.FieldRef<"guest", 'String'>
   readonly email: Prisma.FieldRef<"guest", 'String'>
   readonly status: Prisma.FieldRef<"guest", 'String'>
+  readonly orgId: Prisma.FieldRef<"guest", 'Int'>
 }
     
 
@@ -835,6 +1022,10 @@ export type guestFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Omit specific fields from the guest
    */
   omit?: Prisma.guestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.guestInclude<ExtArgs> | null
   /**
    * Filter, which guest to fetch.
    */
@@ -854,6 +1045,10 @@ export type guestFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.
    */
   omit?: Prisma.guestOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.guestInclude<ExtArgs> | null
+  /**
    * Filter, which guest to fetch.
    */
   where: Prisma.guestWhereUniqueInput
@@ -871,6 +1066,10 @@ export type guestFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Omit specific fields from the guest
    */
   omit?: Prisma.guestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.guestInclude<ExtArgs> | null
   /**
    * Filter, which guest to fetch.
    */
@@ -920,6 +1119,10 @@ export type guestFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   omit?: Prisma.guestOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.guestInclude<ExtArgs> | null
+  /**
    * Filter, which guest to fetch.
    */
   where?: Prisma.guestWhereInput
@@ -967,6 +1170,10 @@ export type guestFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the guest
    */
   omit?: Prisma.guestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.guestInclude<ExtArgs> | null
   /**
    * Filter, which guests to fetch.
    */
@@ -1016,6 +1223,10 @@ export type guestCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    */
   omit?: Prisma.guestOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.guestInclude<ExtArgs> | null
+  /**
    * The data needed to create a guest.
    */
   data: Prisma.XOR<Prisma.guestCreateInput, Prisma.guestUncheckedCreateInput>
@@ -1049,6 +1260,10 @@ export type guestCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extension
    */
   data: Prisma.guestCreateManyInput | Prisma.guestCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.guestIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1063,6 +1278,10 @@ export type guestUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    * Omit specific fields from the guest
    */
   omit?: Prisma.guestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.guestInclude<ExtArgs> | null
   /**
    * The data needed to update a guest.
    */
@@ -1115,6 +1334,10 @@ export type guestUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extension
    * Limit how many guests to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.guestIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1129,6 +1352,10 @@ export type guestUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    * Omit specific fields from the guest
    */
   omit?: Prisma.guestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.guestInclude<ExtArgs> | null
   /**
    * The filter to search for the guest to update in case it exists.
    */
@@ -1155,6 +1382,10 @@ export type guestDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    * Omit specific fields from the guest
    */
   omit?: Prisma.guestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.guestInclude<ExtArgs> | null
   /**
    * Filter which guest to delete.
    */
@@ -1187,4 +1418,8 @@ export type guestDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the guest
    */
   omit?: Prisma.guestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.guestInclude<ExtArgs> | null
 }

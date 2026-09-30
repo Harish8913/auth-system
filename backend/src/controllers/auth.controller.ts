@@ -10,9 +10,9 @@ export const loginUser = async (req: Request, res: Response) => {
   const jwtAccessSecret: string = process.env.ACCESS_JWT_SECRET || "";
 
   try {
-    const userExist = await prisma.users.findUnique({
+    const userExist = await prisma.auth.findFirst({
       where: {
-        email: body.email,
+        userName: body.userName,
       },
     });
 
@@ -55,9 +55,7 @@ export const loginUser = async (req: Request, res: Response) => {
       const accessToken = signJwt(
         {
           userName: userExist.id,
-          role: organizationUser.map((val) =>
-            val.role.map((val) => val.description),
-          ),
+          role: organizationUser.map((val) => val.role.description),
         },
         jwtAccessSecret,
         {

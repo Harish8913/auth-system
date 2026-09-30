@@ -1,69 +1,44 @@
 import type { Request, Response } from "express";
 import { prisma } from "../lib/prisma.js";
+import { safeParse } from "zod";
 import bcrypt from "bcrypt";
+import { User, type UserType } from "../schema/user.schema.js";
 
-export const registerAdmin = async (req: Request, res: Response) => {
+export const registerUser = async (
+  req: Request<{}, {}, UserType>,
+  res: Response,
+) => {
   const reqBody = req.body;
+  const result = safeParse(User, reqBody);
+  if (!result.success) return res.status(400).json({ message: result.error });
 
   try {
-    const user = await prisma.users.findUnique({
-      where: {
-        email: reqBody.email,
-      },
+    const found_user = await prisma.auth.findUnique({
+      where: { email: reqBody.email, tenanId: reqBody.orgId },
     });
 
-    const hash = await bcrypt.hash(req.body.password, 10);
-    const body = {
-      userName: reqBody.userName,
-      email: reqBody.email,
-      passwordHash: hash,
-    };
-
-    console.log(hash.length);
-
-    if (!user) {
-      const createdUser = await prisma.users.create({
-        data: body,
-      });
-      return res.status(201).json({ created: createdUser });
-    } else {
-      return res.status(400).json({ message: "Duplicate email" });
-    }
-  } catch (err) {
-    console.error(err);
-
-    return res.status(500).json({
-      message: err instanceof Error ? err.message : String(err),
-    });
-  }
-};
-
-export const registerUser = async (req: Request, res: Response) => {
-  const reqBody = req.body;
-
-  try {
-    const user = await prisma.users.findUnique({
-      where: {
-        email: reqBody.email,
-      },
-    });
+    if (found_user) return res.status(400).json({ message: "Duplicte User" });
 
     const hash = await bcrypt.hash(reqBody.password, 10);
-    const body = {
+    const UserDTO = {
       userName: reqBody.userName,
       email: reqBody.email,
       passwordHash: hash,
+      tenantId: reqBody.orgId,
     };
 
-    if (!user) {
-      const createdUser = await prisma.users.create({
-        data: body,
+    const save_user = await prisma.$transaction(async (tx) => {
+      const new_user = await tx.auth.create({ data: UserDTO });
+      const new_org_user = await tx.organization_users.create({
+        data: {
+          userId: new_user.id,
+          orgId: reqBody.orgId,
+          roleId: reqBody.roleId,
+        },
       });
 
-      return res.status(201).json({ created: createdUser });
-    } else {
-      return res.status(400).json({ message: "Duplicate email" });
-    }
+      return res.status(201).json({ created: "User Created" });
+    });
   } catch (err) {
     console.error(err);
 

@@ -13,12 +13,17 @@ datasource db {
 }
 
 model auth {
-  id                Int                  @id @unique @default(autoincrement())
-  userName          String
-  email             String
-  passwordHash      String
+  id           Int    @id @unique @default(autoincrement())
+  userName     String
+  email        String
+  passwordHash String
+  tenantId     Int
+
+  tenants           organizations        @relation(fields: [tenantId], references: [id])
   sessions          sessions[]
   organizationUsers organization_users[]
+
+  @@unique([email, tenantId])
 }
 
 model guest {
@@ -27,8 +32,8 @@ model guest {
   roleDescription String
   email           String
   status          String        @default("PENDING")
-  orgId           Int
-  organization    organizations @relation(fields: [orgId], references: [id], onDelete: Cascade)
+  tenantId        Int
+  organization    organizations @relation(fields: [tenantId], references: [id], onDelete: Cascade)
 }
 
 model sessions {
@@ -61,22 +66,22 @@ model organizations {
   description       String
   organizationUsers organization_users[]
   guests            guest[]
+  auths             auth[]
 }
 
 model organization_users {
-  id     Int    @id @default(autoincrement())
-  userId Int
-  orgId  Int
-  roleId Int
-  email  String
+  id       Int @id @default(autoincrement())
+  userId   Int
+  tenantId Int
+  roleId   Int
 
   auth         auth          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  organization organizations @relation(fields: [orgId], references: [id], onDelete: Cascade)
+  organization organizations @relation(fields: [tenantId], references: [id], onDelete: Cascade)
   role         roles         @relation(fields: [roleId], references: [id], onDelete: Cascade)
 
-  @@unique([userId, orgId, roleId])
+  @@unique([userId, tenantId, roleId])
   @@index([userId])
-  @@index([orgId])
+  @@index([tenantId])
 }
 
 enum Role {
