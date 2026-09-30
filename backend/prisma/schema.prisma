@@ -12,22 +12,23 @@ datasource db {
   provider = "postgresql"
 }
 
-model users {
+model auth {
   id                Int                  @id @unique @default(autoincrement())
-  userName          String               @unique
-  email             String              
+  userName          String
+  email             String
   passwordHash      String
   sessions          sessions[]
-  usersRoles        roles[]
   organizationUsers organization_users[]
 }
 
 model guest {
-  id              Int    @id @default(autoincrement())
+  id              Int           @id @default(autoincrement())
   name            String
   roleDescription String
   email           String
-  status          String @default("PENDING")
+  status          String        @default("PENDING")
+  orgId           Int
+  organization    organizations @relation(fields: [orgId], references: [id], onDelete: Cascade)
 }
 
 model sessions {
@@ -37,14 +38,13 @@ model sessions {
   token_hash String   @unique
   expiresAt  DateTime
   isRevoked  Boolean  @default(false)
-  users      users    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  users      auth     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model roles {
   id              Int                  @id @default(autoincrement())
   description     Role                 @default(GUEST)
   rolesPermission permissions[]
-  usersRoles      users[]
   orgRoles        organization_users[]
 }
 
@@ -60,18 +60,19 @@ model organizations {
   email             String               @unique
   description       String
   organizationUsers organization_users[]
+  guests            guest[]
 }
 
 model organization_users {
-  id Int @id @default(autoincrement())
-
+  id     Int    @id @default(autoincrement())
   userId Int
   orgId  Int
   roleId Int
+  email  String
 
-  user         users         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  auth         auth          @relation(fields: [userId], references: [id], onDelete: Cascade)
   organization organizations @relation(fields: [orgId], references: [id], onDelete: Cascade)
-  role         roles[]
+  role         roles         @relation(fields: [roleId], references: [id], onDelete: Cascade)
 
   @@unique([userId, orgId, roleId])
   @@index([userId])

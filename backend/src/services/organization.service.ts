@@ -27,8 +27,8 @@ export const registerOrgService = async (body: OrganizationType) => {
 
   try {
     const result = await prisma.$transaction(async (ax) => {
-      await ax.organizations.create({ data: orgDTO });
-      await ax.guest.create({ data: guestDTO });
+      const registeredOrg = await ax.organizations.create({ data: orgDTO });
+      await ax.guest.create({ data: { ...guestDTO, orgId: registeredOrg.id } });
     });
 
     return result;
