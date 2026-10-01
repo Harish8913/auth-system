@@ -969,9 +969,12 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const AuthScalarFieldEnum = {
   id: 'id',
+  firstName: 'firstName',
+  lastName: 'lastName',
   userName: 'userName',
   email: 'email',
-  passwordHash: 'passwordHash'
+  passwordHash: 'passwordHash',
+  tenantId: 'tenantId'
 } as const
 
 export type AuthScalarFieldEnum = (typeof AuthScalarFieldEnum)[keyof typeof AuthScalarFieldEnum]
@@ -983,7 +986,7 @@ export const GuestScalarFieldEnum = {
   roleDescription: 'roleDescription',
   email: 'email',
   status: 'status',
-  orgId: 'orgId'
+  tenantId: 'tenantId'
 } as const
 
 export type GuestScalarFieldEnum = (typeof GuestScalarFieldEnum)[keyof typeof GuestScalarFieldEnum]
@@ -1030,7 +1033,7 @@ export type OrganizationsScalarFieldEnum = (typeof OrganizationsScalarFieldEnum)
 export const Organization_usersScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  orgId: 'orgId',
+  tenantId: 'tenantId',
   roleId: 'roleId'
 } as const
 
@@ -1051,6 +1054,14 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
 

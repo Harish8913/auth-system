@@ -1,8 +1,7 @@
 import type { Request, Response } from "express";
-import { prisma } from "../lib/prisma.js";
 import { safeParse } from "zod";
-import bcrypt from "bcrypt";
 import { User, type UserType } from "../schema/user.schema.js";
+import { registerUserService } from "../services/user.service.js";
 
 export const registerUser = async (
   req: Request<{}, {}, UserType>,
@@ -13,35 +12,10 @@ export const registerUser = async (
   if (!result.success) return res.status(400).json({ message: result.error });
 
   try {
-    const found_user = await prisma.auth.findUnique({
-      where: { email: reqBody.email, tenanId: reqBody.orgId },
-    });
-
-    if (found_user) return res.status(400).json({ message: "Duplicte User" });
-
-    const hash = await bcrypt.hash(reqBody.password, 10);
-    const UserDTO = {
-      userName: reqBody.userName,
-      email: reqBody.email,
-      passwordHash: hash,
-      tenantId: reqBody.orgId,
-    };
-
-    const save_user = await prisma.$transaction(async (tx) => {
-      const new_user = await tx.auth.create({ data: UserDTO });
-      const new_org_user = await tx.organization_users.create({
-        data: {
-          userId: new_user.id,
-          orgId: reqBody.orgId,
-          roleId: reqBody.roleId,
-        },
-      });
-
-      return res.status(201).json({ created: "User Created" });
-    });
+    const result = await registerUserService(reqBody);
+    return res.status(200).json({ message: result });
   } catch (err) {
     console.error(err);
-
     return res.status(500).json({
       message: err instanceof Error ? err.message : String(err),
     });

@@ -13,7 +13,9 @@ datasource db {
 }
 
 model auth {
-  id           Int    @id @unique @default(autoincrement())
+  id           Int     @id @unique @default(autoincrement())
+  firstName    String
+  lastName     String?
   userName     String
   email        String
   passwordHash String
@@ -34,6 +36,8 @@ model guest {
   status          String        @default("PENDING")
   tenantId        Int
   organization    organizations @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@unique([email, tenantId])
 }
 
 model sessions {

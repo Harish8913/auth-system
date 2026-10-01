@@ -29,35 +29,35 @@ export type AggregateOrganization_users = {
 export type Organization_usersAvgAggregateOutputType = {
   id: number | null
   userId: number | null
-  orgId: number | null
+  tenantId: number | null
   roleId: number | null
 }
 
 export type Organization_usersSumAggregateOutputType = {
   id: number | null
   userId: number | null
-  orgId: number | null
+  tenantId: number | null
   roleId: number | null
 }
 
 export type Organization_usersMinAggregateOutputType = {
   id: number | null
   userId: number | null
-  orgId: number | null
+  tenantId: number | null
   roleId: number | null
 }
 
 export type Organization_usersMaxAggregateOutputType = {
   id: number | null
   userId: number | null
-  orgId: number | null
+  tenantId: number | null
   roleId: number | null
 }
 
 export type Organization_usersCountAggregateOutputType = {
   id: number
   userId: number
-  orgId: number
+  tenantId: number
   roleId: number
   _all: number
 }
@@ -66,35 +66,35 @@ export type Organization_usersCountAggregateOutputType = {
 export type Organization_usersAvgAggregateInputType = {
   id?: true
   userId?: true
-  orgId?: true
+  tenantId?: true
   roleId?: true
 }
 
 export type Organization_usersSumAggregateInputType = {
   id?: true
   userId?: true
-  orgId?: true
+  tenantId?: true
   roleId?: true
 }
 
 export type Organization_usersMinAggregateInputType = {
   id?: true
   userId?: true
-  orgId?: true
+  tenantId?: true
   roleId?: true
 }
 
 export type Organization_usersMaxAggregateInputType = {
   id?: true
   userId?: true
-  orgId?: true
+  tenantId?: true
   roleId?: true
 }
 
 export type Organization_usersCountAggregateInputType = {
   id?: true
   userId?: true
-  orgId?: true
+  tenantId?: true
   roleId?: true
   _all?: true
 }
@@ -188,7 +188,7 @@ export type organization_usersGroupByArgs<ExtArgs extends runtime.Types.Extensio
 export type Organization_usersGroupByOutputType = {
   id: number
   userId: number
-  orgId: number
+  tenantId: number
   roleId: number
   _count: Organization_usersCountAggregateOutputType | null
   _avg: Organization_usersAvgAggregateOutputType | null
@@ -218,7 +218,7 @@ export type organization_usersWhereInput = {
   NOT?: Prisma.organization_usersWhereInput | Prisma.organization_usersWhereInput[]
   id?: Prisma.IntFilter<"organization_users"> | number
   userId?: Prisma.IntFilter<"organization_users"> | number
-  orgId?: Prisma.IntFilter<"organization_users"> | number
+  tenantId?: Prisma.IntFilter<"organization_users"> | number
   roleId?: Prisma.IntFilter<"organization_users"> | number
   auth?: Prisma.XOR<Prisma.AuthScalarRelationFilter, Prisma.authWhereInput>
   organization?: Prisma.XOR<Prisma.OrganizationsScalarRelationFilter, Prisma.organizationsWhereInput>
@@ -228,7 +228,7 @@ export type organization_usersWhereInput = {
 export type organization_usersOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  orgId?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
   roleId?: Prisma.SortOrder
   auth?: Prisma.authOrderByWithRelationInput
   organization?: Prisma.organizationsOrderByWithRelationInput
@@ -237,22 +237,22 @@ export type organization_usersOrderByWithRelationInput = {
 
 export type organization_usersWhereUniqueInput = Prisma.AtLeast<{
   id?: number
-  userId_orgId_roleId?: Prisma.organization_usersUserIdOrgIdRoleIdCompoundUniqueInput
+  userId_tenantId_roleId?: Prisma.organization_usersUserIdTenantIdRoleIdCompoundUniqueInput
   AND?: Prisma.organization_usersWhereInput | Prisma.organization_usersWhereInput[]
   OR?: Prisma.organization_usersWhereInput[]
   NOT?: Prisma.organization_usersWhereInput | Prisma.organization_usersWhereInput[]
   userId?: Prisma.IntFilter<"organization_users"> | number
-  orgId?: Prisma.IntFilter<"organization_users"> | number
+  tenantId?: Prisma.IntFilter<"organization_users"> | number
   roleId?: Prisma.IntFilter<"organization_users"> | number
   auth?: Prisma.XOR<Prisma.AuthScalarRelationFilter, Prisma.authWhereInput>
   organization?: Prisma.XOR<Prisma.OrganizationsScalarRelationFilter, Prisma.organizationsWhereInput>
   role?: Prisma.XOR<Prisma.RolesScalarRelationFilter, Prisma.rolesWhereInput>
-}, "id" | "userId_orgId_roleId">
+}, "id" | "userId_tenantId_roleId">
 
 export type organization_usersOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  orgId?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
   roleId?: Prisma.SortOrder
   _count?: Prisma.organization_usersCountOrderByAggregateInput
   _avg?: Prisma.organization_usersAvgOrderByAggregateInput
@@ -267,7 +267,7 @@ export type organization_usersScalarWhereWithAggregatesInput = {
   NOT?: Prisma.organization_usersScalarWhereWithAggregatesInput | Prisma.organization_usersScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"organization_users"> | number
   userId?: Prisma.IntWithAggregatesFilter<"organization_users"> | number
-  orgId?: Prisma.IntWithAggregatesFilter<"organization_users"> | number
+  tenantId?: Prisma.IntWithAggregatesFilter<"organization_users"> | number
   roleId?: Prisma.IntWithAggregatesFilter<"organization_users"> | number
 }
 
@@ -280,7 +280,7 @@ export type organization_usersCreateInput = {
 export type organization_usersUncheckedCreateInput = {
   id?: number
   userId: number
-  orgId: number
+  tenantId: number
   roleId: number
 }
 
@@ -293,14 +293,14 @@ export type organization_usersUpdateInput = {
 export type organization_usersUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.IntFieldUpdateOperationsInput | number
-  orgId?: Prisma.IntFieldUpdateOperationsInput | number
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   roleId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type organization_usersCreateManyInput = {
   id?: number
   userId: number
-  orgId: number
+  tenantId: number
   roleId: number
 }
 
@@ -311,7 +311,7 @@ export type organization_usersUpdateManyMutationInput = {
 export type organization_usersUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.IntFieldUpdateOperationsInput | number
-  orgId?: Prisma.IntFieldUpdateOperationsInput | number
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   roleId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -325,44 +325,44 @@ export type organization_usersOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type organization_usersUserIdOrgIdRoleIdCompoundUniqueInput = {
+export type organization_usersUserIdTenantIdRoleIdCompoundUniqueInput = {
   userId: number
-  orgId: number
+  tenantId: number
   roleId: number
 }
 
 export type organization_usersCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  orgId?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
   roleId?: Prisma.SortOrder
 }
 
 export type organization_usersAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  orgId?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
   roleId?: Prisma.SortOrder
 }
 
 export type organization_usersMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  orgId?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
   roleId?: Prisma.SortOrder
 }
 
 export type organization_usersMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  orgId?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
   roleId?: Prisma.SortOrder
 }
 
 export type organization_usersSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  orgId?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
   roleId?: Prisma.SortOrder
 }
 
@@ -499,7 +499,7 @@ export type organization_usersCreateWithoutAuthInput = {
 
 export type organization_usersUncheckedCreateWithoutAuthInput = {
   id?: number
-  orgId: number
+  tenantId: number
   roleId: number
 }
 
@@ -535,7 +535,7 @@ export type organization_usersScalarWhereInput = {
   NOT?: Prisma.organization_usersScalarWhereInput | Prisma.organization_usersScalarWhereInput[]
   id?: Prisma.IntFilter<"organization_users"> | number
   userId?: Prisma.IntFilter<"organization_users"> | number
-  orgId?: Prisma.IntFilter<"organization_users"> | number
+  tenantId?: Prisma.IntFilter<"organization_users"> | number
   roleId?: Prisma.IntFilter<"organization_users"> | number
 }
 
@@ -547,7 +547,7 @@ export type organization_usersCreateWithoutRoleInput = {
 export type organization_usersUncheckedCreateWithoutRoleInput = {
   id?: number
   userId: number
-  orgId: number
+  tenantId: number
 }
 
 export type organization_usersCreateOrConnectWithoutRoleInput = {
@@ -615,7 +615,7 @@ export type organization_usersUpdateManyWithWhereWithoutOrganizationInput = {
 
 export type organization_usersCreateManyAuthInput = {
   id?: number
-  orgId: number
+  tenantId: number
   roleId: number
 }
 
@@ -626,20 +626,20 @@ export type organization_usersUpdateWithoutAuthInput = {
 
 export type organization_usersUncheckedUpdateWithoutAuthInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  orgId?: Prisma.IntFieldUpdateOperationsInput | number
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   roleId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type organization_usersUncheckedUpdateManyWithoutAuthInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  orgId?: Prisma.IntFieldUpdateOperationsInput | number
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   roleId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type organization_usersCreateManyRoleInput = {
   id?: number
   userId: number
-  orgId: number
+  tenantId: number
 }
 
 export type organization_usersUpdateWithoutRoleInput = {
@@ -650,13 +650,13 @@ export type organization_usersUpdateWithoutRoleInput = {
 export type organization_usersUncheckedUpdateWithoutRoleInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.IntFieldUpdateOperationsInput | number
-  orgId?: Prisma.IntFieldUpdateOperationsInput | number
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type organization_usersUncheckedUpdateManyWithoutRoleInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.IntFieldUpdateOperationsInput | number
-  orgId?: Prisma.IntFieldUpdateOperationsInput | number
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type organization_usersCreateManyOrganizationInput = {
@@ -687,7 +687,7 @@ export type organization_usersUncheckedUpdateManyWithoutOrganizationInput = {
 export type organization_usersSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
-  orgId?: boolean
+  tenantId?: boolean
   roleId?: boolean
   auth?: boolean | Prisma.authDefaultArgs<ExtArgs>
   organization?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
@@ -697,7 +697,7 @@ export type organization_usersSelect<ExtArgs extends runtime.Types.Extensions.In
 export type organization_usersSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
-  orgId?: boolean
+  tenantId?: boolean
   roleId?: boolean
   auth?: boolean | Prisma.authDefaultArgs<ExtArgs>
   organization?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
@@ -707,7 +707,7 @@ export type organization_usersSelectCreateManyAndReturn<ExtArgs extends runtime.
 export type organization_usersSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
-  orgId?: boolean
+  tenantId?: boolean
   roleId?: boolean
   auth?: boolean | Prisma.authDefaultArgs<ExtArgs>
   organization?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
@@ -717,11 +717,11 @@ export type organization_usersSelectUpdateManyAndReturn<ExtArgs extends runtime.
 export type organization_usersSelectScalar = {
   id?: boolean
   userId?: boolean
-  orgId?: boolean
+  tenantId?: boolean
   roleId?: boolean
 }
 
-export type organization_usersOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "orgId" | "roleId", ExtArgs["result"]["organization_users"]>
+export type organization_usersOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "tenantId" | "roleId", ExtArgs["result"]["organization_users"]>
 export type organization_usersInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   auth?: boolean | Prisma.authDefaultArgs<ExtArgs>
   organization?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
@@ -748,7 +748,7 @@ export type $organization_usersPayload<ExtArgs extends runtime.Types.Extensions.
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     userId: number
-    orgId: number
+    tenantId: number
     roleId: number
   }, ExtArgs["result"]["organization_users"]>
   composites: {}
@@ -1178,7 +1178,7 @@ export interface Prisma__organization_usersClient<T, Null = never, ExtArgs exten
 export interface organization_usersFieldRefs {
   readonly id: Prisma.FieldRef<"organization_users", 'Int'>
   readonly userId: Prisma.FieldRef<"organization_users", 'Int'>
-  readonly orgId: Prisma.FieldRef<"organization_users", 'Int'>
+  readonly tenantId: Prisma.FieldRef<"organization_users", 'Int'>
   readonly roleId: Prisma.FieldRef<"organization_users", 'Int'>
 }
     

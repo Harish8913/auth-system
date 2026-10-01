@@ -28,12 +28,12 @@ export type AggregateGuest = {
 
 export type GuestAvgAggregateOutputType = {
   id: number | null
-  orgId: number | null
+  tenantId: number | null
 }
 
 export type GuestSumAggregateOutputType = {
   id: number | null
-  orgId: number | null
+  tenantId: number | null
 }
 
 export type GuestMinAggregateOutputType = {
@@ -42,7 +42,7 @@ export type GuestMinAggregateOutputType = {
   roleDescription: string | null
   email: string | null
   status: string | null
-  orgId: number | null
+  tenantId: number | null
 }
 
 export type GuestMaxAggregateOutputType = {
@@ -51,7 +51,7 @@ export type GuestMaxAggregateOutputType = {
   roleDescription: string | null
   email: string | null
   status: string | null
-  orgId: number | null
+  tenantId: number | null
 }
 
 export type GuestCountAggregateOutputType = {
@@ -60,19 +60,19 @@ export type GuestCountAggregateOutputType = {
   roleDescription: number
   email: number
   status: number
-  orgId: number
+  tenantId: number
   _all: number
 }
 
 
 export type GuestAvgAggregateInputType = {
   id?: true
-  orgId?: true
+  tenantId?: true
 }
 
 export type GuestSumAggregateInputType = {
   id?: true
-  orgId?: true
+  tenantId?: true
 }
 
 export type GuestMinAggregateInputType = {
@@ -81,7 +81,7 @@ export type GuestMinAggregateInputType = {
   roleDescription?: true
   email?: true
   status?: true
-  orgId?: true
+  tenantId?: true
 }
 
 export type GuestMaxAggregateInputType = {
@@ -90,7 +90,7 @@ export type GuestMaxAggregateInputType = {
   roleDescription?: true
   email?: true
   status?: true
-  orgId?: true
+  tenantId?: true
 }
 
 export type GuestCountAggregateInputType = {
@@ -99,7 +99,7 @@ export type GuestCountAggregateInputType = {
   roleDescription?: true
   email?: true
   status?: true
-  orgId?: true
+  tenantId?: true
   _all?: true
 }
 
@@ -195,7 +195,7 @@ export type GuestGroupByOutputType = {
   roleDescription: string
   email: string
   status: string
-  orgId: number
+  tenantId: number
   _count: GuestCountAggregateOutputType | null
   _avg: GuestAvgAggregateOutputType | null
   _sum: GuestSumAggregateOutputType | null
@@ -227,7 +227,7 @@ export type guestWhereInput = {
   roleDescription?: Prisma.StringFilter<"guest"> | string
   email?: Prisma.StringFilter<"guest"> | string
   status?: Prisma.StringFilter<"guest"> | string
-  orgId?: Prisma.IntFilter<"guest"> | number
+  tenantId?: Prisma.IntFilter<"guest"> | number
   organization?: Prisma.XOR<Prisma.OrganizationsScalarRelationFilter, Prisma.organizationsWhereInput>
 }
 
@@ -237,12 +237,13 @@ export type guestOrderByWithRelationInput = {
   roleDescription?: Prisma.SortOrder
   email?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  orgId?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
   organization?: Prisma.organizationsOrderByWithRelationInput
 }
 
 export type guestWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  email_tenantId?: Prisma.guestEmailTenantIdCompoundUniqueInput
   AND?: Prisma.guestWhereInput | Prisma.guestWhereInput[]
   OR?: Prisma.guestWhereInput[]
   NOT?: Prisma.guestWhereInput | Prisma.guestWhereInput[]
@@ -250,9 +251,9 @@ export type guestWhereUniqueInput = Prisma.AtLeast<{
   roleDescription?: Prisma.StringFilter<"guest"> | string
   email?: Prisma.StringFilter<"guest"> | string
   status?: Prisma.StringFilter<"guest"> | string
-  orgId?: Prisma.IntFilter<"guest"> | number
+  tenantId?: Prisma.IntFilter<"guest"> | number
   organization?: Prisma.XOR<Prisma.OrganizationsScalarRelationFilter, Prisma.organizationsWhereInput>
-}, "id">
+}, "id" | "email_tenantId">
 
 export type guestOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -260,7 +261,7 @@ export type guestOrderByWithAggregationInput = {
   roleDescription?: Prisma.SortOrder
   email?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  orgId?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
   _count?: Prisma.guestCountOrderByAggregateInput
   _avg?: Prisma.guestAvgOrderByAggregateInput
   _max?: Prisma.guestMaxOrderByAggregateInput
@@ -277,7 +278,7 @@ export type guestScalarWhereWithAggregatesInput = {
   roleDescription?: Prisma.StringWithAggregatesFilter<"guest"> | string
   email?: Prisma.StringWithAggregatesFilter<"guest"> | string
   status?: Prisma.StringWithAggregatesFilter<"guest"> | string
-  orgId?: Prisma.IntWithAggregatesFilter<"guest"> | number
+  tenantId?: Prisma.IntWithAggregatesFilter<"guest"> | number
 }
 
 export type guestCreateInput = {
@@ -294,7 +295,7 @@ export type guestUncheckedCreateInput = {
   roleDescription: string
   email: string
   status?: string
-  orgId: number
+  tenantId: number
 }
 
 export type guestUpdateInput = {
@@ -311,7 +312,7 @@ export type guestUncheckedUpdateInput = {
   roleDescription?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
-  orgId?: Prisma.IntFieldUpdateOperationsInput | number
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type guestCreateManyInput = {
@@ -320,7 +321,7 @@ export type guestCreateManyInput = {
   roleDescription: string
   email: string
   status?: string
-  orgId: number
+  tenantId: number
 }
 
 export type guestUpdateManyMutationInput = {
@@ -336,7 +337,12 @@ export type guestUncheckedUpdateManyInput = {
   roleDescription?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
-  orgId?: Prisma.IntFieldUpdateOperationsInput | number
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
+}
+
+export type guestEmailTenantIdCompoundUniqueInput = {
+  email: string
+  tenantId: number
 }
 
 export type guestCountOrderByAggregateInput = {
@@ -345,12 +351,12 @@ export type guestCountOrderByAggregateInput = {
   roleDescription?: Prisma.SortOrder
   email?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  orgId?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
 }
 
 export type guestAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  orgId?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
 }
 
 export type guestMaxOrderByAggregateInput = {
@@ -359,7 +365,7 @@ export type guestMaxOrderByAggregateInput = {
   roleDescription?: Prisma.SortOrder
   email?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  orgId?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
 }
 
 export type guestMinOrderByAggregateInput = {
@@ -368,12 +374,12 @@ export type guestMinOrderByAggregateInput = {
   roleDescription?: Prisma.SortOrder
   email?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  orgId?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
 }
 
 export type guestSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  orgId?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
 }
 
 export type GuestListRelationFilter = {
@@ -478,7 +484,7 @@ export type guestScalarWhereInput = {
   roleDescription?: Prisma.StringFilter<"guest"> | string
   email?: Prisma.StringFilter<"guest"> | string
   status?: Prisma.StringFilter<"guest"> | string
-  orgId?: Prisma.IntFilter<"guest"> | number
+  tenantId?: Prisma.IntFilter<"guest"> | number
 }
 
 export type guestCreateManyOrganizationInput = {
@@ -520,7 +526,7 @@ export type guestSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   roleDescription?: boolean
   email?: boolean
   status?: boolean
-  orgId?: boolean
+  tenantId?: boolean
   organization?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["guest"]>
 
@@ -530,7 +536,7 @@ export type guestSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   roleDescription?: boolean
   email?: boolean
   status?: boolean
-  orgId?: boolean
+  tenantId?: boolean
   organization?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["guest"]>
 
@@ -540,7 +546,7 @@ export type guestSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   roleDescription?: boolean
   email?: boolean
   status?: boolean
-  orgId?: boolean
+  tenantId?: boolean
   organization?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["guest"]>
 
@@ -550,10 +556,10 @@ export type guestSelectScalar = {
   roleDescription?: boolean
   email?: boolean
   status?: boolean
-  orgId?: boolean
+  tenantId?: boolean
 }
 
-export type guestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "roleDescription" | "email" | "status" | "orgId", ExtArgs["result"]["guest"]>
+export type guestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "roleDescription" | "email" | "status" | "tenantId", ExtArgs["result"]["guest"]>
 export type guestInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
 }
@@ -575,7 +581,7 @@ export type $guestPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     roleDescription: string
     email: string
     status: string
-    orgId: number
+    tenantId: number
   }, ExtArgs["result"]["guest"]>
   composites: {}
 }
@@ -1005,7 +1011,7 @@ export interface guestFieldRefs {
   readonly roleDescription: Prisma.FieldRef<"guest", 'String'>
   readonly email: Prisma.FieldRef<"guest", 'String'>
   readonly status: Prisma.FieldRef<"guest", 'String'>
-  readonly orgId: Prisma.FieldRef<"guest", 'Int'>
+  readonly tenantId: Prisma.FieldRef<"guest", 'Int'>
 }
     
 

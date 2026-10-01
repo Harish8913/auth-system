@@ -28,62 +28,84 @@ export type AggregateAuth = {
 
 export type AuthAvgAggregateOutputType = {
   id: number | null
+  tenantId: number | null
 }
 
 export type AuthSumAggregateOutputType = {
   id: number | null
+  tenantId: number | null
 }
 
 export type AuthMinAggregateOutputType = {
   id: number | null
+  firstName: string | null
+  lastName: string | null
   userName: string | null
   email: string | null
   passwordHash: string | null
+  tenantId: number | null
 }
 
 export type AuthMaxAggregateOutputType = {
   id: number | null
+  firstName: string | null
+  lastName: string | null
   userName: string | null
   email: string | null
   passwordHash: string | null
+  tenantId: number | null
 }
 
 export type AuthCountAggregateOutputType = {
   id: number
+  firstName: number
+  lastName: number
   userName: number
   email: number
   passwordHash: number
+  tenantId: number
   _all: number
 }
 
 
 export type AuthAvgAggregateInputType = {
   id?: true
+  tenantId?: true
 }
 
 export type AuthSumAggregateInputType = {
   id?: true
+  tenantId?: true
 }
 
 export type AuthMinAggregateInputType = {
   id?: true
+  firstName?: true
+  lastName?: true
   userName?: true
   email?: true
   passwordHash?: true
+  tenantId?: true
 }
 
 export type AuthMaxAggregateInputType = {
   id?: true
+  firstName?: true
+  lastName?: true
   userName?: true
   email?: true
   passwordHash?: true
+  tenantId?: true
 }
 
 export type AuthCountAggregateInputType = {
   id?: true
+  firstName?: true
+  lastName?: true
   userName?: true
   email?: true
   passwordHash?: true
+  tenantId?: true
   _all?: true
 }
 
@@ -175,9 +197,12 @@ export type authGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 
 export type AuthGroupByOutputType = {
   id: number
+  firstName: string
+  lastName: string | null
   userName: string
   email: string
   passwordHash: string
+  tenantId: number
   _count: AuthCountAggregateOutputType | null
   _avg: AuthAvgAggregateOutputType | null
   _sum: AuthSumAggregateOutputType | null
@@ -205,39 +230,55 @@ export type authWhereInput = {
   OR?: Prisma.authWhereInput[]
   NOT?: Prisma.authWhereInput | Prisma.authWhereInput[]
   id?: Prisma.IntFilter<"auth"> | number
+  firstName?: Prisma.StringFilter<"auth"> | string
+  lastName?: Prisma.StringNullableFilter<"auth"> | string | null
   userName?: Prisma.StringFilter<"auth"> | string
   email?: Prisma.StringFilter<"auth"> | string
   passwordHash?: Prisma.StringFilter<"auth"> | string
+  tenantId?: Prisma.IntFilter<"auth"> | number
+  tenants?: Prisma.XOR<Prisma.OrganizationsScalarRelationFilter, Prisma.organizationsWhereInput>
   sessions?: Prisma.SessionsListRelationFilter
   organizationUsers?: Prisma.Organization_usersListRelationFilter
 }
 
 export type authOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  firstName?: Prisma.SortOrder
+  lastName?: Prisma.SortOrderInput | Prisma.SortOrder
   userName?: Prisma.SortOrder
   email?: Prisma.SortOrder
   passwordHash?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
+  tenants?: Prisma.organizationsOrderByWithRelationInput
   sessions?: Prisma.sessionsOrderByRelationAggregateInput
   organizationUsers?: Prisma.organization_usersOrderByRelationAggregateInput
 }
 
 export type authWhereUniqueInput = Prisma.AtLeast<{
   id?: number
-  email?: string
+  email_tenantId?: Prisma.authEmailTenantIdCompoundUniqueInput
   AND?: Prisma.authWhereInput | Prisma.authWhereInput[]
   OR?: Prisma.authWhereInput[]
   NOT?: Prisma.authWhereInput | Prisma.authWhereInput[]
+  firstName?: Prisma.StringFilter<"auth"> | string
+  lastName?: Prisma.StringNullableFilter<"auth"> | string | null
   userName?: Prisma.StringFilter<"auth"> | string
+  email?: Prisma.StringFilter<"auth"> | string
   passwordHash?: Prisma.StringFilter<"auth"> | string
+  tenantId?: Prisma.IntFilter<"auth"> | number
+  tenants?: Prisma.XOR<Prisma.OrganizationsScalarRelationFilter, Prisma.organizationsWhereInput>
   sessions?: Prisma.SessionsListRelationFilter
   organizationUsers?: Prisma.Organization_usersListRelationFilter
-}, "id" | "id" | "email">
+}, "id" | "id" | "email_tenantId">
 
 export type authOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  firstName?: Prisma.SortOrder
+  lastName?: Prisma.SortOrderInput | Prisma.SortOrder
   userName?: Prisma.SortOrder
   email?: Prisma.SortOrder
   passwordHash?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
   _count?: Prisma.authCountOrderByAggregateInput
   _avg?: Prisma.authAvgOrderByAggregateInput
   _max?: Prisma.authMaxOrderByAggregateInput
@@ -250,53 +291,73 @@ export type authScalarWhereWithAggregatesInput = {
   OR?: Prisma.authScalarWhereWithAggregatesInput[]
   NOT?: Prisma.authScalarWhereWithAggregatesInput | Prisma.authScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"auth"> | number
+  firstName?: Prisma.StringWithAggregatesFilter<"auth"> | string
+  lastName?: Prisma.StringNullableWithAggregatesFilter<"auth"> | string | null
   userName?: Prisma.StringWithAggregatesFilter<"auth"> | string
   email?: Prisma.StringWithAggregatesFilter<"auth"> | string
   passwordHash?: Prisma.StringWithAggregatesFilter<"auth"> | string
+  tenantId?: Prisma.IntWithAggregatesFilter<"auth"> | number
 }
 
 export type authCreateInput = {
+  firstName: string
+  lastName?: string | null
   userName: string
   email: string
   passwordHash: string
+  tenants: Prisma.organizationsCreateNestedOneWithoutAuthsInput
   sessions?: Prisma.sessionsCreateNestedManyWithoutUsersInput
   organizationUsers?: Prisma.organization_usersCreateNestedManyWithoutAuthInput
 }
 
 export type authUncheckedCreateInput = {
   id?: number
+  firstName: string
+  lastName?: string | null
   userName: string
   email: string
   passwordHash: string
+  tenantId: number
   sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutUsersInput
   organizationUsers?: Prisma.organization_usersUncheckedCreateNestedManyWithoutAuthInput
 }
 
 export type authUpdateInput = {
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  tenants?: Prisma.organizationsUpdateOneRequiredWithoutAuthsNestedInput
   sessions?: Prisma.sessionsUpdateManyWithoutUsersNestedInput
   organizationUsers?: Prisma.organization_usersUpdateManyWithoutAuthNestedInput
 }
 
 export type authUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   sessions?: Prisma.sessionsUncheckedUpdateManyWithoutUsersNestedInput
   organizationUsers?: Prisma.organization_usersUncheckedUpdateManyWithoutAuthNestedInput
 }
 
 export type authCreateManyInput = {
   id?: number
+  firstName: string
+  lastName?: string | null
   userName: string
   email: string
   passwordHash: string
+  tenantId: number
 }
 
 export type authUpdateManyMutationInput = {
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
@@ -304,38 +365,57 @@ export type authUpdateManyMutationInput = {
 
 export type authUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
+}
+
+export type authEmailTenantIdCompoundUniqueInput = {
+  email: string
+  tenantId: number
 }
 
 export type authCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  firstName?: Prisma.SortOrder
+  lastName?: Prisma.SortOrder
   userName?: Prisma.SortOrder
   email?: Prisma.SortOrder
   passwordHash?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
 }
 
 export type authAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
 }
 
 export type authMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  firstName?: Prisma.SortOrder
+  lastName?: Prisma.SortOrder
   userName?: Prisma.SortOrder
   email?: Prisma.SortOrder
   passwordHash?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
 }
 
 export type authMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  firstName?: Prisma.SortOrder
+  lastName?: Prisma.SortOrder
   userName?: Prisma.SortOrder
   email?: Prisma.SortOrder
   passwordHash?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
 }
 
 export type authSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
 }
 
 export type AuthScalarRelationFilter = {
@@ -343,8 +423,22 @@ export type AuthScalarRelationFilter = {
   isNot?: Prisma.authWhereInput
 }
 
+export type AuthListRelationFilter = {
+  every?: Prisma.authWhereInput
+  some?: Prisma.authWhereInput
+  none?: Prisma.authWhereInput
+}
+
+export type authOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
 }
 
 export type IntFieldUpdateOperationsInput = {
@@ -369,6 +463,48 @@ export type authUpdateOneRequiredWithoutSessionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.authUpdateToOneWithWhereWithoutSessionsInput, Prisma.authUpdateWithoutSessionsInput>, Prisma.authUncheckedUpdateWithoutSessionsInput>
 }
 
+export type authCreateNestedManyWithoutTenantsInput = {
+  create?: Prisma.XOR<Prisma.authCreateWithoutTenantsInput, Prisma.authUncheckedCreateWithoutTenantsInput> | Prisma.authCreateWithoutTenantsInput[] | Prisma.authUncheckedCreateWithoutTenantsInput[]
+  connectOrCreate?: Prisma.authCreateOrConnectWithoutTenantsInput | Prisma.authCreateOrConnectWithoutTenantsInput[]
+  createMany?: Prisma.authCreateManyTenantsInputEnvelope
+  connect?: Prisma.authWhereUniqueInput | Prisma.authWhereUniqueInput[]
+}
+
+export type authUncheckedCreateNestedManyWithoutTenantsInput = {
+  create?: Prisma.XOR<Prisma.authCreateWithoutTenantsInput, Prisma.authUncheckedCreateWithoutTenantsInput> | Prisma.authCreateWithoutTenantsInput[] | Prisma.authUncheckedCreateWithoutTenantsInput[]
+  connectOrCreate?: Prisma.authCreateOrConnectWithoutTenantsInput | Prisma.authCreateOrConnectWithoutTenantsInput[]
+  createMany?: Prisma.authCreateManyTenantsInputEnvelope
+  connect?: Prisma.authWhereUniqueInput | Prisma.authWhereUniqueInput[]
+}
+
+export type authUpdateManyWithoutTenantsNestedInput = {
+  create?: Prisma.XOR<Prisma.authCreateWithoutTenantsInput, Prisma.authUncheckedCreateWithoutTenantsInput> | Prisma.authCreateWithoutTenantsInput[] | Prisma.authUncheckedCreateWithoutTenantsInput[]
+  connectOrCreate?: Prisma.authCreateOrConnectWithoutTenantsInput | Prisma.authCreateOrConnectWithoutTenantsInput[]
+  upsert?: Prisma.authUpsertWithWhereUniqueWithoutTenantsInput | Prisma.authUpsertWithWhereUniqueWithoutTenantsInput[]
+  createMany?: Prisma.authCreateManyTenantsInputEnvelope
+  set?: Prisma.authWhereUniqueInput | Prisma.authWhereUniqueInput[]
+  disconnect?: Prisma.authWhereUniqueInput | Prisma.authWhereUniqueInput[]
+  delete?: Prisma.authWhereUniqueInput | Prisma.authWhereUniqueInput[]
+  connect?: Prisma.authWhereUniqueInput | Prisma.authWhereUniqueInput[]
+  update?: Prisma.authUpdateWithWhereUniqueWithoutTenantsInput | Prisma.authUpdateWithWhereUniqueWithoutTenantsInput[]
+  updateMany?: Prisma.authUpdateManyWithWhereWithoutTenantsInput | Prisma.authUpdateManyWithWhereWithoutTenantsInput[]
+  deleteMany?: Prisma.authScalarWhereInput | Prisma.authScalarWhereInput[]
+}
+
+export type authUncheckedUpdateManyWithoutTenantsNestedInput = {
+  create?: Prisma.XOR<Prisma.authCreateWithoutTenantsInput, Prisma.authUncheckedCreateWithoutTenantsInput> | Prisma.authCreateWithoutTenantsInput[] | Prisma.authUncheckedCreateWithoutTenantsInput[]
+  connectOrCreate?: Prisma.authCreateOrConnectWithoutTenantsInput | Prisma.authCreateOrConnectWithoutTenantsInput[]
+  upsert?: Prisma.authUpsertWithWhereUniqueWithoutTenantsInput | Prisma.authUpsertWithWhereUniqueWithoutTenantsInput[]
+  createMany?: Prisma.authCreateManyTenantsInputEnvelope
+  set?: Prisma.authWhereUniqueInput | Prisma.authWhereUniqueInput[]
+  disconnect?: Prisma.authWhereUniqueInput | Prisma.authWhereUniqueInput[]
+  delete?: Prisma.authWhereUniqueInput | Prisma.authWhereUniqueInput[]
+  connect?: Prisma.authWhereUniqueInput | Prisma.authWhereUniqueInput[]
+  update?: Prisma.authUpdateWithWhereUniqueWithoutTenantsInput | Prisma.authUpdateWithWhereUniqueWithoutTenantsInput[]
+  updateMany?: Prisma.authUpdateManyWithWhereWithoutTenantsInput | Prisma.authUpdateManyWithWhereWithoutTenantsInput[]
+  deleteMany?: Prisma.authScalarWhereInput | Prisma.authScalarWhereInput[]
+}
+
 export type authCreateNestedOneWithoutOrganizationUsersInput = {
   create?: Prisma.XOR<Prisma.authCreateWithoutOrganizationUsersInput, Prisma.authUncheckedCreateWithoutOrganizationUsersInput>
   connectOrCreate?: Prisma.authCreateOrConnectWithoutOrganizationUsersInput
@@ -384,17 +520,23 @@ export type authUpdateOneRequiredWithoutOrganizationUsersNestedInput = {
 }
 
 export type authCreateWithoutSessionsInput = {
+  firstName: string
+  lastName?: string | null
   userName: string
   email: string
   passwordHash: string
+  tenants: Prisma.organizationsCreateNestedOneWithoutAuthsInput
   organizationUsers?: Prisma.organization_usersCreateNestedManyWithoutAuthInput
 }
 
 export type authUncheckedCreateWithoutSessionsInput = {
   id?: number
+  firstName: string
+  lastName?: string | null
   userName: string
   email: string
   passwordHash: string
+  tenantId: number
   organizationUsers?: Prisma.organization_usersUncheckedCreateNestedManyWithoutAuthInput
 }
 
@@ -415,32 +557,104 @@ export type authUpdateToOneWithWhereWithoutSessionsInput = {
 }
 
 export type authUpdateWithoutSessionsInput = {
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  tenants?: Prisma.organizationsUpdateOneRequiredWithoutAuthsNestedInput
   organizationUsers?: Prisma.organization_usersUpdateManyWithoutAuthNestedInput
 }
 
 export type authUncheckedUpdateWithoutSessionsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   organizationUsers?: Prisma.organization_usersUncheckedUpdateManyWithoutAuthNestedInput
 }
 
-export type authCreateWithoutOrganizationUsersInput = {
+export type authCreateWithoutTenantsInput = {
+  firstName: string
+  lastName?: string | null
   userName: string
   email: string
   passwordHash: string
+  sessions?: Prisma.sessionsCreateNestedManyWithoutUsersInput
+  organizationUsers?: Prisma.organization_usersCreateNestedManyWithoutAuthInput
+}
+
+export type authUncheckedCreateWithoutTenantsInput = {
+  id?: number
+  firstName: string
+  lastName?: string | null
+  userName: string
+  email: string
+  passwordHash: string
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutUsersInput
+  organizationUsers?: Prisma.organization_usersUncheckedCreateNestedManyWithoutAuthInput
+}
+
+export type authCreateOrConnectWithoutTenantsInput = {
+  where: Prisma.authWhereUniqueInput
+  create: Prisma.XOR<Prisma.authCreateWithoutTenantsInput, Prisma.authUncheckedCreateWithoutTenantsInput>
+}
+
+export type authCreateManyTenantsInputEnvelope = {
+  data: Prisma.authCreateManyTenantsInput | Prisma.authCreateManyTenantsInput[]
+  skipDuplicates?: boolean
+}
+
+export type authUpsertWithWhereUniqueWithoutTenantsInput = {
+  where: Prisma.authWhereUniqueInput
+  update: Prisma.XOR<Prisma.authUpdateWithoutTenantsInput, Prisma.authUncheckedUpdateWithoutTenantsInput>
+  create: Prisma.XOR<Prisma.authCreateWithoutTenantsInput, Prisma.authUncheckedCreateWithoutTenantsInput>
+}
+
+export type authUpdateWithWhereUniqueWithoutTenantsInput = {
+  where: Prisma.authWhereUniqueInput
+  data: Prisma.XOR<Prisma.authUpdateWithoutTenantsInput, Prisma.authUncheckedUpdateWithoutTenantsInput>
+}
+
+export type authUpdateManyWithWhereWithoutTenantsInput = {
+  where: Prisma.authScalarWhereInput
+  data: Prisma.XOR<Prisma.authUpdateManyMutationInput, Prisma.authUncheckedUpdateManyWithoutTenantsInput>
+}
+
+export type authScalarWhereInput = {
+  AND?: Prisma.authScalarWhereInput | Prisma.authScalarWhereInput[]
+  OR?: Prisma.authScalarWhereInput[]
+  NOT?: Prisma.authScalarWhereInput | Prisma.authScalarWhereInput[]
+  id?: Prisma.IntFilter<"auth"> | number
+  firstName?: Prisma.StringFilter<"auth"> | string
+  lastName?: Prisma.StringNullableFilter<"auth"> | string | null
+  userName?: Prisma.StringFilter<"auth"> | string
+  email?: Prisma.StringFilter<"auth"> | string
+  passwordHash?: Prisma.StringFilter<"auth"> | string
+  tenantId?: Prisma.IntFilter<"auth"> | number
+}
+
+export type authCreateWithoutOrganizationUsersInput = {
+  firstName: string
+  lastName?: string | null
+  userName: string
+  email: string
+  passwordHash: string
+  tenants: Prisma.organizationsCreateNestedOneWithoutAuthsInput
   sessions?: Prisma.sessionsCreateNestedManyWithoutUsersInput
 }
 
 export type authUncheckedCreateWithoutOrganizationUsersInput = {
   id?: number
+  firstName: string
+  lastName?: string | null
   userName: string
   email: string
   passwordHash: string
+  tenantId: number
   sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutUsersInput
 }
 
@@ -461,18 +675,63 @@ export type authUpdateToOneWithWhereWithoutOrganizationUsersInput = {
 }
 
 export type authUpdateWithoutOrganizationUsersInput = {
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  tenants?: Prisma.organizationsUpdateOneRequiredWithoutAuthsNestedInput
   sessions?: Prisma.sessionsUpdateManyWithoutUsersNestedInput
 }
 
 export type authUncheckedUpdateWithoutOrganizationUsersInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutUsersNestedInput
+}
+
+export type authCreateManyTenantsInput = {
+  id?: number
+  firstName: string
+  lastName?: string | null
+  userName: string
+  email: string
+  passwordHash: string
+}
+
+export type authUpdateWithoutTenantsInput = {
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  sessions?: Prisma.sessionsUpdateManyWithoutUsersNestedInput
+  organizationUsers?: Prisma.organization_usersUpdateManyWithoutAuthNestedInput
+}
+
+export type authUncheckedUpdateWithoutTenantsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
   sessions?: Prisma.sessionsUncheckedUpdateManyWithoutUsersNestedInput
+  organizationUsers?: Prisma.organization_usersUncheckedUpdateManyWithoutAuthNestedInput
+}
+
+export type authUncheckedUpdateManyWithoutTenantsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -517,9 +776,13 @@ export type AuthCountOutputTypeCountOrganizationUsersArgs<ExtArgs extends runtim
 
 export type authSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  firstName?: boolean
+  lastName?: boolean
   userName?: boolean
   email?: boolean
   passwordHash?: boolean
+  tenantId?: boolean
+  tenants?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
   sessions?: boolean | Prisma.auth$sessionsArgs<ExtArgs>
   organizationUsers?: boolean | Prisma.auth$organizationUsersArgs<ExtArgs>
   _count?: boolean | Prisma.AuthCountOutputTypeDefaultArgs<ExtArgs>
@@ -527,45 +790,65 @@ export type authSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
 
 export type authSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  firstName?: boolean
+  lastName?: boolean
   userName?: boolean
   email?: boolean
   passwordHash?: boolean
+  tenantId?: boolean
+  tenants?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["auth"]>
 
 export type authSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  firstName?: boolean
+  lastName?: boolean
   userName?: boolean
   email?: boolean
   passwordHash?: boolean
+  tenantId?: boolean
+  tenants?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["auth"]>
 
 export type authSelectScalar = {
   id?: boolean
+  firstName?: boolean
+  lastName?: boolean
   userName?: boolean
   email?: boolean
   passwordHash?: boolean
+  tenantId?: boolean
 }
 
-export type authOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userName" | "email" | "passwordHash", ExtArgs["result"]["auth"]>
+export type authOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "firstName" | "lastName" | "userName" | "email" | "passwordHash" | "tenantId", ExtArgs["result"]["auth"]>
 export type authInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  tenants?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
   sessions?: boolean | Prisma.auth$sessionsArgs<ExtArgs>
   organizationUsers?: boolean | Prisma.auth$organizationUsersArgs<ExtArgs>
   _count?: boolean | Prisma.AuthCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type authIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type authIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type authIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  tenants?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
+}
+export type authIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  tenants?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
+}
 
 export type $authPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "auth"
   objects: {
+    tenants: Prisma.$organizationsPayload<ExtArgs>
     sessions: Prisma.$sessionsPayload<ExtArgs>[]
     organizationUsers: Prisma.$organization_usersPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
+    firstName: string
+    lastName: string | null
     userName: string
     email: string
     passwordHash: string
+    tenantId: number
   }, ExtArgs["result"]["auth"]>
   composites: {}
 }
@@ -960,6 +1243,7 @@ readonly fields: authFieldRefs;
  */
 export interface Prisma__authClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  tenants<T extends Prisma.organizationsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.organizationsDefaultArgs<ExtArgs>>): Prisma.Prisma__organizationsClient<runtime.Types.Result.GetResult<Prisma.$organizationsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   sessions<T extends Prisma.auth$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.auth$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$sessionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   organizationUsers<T extends Prisma.auth$organizationUsersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.auth$organizationUsersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$organization_usersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -992,9 +1276,12 @@ export interface Prisma__authClient<T, Null = never, ExtArgs extends runtime.Typ
  */
 export interface authFieldRefs {
   readonly id: Prisma.FieldRef<"auth", 'Int'>
+  readonly firstName: Prisma.FieldRef<"auth", 'String'>
+  readonly lastName: Prisma.FieldRef<"auth", 'String'>
   readonly userName: Prisma.FieldRef<"auth", 'String'>
   readonly email: Prisma.FieldRef<"auth", 'String'>
   readonly passwordHash: Prisma.FieldRef<"auth", 'String'>
+  readonly tenantId: Prisma.FieldRef<"auth", 'Int'>
 }
     
 
@@ -1249,6 +1536,10 @@ export type authCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions
    */
   data: Prisma.authCreateManyInput | Prisma.authCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.authIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1319,6 +1610,10 @@ export type authUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions
    * Limit how many auths to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.authIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**

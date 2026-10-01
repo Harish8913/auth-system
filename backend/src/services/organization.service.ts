@@ -8,6 +8,7 @@ export const registerOrgService = async (body: OrganizationType) => {
   switch (adminDetails.role) {
     case 1001:
       roleDescription = "ADMIN";
+      break;
     default:
       roleDescription = "GUEST";
   }
@@ -19,6 +20,9 @@ export const registerOrgService = async (body: OrganizationType) => {
     roleDescription,
   };
 
+  console.log(adminDetails.role);
+  console.log(roleDescription);
+
   const orgDTO = {
     name: body.name,
     email: body.email,
@@ -28,7 +32,9 @@ export const registerOrgService = async (body: OrganizationType) => {
   try {
     const result = await prisma.$transaction(async (ax) => {
       const registeredOrg = await ax.organizations.create({ data: orgDTO });
-      await ax.guest.create({ data: { ...guestDTO, orgId: registeredOrg.id } });
+      await ax.guest.create({
+        data: { ...guestDTO, tenantId: registeredOrg.id },
+      });
     });
 
     return result;
