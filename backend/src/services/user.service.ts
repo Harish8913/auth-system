@@ -22,7 +22,7 @@ export const registerUserService = async (body: UserType) => {
           tenantId: body.orgId,
           roleId: body.roleId,
         },
-      });   
+      });
 
       await tx.guest.deleteMany({
         where: { email: new_user.email, tenantId: new_user.tenantId },

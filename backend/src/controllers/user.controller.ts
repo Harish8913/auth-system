@@ -15,7 +15,6 @@ export const registerUser = async (
     const result = await registerUserService(reqBody);
     return res.status(200).json({ message: result });
   } catch (err) {
-    console.error(err);
     return res.status(500).json({
       message: err instanceof Error ? err.message : String(err),
     });
