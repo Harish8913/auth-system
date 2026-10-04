@@ -20,9 +20,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", authRoutes);
+app.use(authCheck);
 app.use("/api", orgRoutes);
 app.use("/api", userRoutes);
-app.use(authCheck);
 app.use("/api", healthRoutes);
 app.use("/api", serviceRoutes);
 

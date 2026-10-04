@@ -96,6 +96,7 @@ model organization_users {
 }
 
 enum Role {
+  DEVELOPER
   ADMIN
   MANAGER
   EMPLOYEE
