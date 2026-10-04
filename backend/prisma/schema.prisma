@@ -22,7 +22,7 @@ model auth {
   passwordHash String
   tenantId     Int
 
-  tenants           organizations        @relation(fields: [tenantId], references: [id])
+  tenants           organizations        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
   sessions          sessions[]
   organizationUsers organization_users[]
 

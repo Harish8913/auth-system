@@ -54,6 +54,7 @@ export const loginUser = async (req: Request, res: Response) => {
 
       const accessToken = signJwt(
         {
+          id: userExist.logical_id,
           userName: userExist.id,
           role: organizationUser.map((val) => val.role.description),
         },
@@ -121,15 +122,20 @@ export const refresh = async (req: Request, res: Response) => {
       });
 
       return {
+        id: foundSession.users.logical_id,
+        userName: foundSession.users.userName,
         refresh_token: new_refreshtoken,
-        userId: foundSession.users?.id,
       };
     });
 
-    const jwtToken = signJwt({ userId: results?.userId }, jwtAccessSecret, {
-      expiresIn: "1h",
-      algorithm: "HS256",
-    });
+    const jwtToken = signJwt(
+      { id: results.id, userName: results.userName },
+      jwtAccessSecret,
+      {
+        expiresIn: "1h",
+        algorithm: "HS256",
+      },
+    );
 
     res.cookie("refresh", results.refresh_token, {
       maxAge: 7 * 24 * 60 * 60 * 1000,

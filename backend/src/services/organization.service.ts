@@ -20,9 +20,6 @@ export const registerOrgService = async (body: OrganizationType) => {
     roleDescription,
   };
 
-  console.log(adminDetails.role);
-  console.log(roleDescription);
-
   const orgDTO = {
     name: body.name,
     email: body.email,
