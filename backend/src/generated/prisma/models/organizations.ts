@@ -36,6 +36,7 @@ export type OrganizationsSumAggregateOutputType = {
 
 export type OrganizationsMinAggregateOutputType = {
   id: number | null
+  logical_id: string | null
   name: string | null
   email: string | null
   description: string | null
@@ -43,6 +44,7 @@ export type OrganizationsMinAggregateOutputType = {
 
 export type OrganizationsMaxAggregateOutputType = {
   id: number | null
+  logical_id: string | null
   name: string | null
   email: string | null
   description: string | null
@@ -50,6 +52,7 @@ export type OrganizationsMaxAggregateOutputType = {
 
 export type OrganizationsCountAggregateOutputType = {
   id: number
+  logical_id: number
   name: number
   email: number
   description: number
@@ -67,6 +70,7 @@ export type OrganizationsSumAggregateInputType = {
 
 export type OrganizationsMinAggregateInputType = {
   id?: true
+  logical_id?: true
   name?: true
   email?: true
   description?: true
@@ -74,6 +78,7 @@ export type OrganizationsMinAggregateInputType = {
 
 export type OrganizationsMaxAggregateInputType = {
   id?: true
+  logical_id?: true
   name?: true
   email?: true
   description?: true
@@ -81,6 +86,7 @@ export type OrganizationsMaxAggregateInputType = {
 
 export type OrganizationsCountAggregateInputType = {
   id?: true
+  logical_id?: true
   name?: true
   email?: true
   description?: true
@@ -175,6 +181,7 @@ export type organizationsGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 
 export type OrganizationsGroupByOutputType = {
   id: number
+  logical_id: string | null
   name: string
   email: string
   description: string
@@ -205,6 +212,7 @@ export type organizationsWhereInput = {
   OR?: Prisma.organizationsWhereInput[]
   NOT?: Prisma.organizationsWhereInput | Prisma.organizationsWhereInput[]
   id?: Prisma.IntFilter<"organizations"> | number
+  logical_id?: Prisma.StringNullableFilter<"organizations"> | string | null
   name?: Prisma.StringFilter<"organizations"> | string
   email?: Prisma.StringFilter<"organizations"> | string
   description?: Prisma.StringFilter<"organizations"> | string
@@ -215,6 +223,7 @@ export type organizationsWhereInput = {
 
 export type organizationsOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  logical_id?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   description?: Prisma.SortOrder
@@ -225,6 +234,7 @@ export type organizationsOrderByWithRelationInput = {
 
 export type organizationsWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  logical_id?: string
   name?: string
   email?: string
   AND?: Prisma.organizationsWhereInput | Prisma.organizationsWhereInput[]
@@ -234,10 +244,11 @@ export type organizationsWhereUniqueInput = Prisma.AtLeast<{
   organizationUsers?: Prisma.Organization_usersListRelationFilter
   guests?: Prisma.GuestListRelationFilter
   auths?: Prisma.AuthListRelationFilter
-}, "id" | "name" | "email">
+}, "id" | "logical_id" | "name" | "email">
 
 export type organizationsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  logical_id?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   description?: Prisma.SortOrder
@@ -253,12 +264,14 @@ export type organizationsScalarWhereWithAggregatesInput = {
   OR?: Prisma.organizationsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.organizationsScalarWhereWithAggregatesInput | Prisma.organizationsScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"organizations"> | number
+  logical_id?: Prisma.StringNullableWithAggregatesFilter<"organizations"> | string | null
   name?: Prisma.StringWithAggregatesFilter<"organizations"> | string
   email?: Prisma.StringWithAggregatesFilter<"organizations"> | string
   description?: Prisma.StringWithAggregatesFilter<"organizations"> | string
 }
 
 export type organizationsCreateInput = {
+  logical_id?: string | null
   name: string
   email: string
   description: string
@@ -269,6 +282,7 @@ export type organizationsCreateInput = {
 
 export type organizationsUncheckedCreateInput = {
   id?: number
+  logical_id?: string | null
   name: string
   email: string
   description: string
@@ -278,6 +292,7 @@ export type organizationsUncheckedCreateInput = {
 }
 
 export type organizationsUpdateInput = {
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
@@ -288,6 +303,7 @@ export type organizationsUpdateInput = {
 
 export type organizationsUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
@@ -298,12 +314,14 @@ export type organizationsUncheckedUpdateInput = {
 
 export type organizationsCreateManyInput = {
   id?: number
+  logical_id?: string | null
   name: string
   email: string
   description: string
 }
 
 export type organizationsUpdateManyMutationInput = {
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
@@ -311,6 +329,7 @@ export type organizationsUpdateManyMutationInput = {
 
 export type organizationsUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
@@ -323,6 +342,7 @@ export type OrganizationsScalarRelationFilter = {
 
 export type organizationsCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  logical_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   description?: Prisma.SortOrder
@@ -334,6 +354,7 @@ export type organizationsAvgOrderByAggregateInput = {
 
 export type organizationsMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  logical_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   description?: Prisma.SortOrder
@@ -341,6 +362,7 @@ export type organizationsMaxOrderByAggregateInput = {
 
 export type organizationsMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  logical_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   description?: Prisma.SortOrder
@@ -393,6 +415,7 @@ export type organizationsUpdateOneRequiredWithoutOrganizationUsersNestedInput = 
 }
 
 export type organizationsCreateWithoutAuthsInput = {
+  logical_id?: string | null
   name: string
   email: string
   description: string
@@ -402,6 +425,7 @@ export type organizationsCreateWithoutAuthsInput = {
 
 export type organizationsUncheckedCreateWithoutAuthsInput = {
   id?: number
+  logical_id?: string | null
   name: string
   email: string
   description: string
@@ -426,6 +450,7 @@ export type organizationsUpdateToOneWithWhereWithoutAuthsInput = {
 }
 
 export type organizationsUpdateWithoutAuthsInput = {
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
@@ -435,6 +460,7 @@ export type organizationsUpdateWithoutAuthsInput = {
 
 export type organizationsUncheckedUpdateWithoutAuthsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
@@ -443,6 +469,7 @@ export type organizationsUncheckedUpdateWithoutAuthsInput = {
 }
 
 export type organizationsCreateWithoutGuestsInput = {
+  logical_id?: string | null
   name: string
   email: string
   description: string
@@ -452,6 +479,7 @@ export type organizationsCreateWithoutGuestsInput = {
 
 export type organizationsUncheckedCreateWithoutGuestsInput = {
   id?: number
+  logical_id?: string | null
   name: string
   email: string
   description: string
@@ -476,6 +504,7 @@ export type organizationsUpdateToOneWithWhereWithoutGuestsInput = {
 }
 
 export type organizationsUpdateWithoutGuestsInput = {
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
@@ -485,6 +514,7 @@ export type organizationsUpdateWithoutGuestsInput = {
 
 export type organizationsUncheckedUpdateWithoutGuestsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
@@ -493,6 +523,7 @@ export type organizationsUncheckedUpdateWithoutGuestsInput = {
 }
 
 export type organizationsCreateWithoutOrganizationUsersInput = {
+  logical_id?: string | null
   name: string
   email: string
   description: string
@@ -502,6 +533,7 @@ export type organizationsCreateWithoutOrganizationUsersInput = {
 
 export type organizationsUncheckedCreateWithoutOrganizationUsersInput = {
   id?: number
+  logical_id?: string | null
   name: string
   email: string
   description: string
@@ -526,6 +558,7 @@ export type organizationsUpdateToOneWithWhereWithoutOrganizationUsersInput = {
 }
 
 export type organizationsUpdateWithoutOrganizationUsersInput = {
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
@@ -535,6 +568,7 @@ export type organizationsUpdateWithoutOrganizationUsersInput = {
 
 export type organizationsUncheckedUpdateWithoutOrganizationUsersInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
@@ -593,6 +627,7 @@ export type OrganizationsCountOutputTypeCountAuthsArgs<ExtArgs extends runtime.T
 
 export type organizationsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  logical_id?: boolean
   name?: boolean
   email?: boolean
   description?: boolean
@@ -604,6 +639,7 @@ export type organizationsSelect<ExtArgs extends runtime.Types.Extensions.Interna
 
 export type organizationsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  logical_id?: boolean
   name?: boolean
   email?: boolean
   description?: boolean
@@ -611,6 +647,7 @@ export type organizationsSelectCreateManyAndReturn<ExtArgs extends runtime.Types
 
 export type organizationsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  logical_id?: boolean
   name?: boolean
   email?: boolean
   description?: boolean
@@ -618,12 +655,13 @@ export type organizationsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
 
 export type organizationsSelectScalar = {
   id?: boolean
+  logical_id?: boolean
   name?: boolean
   email?: boolean
   description?: boolean
 }
 
-export type organizationsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "description", ExtArgs["result"]["organizations"]>
+export type organizationsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "logical_id" | "name" | "email" | "description", ExtArgs["result"]["organizations"]>
 export type organizationsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organizationUsers?: boolean | Prisma.organizations$organizationUsersArgs<ExtArgs>
   guests?: boolean | Prisma.organizations$guestsArgs<ExtArgs>
@@ -642,6 +680,7 @@ export type $organizationsPayload<ExtArgs extends runtime.Types.Extensions.Inter
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
+    logical_id: string | null
     name: string
     email: string
     description: string
@@ -1072,6 +1111,7 @@ export interface Prisma__organizationsClient<T, Null = never, ExtArgs extends ru
  */
 export interface organizationsFieldRefs {
   readonly id: Prisma.FieldRef<"organizations", 'Int'>
+  readonly logical_id: Prisma.FieldRef<"organizations", 'String'>
   readonly name: Prisma.FieldRef<"organizations", 'String'>
   readonly email: Prisma.FieldRef<"organizations", 'String'>
   readonly description: Prisma.FieldRef<"organizations", 'String'>

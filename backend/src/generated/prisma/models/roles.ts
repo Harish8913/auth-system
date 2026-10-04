@@ -36,16 +36,19 @@ export type RolesSumAggregateOutputType = {
 
 export type RolesMinAggregateOutputType = {
   id: number | null
+  logical_id: string | null
   description: $Enums.Role | null
 }
 
 export type RolesMaxAggregateOutputType = {
   id: number | null
+  logical_id: string | null
   description: $Enums.Role | null
 }
 
 export type RolesCountAggregateOutputType = {
   id: number
+  logical_id: number
   description: number
   _all: number
 }
@@ -61,16 +64,19 @@ export type RolesSumAggregateInputType = {
 
 export type RolesMinAggregateInputType = {
   id?: true
+  logical_id?: true
   description?: true
 }
 
 export type RolesMaxAggregateInputType = {
   id?: true
+  logical_id?: true
   description?: true
 }
 
 export type RolesCountAggregateInputType = {
   id?: true
+  logical_id?: true
   description?: true
   _all?: true
 }
@@ -163,6 +169,7 @@ export type rolesGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 
 export type RolesGroupByOutputType = {
   id: number
+  logical_id: string | null
   description: $Enums.Role
   _count: RolesCountAggregateOutputType | null
   _avg: RolesAvgAggregateOutputType | null
@@ -191,6 +198,7 @@ export type rolesWhereInput = {
   OR?: Prisma.rolesWhereInput[]
   NOT?: Prisma.rolesWhereInput | Prisma.rolesWhereInput[]
   id?: Prisma.IntFilter<"roles"> | number
+  logical_id?: Prisma.StringNullableFilter<"roles"> | string | null
   description?: Prisma.EnumRoleFilter<"roles"> | $Enums.Role
   rolesPermission?: Prisma.PermissionsListRelationFilter
   orgRoles?: Prisma.Organization_usersListRelationFilter
@@ -198,6 +206,7 @@ export type rolesWhereInput = {
 
 export type rolesOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  logical_id?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrder
   rolesPermission?: Prisma.permissionsOrderByRelationAggregateInput
   orgRoles?: Prisma.organization_usersOrderByRelationAggregateInput
@@ -205,16 +214,18 @@ export type rolesOrderByWithRelationInput = {
 
 export type rolesWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  logical_id?: string
   AND?: Prisma.rolesWhereInput | Prisma.rolesWhereInput[]
   OR?: Prisma.rolesWhereInput[]
   NOT?: Prisma.rolesWhereInput | Prisma.rolesWhereInput[]
   description?: Prisma.EnumRoleFilter<"roles"> | $Enums.Role
   rolesPermission?: Prisma.PermissionsListRelationFilter
   orgRoles?: Prisma.Organization_usersListRelationFilter
-}, "id">
+}, "id" | "logical_id">
 
 export type rolesOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  logical_id?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrder
   _count?: Prisma.rolesCountOrderByAggregateInput
   _avg?: Prisma.rolesAvgOrderByAggregateInput
@@ -228,10 +239,12 @@ export type rolesScalarWhereWithAggregatesInput = {
   OR?: Prisma.rolesScalarWhereWithAggregatesInput[]
   NOT?: Prisma.rolesScalarWhereWithAggregatesInput | Prisma.rolesScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"roles"> | number
+  logical_id?: Prisma.StringNullableWithAggregatesFilter<"roles"> | string | null
   description?: Prisma.EnumRoleWithAggregatesFilter<"roles"> | $Enums.Role
 }
 
 export type rolesCreateInput = {
+  logical_id?: string | null
   description?: $Enums.Role
   rolesPermission?: Prisma.permissionsCreateNestedManyWithoutRolesPermissionInput
   orgRoles?: Prisma.organization_usersCreateNestedManyWithoutRoleInput
@@ -239,12 +252,14 @@ export type rolesCreateInput = {
 
 export type rolesUncheckedCreateInput = {
   id?: number
+  logical_id?: string | null
   description?: $Enums.Role
   rolesPermission?: Prisma.permissionsUncheckedCreateNestedManyWithoutRolesPermissionInput
   orgRoles?: Prisma.organization_usersUncheckedCreateNestedManyWithoutRoleInput
 }
 
 export type rolesUpdateInput = {
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   rolesPermission?: Prisma.permissionsUpdateManyWithoutRolesPermissionNestedInput
   orgRoles?: Prisma.organization_usersUpdateManyWithoutRoleNestedInput
@@ -252,6 +267,7 @@ export type rolesUpdateInput = {
 
 export type rolesUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   rolesPermission?: Prisma.permissionsUncheckedUpdateManyWithoutRolesPermissionNestedInput
   orgRoles?: Prisma.organization_usersUncheckedUpdateManyWithoutRoleNestedInput
@@ -259,20 +275,24 @@ export type rolesUncheckedUpdateInput = {
 
 export type rolesCreateManyInput = {
   id?: number
+  logical_id?: string | null
   description?: $Enums.Role
 }
 
 export type rolesUpdateManyMutationInput = {
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
 }
 
 export type rolesUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
 }
 
 export type rolesCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  logical_id?: Prisma.SortOrder
   description?: Prisma.SortOrder
 }
 
@@ -282,11 +302,13 @@ export type rolesAvgOrderByAggregateInput = {
 
 export type rolesMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  logical_id?: Prisma.SortOrder
   description?: Prisma.SortOrder
 }
 
 export type rolesMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  logical_id?: Prisma.SortOrder
   description?: Prisma.SortOrder
 }
 
@@ -366,12 +388,14 @@ export type rolesUpdateOneRequiredWithoutOrgRolesNestedInput = {
 }
 
 export type rolesCreateWithoutRolesPermissionInput = {
+  logical_id?: string | null
   description?: $Enums.Role
   orgRoles?: Prisma.organization_usersCreateNestedManyWithoutRoleInput
 }
 
 export type rolesUncheckedCreateWithoutRolesPermissionInput = {
   id?: number
+  logical_id?: string | null
   description?: $Enums.Role
   orgRoles?: Prisma.organization_usersUncheckedCreateNestedManyWithoutRoleInput
 }
@@ -402,16 +426,19 @@ export type rolesScalarWhereInput = {
   OR?: Prisma.rolesScalarWhereInput[]
   NOT?: Prisma.rolesScalarWhereInput | Prisma.rolesScalarWhereInput[]
   id?: Prisma.IntFilter<"roles"> | number
+  logical_id?: Prisma.StringNullableFilter<"roles"> | string | null
   description?: Prisma.EnumRoleFilter<"roles"> | $Enums.Role
 }
 
 export type rolesCreateWithoutOrgRolesInput = {
+  logical_id?: string | null
   description?: $Enums.Role
   rolesPermission?: Prisma.permissionsCreateNestedManyWithoutRolesPermissionInput
 }
 
 export type rolesUncheckedCreateWithoutOrgRolesInput = {
   id?: number
+  logical_id?: string | null
   description?: $Enums.Role
   rolesPermission?: Prisma.permissionsUncheckedCreateNestedManyWithoutRolesPermissionInput
 }
@@ -433,29 +460,34 @@ export type rolesUpdateToOneWithWhereWithoutOrgRolesInput = {
 }
 
 export type rolesUpdateWithoutOrgRolesInput = {
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   rolesPermission?: Prisma.permissionsUpdateManyWithoutRolesPermissionNestedInput
 }
 
 export type rolesUncheckedUpdateWithoutOrgRolesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   rolesPermission?: Prisma.permissionsUncheckedUpdateManyWithoutRolesPermissionNestedInput
 }
 
 export type rolesUpdateWithoutRolesPermissionInput = {
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   orgRoles?: Prisma.organization_usersUpdateManyWithoutRoleNestedInput
 }
 
 export type rolesUncheckedUpdateWithoutRolesPermissionInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   orgRoles?: Prisma.organization_usersUncheckedUpdateManyWithoutRoleNestedInput
 }
 
 export type rolesUncheckedUpdateManyWithoutRolesPermissionInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
 }
 
@@ -501,6 +533,7 @@ export type RolesCountOutputTypeCountOrgRolesArgs<ExtArgs extends runtime.Types.
 
 export type rolesSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  logical_id?: boolean
   description?: boolean
   rolesPermission?: boolean | Prisma.roles$rolesPermissionArgs<ExtArgs>
   orgRoles?: boolean | Prisma.roles$orgRolesArgs<ExtArgs>
@@ -509,20 +542,23 @@ export type rolesSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
 
 export type rolesSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  logical_id?: boolean
   description?: boolean
 }, ExtArgs["result"]["roles"]>
 
 export type rolesSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  logical_id?: boolean
   description?: boolean
 }, ExtArgs["result"]["roles"]>
 
 export type rolesSelectScalar = {
   id?: boolean
+  logical_id?: boolean
   description?: boolean
 }
 
-export type rolesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "description", ExtArgs["result"]["roles"]>
+export type rolesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "logical_id" | "description", ExtArgs["result"]["roles"]>
 export type rolesInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   rolesPermission?: boolean | Prisma.roles$rolesPermissionArgs<ExtArgs>
   orgRoles?: boolean | Prisma.roles$orgRolesArgs<ExtArgs>
@@ -539,6 +575,7 @@ export type $rolesPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
+    logical_id: string | null
     description: $Enums.Role
   }, ExtArgs["result"]["roles"]>
   composites: {}
@@ -966,6 +1003,7 @@ export interface Prisma__rolesClient<T, Null = never, ExtArgs extends runtime.Ty
  */
 export interface rolesFieldRefs {
   readonly id: Prisma.FieldRef<"roles", 'Int'>
+  readonly logical_id: Prisma.FieldRef<"roles", 'String'>
   readonly description: Prisma.FieldRef<"roles", 'Role'>
 }
     

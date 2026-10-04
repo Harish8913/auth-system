@@ -969,6 +969,7 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const AuthScalarFieldEnum = {
   id: 'id',
+  logical_id: 'logical_id',
   firstName: 'firstName',
   lastName: 'lastName',
   userName: 'userName',
@@ -982,6 +983,7 @@ export type AuthScalarFieldEnum = (typeof AuthScalarFieldEnum)[keyof typeof Auth
 
 export const GuestScalarFieldEnum = {
   id: 'id',
+  logical_id: 'logical_id',
   name: 'name',
   roleDescription: 'roleDescription',
   email: 'email',
@@ -994,6 +996,7 @@ export type GuestScalarFieldEnum = (typeof GuestScalarFieldEnum)[keyof typeof Gu
 
 export const SessionsScalarFieldEnum = {
   id: 'id',
+  logical_id: 'logical_id',
   userId: 'userId',
   familyId: 'familyId',
   token_hash: 'token_hash',
@@ -1006,6 +1009,7 @@ export type SessionsScalarFieldEnum = (typeof SessionsScalarFieldEnum)[keyof typ
 
 export const RolesScalarFieldEnum = {
   id: 'id',
+  logical_id: 'logical_id',
   description: 'description'
 } as const
 
@@ -1014,6 +1018,7 @@ export type RolesScalarFieldEnum = (typeof RolesScalarFieldEnum)[keyof typeof Ro
 
 export const PermissionsScalarFieldEnum = {
   id: 'id',
+  logical_id: 'logical_id',
   description: 'description'
 } as const
 
@@ -1022,6 +1027,7 @@ export type PermissionsScalarFieldEnum = (typeof PermissionsScalarFieldEnum)[key
 
 export const OrganizationsScalarFieldEnum = {
   id: 'id',
+  logical_id: 'logical_id',
   name: 'name',
   email: 'email',
   description: 'description'
@@ -1032,6 +1038,7 @@ export type OrganizationsScalarFieldEnum = (typeof OrganizationsScalarFieldEnum)
 
 export const Organization_usersScalarFieldEnum = {
   id: 'id',
+  logical_id: 'logical_id',
   userId: 'userId',
   tenantId: 'tenantId',
   roleId: 'roleId'

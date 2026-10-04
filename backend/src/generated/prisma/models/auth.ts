@@ -38,6 +38,7 @@ export type AuthSumAggregateOutputType = {
 
 export type AuthMinAggregateOutputType = {
   id: number | null
+  logical_id: string | null
   firstName: string | null
   lastName: string | null
   userName: string | null
@@ -48,6 +49,7 @@ export type AuthMinAggregateOutputType = {
 
 export type AuthMaxAggregateOutputType = {
   id: number | null
+  logical_id: string | null
   firstName: string | null
   lastName: string | null
   userName: string | null
@@ -58,6 +60,7 @@ export type AuthMaxAggregateOutputType = {
 
 export type AuthCountAggregateOutputType = {
   id: number
+  logical_id: number
   firstName: number
   lastName: number
   userName: number
@@ -80,6 +83,7 @@ export type AuthSumAggregateInputType = {
 
 export type AuthMinAggregateInputType = {
   id?: true
+  logical_id?: true
   firstName?: true
   lastName?: true
   userName?: true
@@ -90,6 +94,7 @@ export type AuthMinAggregateInputType = {
 
 export type AuthMaxAggregateInputType = {
   id?: true
+  logical_id?: true
   firstName?: true
   lastName?: true
   userName?: true
@@ -100,6 +105,7 @@ export type AuthMaxAggregateInputType = {
 
 export type AuthCountAggregateInputType = {
   id?: true
+  logical_id?: true
   firstName?: true
   lastName?: true
   userName?: true
@@ -197,6 +203,7 @@ export type authGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 
 export type AuthGroupByOutputType = {
   id: number
+  logical_id: string | null
   firstName: string
   lastName: string | null
   userName: string
@@ -230,6 +237,7 @@ export type authWhereInput = {
   OR?: Prisma.authWhereInput[]
   NOT?: Prisma.authWhereInput | Prisma.authWhereInput[]
   id?: Prisma.IntFilter<"auth"> | number
+  logical_id?: Prisma.StringNullableFilter<"auth"> | string | null
   firstName?: Prisma.StringFilter<"auth"> | string
   lastName?: Prisma.StringNullableFilter<"auth"> | string | null
   userName?: Prisma.StringFilter<"auth"> | string
@@ -243,6 +251,7 @@ export type authWhereInput = {
 
 export type authOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  logical_id?: Prisma.SortOrderInput | Prisma.SortOrder
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrderInput | Prisma.SortOrder
   userName?: Prisma.SortOrder
@@ -256,6 +265,7 @@ export type authOrderByWithRelationInput = {
 
 export type authWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  logical_id?: string
   email_tenantId?: Prisma.authEmailTenantIdCompoundUniqueInput
   AND?: Prisma.authWhereInput | Prisma.authWhereInput[]
   OR?: Prisma.authWhereInput[]
@@ -269,10 +279,11 @@ export type authWhereUniqueInput = Prisma.AtLeast<{
   tenants?: Prisma.XOR<Prisma.OrganizationsScalarRelationFilter, Prisma.organizationsWhereInput>
   sessions?: Prisma.SessionsListRelationFilter
   organizationUsers?: Prisma.Organization_usersListRelationFilter
-}, "id" | "id" | "email_tenantId">
+}, "id" | "id" | "logical_id" | "email_tenantId">
 
 export type authOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  logical_id?: Prisma.SortOrderInput | Prisma.SortOrder
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrderInput | Prisma.SortOrder
   userName?: Prisma.SortOrder
@@ -291,6 +302,7 @@ export type authScalarWhereWithAggregatesInput = {
   OR?: Prisma.authScalarWhereWithAggregatesInput[]
   NOT?: Prisma.authScalarWhereWithAggregatesInput | Prisma.authScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"auth"> | number
+  logical_id?: Prisma.StringNullableWithAggregatesFilter<"auth"> | string | null
   firstName?: Prisma.StringWithAggregatesFilter<"auth"> | string
   lastName?: Prisma.StringNullableWithAggregatesFilter<"auth"> | string | null
   userName?: Prisma.StringWithAggregatesFilter<"auth"> | string
@@ -300,6 +312,7 @@ export type authScalarWhereWithAggregatesInput = {
 }
 
 export type authCreateInput = {
+  logical_id?: string | null
   firstName: string
   lastName?: string | null
   userName: string
@@ -312,6 +325,7 @@ export type authCreateInput = {
 
 export type authUncheckedCreateInput = {
   id?: number
+  logical_id?: string | null
   firstName: string
   lastName?: string | null
   userName: string
@@ -323,6 +337,7 @@ export type authUncheckedCreateInput = {
 }
 
 export type authUpdateInput = {
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -335,6 +350,7 @@ export type authUpdateInput = {
 
 export type authUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -347,6 +363,7 @@ export type authUncheckedUpdateInput = {
 
 export type authCreateManyInput = {
   id?: number
+  logical_id?: string | null
   firstName: string
   lastName?: string | null
   userName: string
@@ -356,6 +373,7 @@ export type authCreateManyInput = {
 }
 
 export type authUpdateManyMutationInput = {
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -365,6 +383,7 @@ export type authUpdateManyMutationInput = {
 
 export type authUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -380,6 +399,7 @@ export type authEmailTenantIdCompoundUniqueInput = {
 
 export type authCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  logical_id?: Prisma.SortOrder
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   userName?: Prisma.SortOrder
@@ -395,6 +415,7 @@ export type authAvgOrderByAggregateInput = {
 
 export type authMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  logical_id?: Prisma.SortOrder
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   userName?: Prisma.SortOrder
@@ -405,6 +426,7 @@ export type authMaxOrderByAggregateInput = {
 
 export type authMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  logical_id?: Prisma.SortOrder
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   userName?: Prisma.SortOrder
@@ -433,12 +455,12 @@ export type authOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type StringFieldUpdateOperationsInput = {
-  set?: string
-}
-
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
+}
+
+export type StringFieldUpdateOperationsInput = {
+  set?: string
 }
 
 export type IntFieldUpdateOperationsInput = {
@@ -520,6 +542,7 @@ export type authUpdateOneRequiredWithoutOrganizationUsersNestedInput = {
 }
 
 export type authCreateWithoutSessionsInput = {
+  logical_id?: string | null
   firstName: string
   lastName?: string | null
   userName: string
@@ -531,6 +554,7 @@ export type authCreateWithoutSessionsInput = {
 
 export type authUncheckedCreateWithoutSessionsInput = {
   id?: number
+  logical_id?: string | null
   firstName: string
   lastName?: string | null
   userName: string
@@ -557,6 +581,7 @@ export type authUpdateToOneWithWhereWithoutSessionsInput = {
 }
 
 export type authUpdateWithoutSessionsInput = {
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -568,6 +593,7 @@ export type authUpdateWithoutSessionsInput = {
 
 export type authUncheckedUpdateWithoutSessionsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -578,6 +604,7 @@ export type authUncheckedUpdateWithoutSessionsInput = {
 }
 
 export type authCreateWithoutTenantsInput = {
+  logical_id?: string | null
   firstName: string
   lastName?: string | null
   userName: string
@@ -589,6 +616,7 @@ export type authCreateWithoutTenantsInput = {
 
 export type authUncheckedCreateWithoutTenantsInput = {
   id?: number
+  logical_id?: string | null
   firstName: string
   lastName?: string | null
   userName: string
@@ -629,6 +657,7 @@ export type authScalarWhereInput = {
   OR?: Prisma.authScalarWhereInput[]
   NOT?: Prisma.authScalarWhereInput | Prisma.authScalarWhereInput[]
   id?: Prisma.IntFilter<"auth"> | number
+  logical_id?: Prisma.StringNullableFilter<"auth"> | string | null
   firstName?: Prisma.StringFilter<"auth"> | string
   lastName?: Prisma.StringNullableFilter<"auth"> | string | null
   userName?: Prisma.StringFilter<"auth"> | string
@@ -638,6 +667,7 @@ export type authScalarWhereInput = {
 }
 
 export type authCreateWithoutOrganizationUsersInput = {
+  logical_id?: string | null
   firstName: string
   lastName?: string | null
   userName: string
@@ -649,6 +679,7 @@ export type authCreateWithoutOrganizationUsersInput = {
 
 export type authUncheckedCreateWithoutOrganizationUsersInput = {
   id?: number
+  logical_id?: string | null
   firstName: string
   lastName?: string | null
   userName: string
@@ -675,6 +706,7 @@ export type authUpdateToOneWithWhereWithoutOrganizationUsersInput = {
 }
 
 export type authUpdateWithoutOrganizationUsersInput = {
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -686,6 +718,7 @@ export type authUpdateWithoutOrganizationUsersInput = {
 
 export type authUncheckedUpdateWithoutOrganizationUsersInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -697,6 +730,7 @@ export type authUncheckedUpdateWithoutOrganizationUsersInput = {
 
 export type authCreateManyTenantsInput = {
   id?: number
+  logical_id?: string | null
   firstName: string
   lastName?: string | null
   userName: string
@@ -705,6 +739,7 @@ export type authCreateManyTenantsInput = {
 }
 
 export type authUpdateWithoutTenantsInput = {
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -716,6 +751,7 @@ export type authUpdateWithoutTenantsInput = {
 
 export type authUncheckedUpdateWithoutTenantsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -727,6 +763,7 @@ export type authUncheckedUpdateWithoutTenantsInput = {
 
 export type authUncheckedUpdateManyWithoutTenantsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -776,6 +813,7 @@ export type AuthCountOutputTypeCountOrganizationUsersArgs<ExtArgs extends runtim
 
 export type authSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  logical_id?: boolean
   firstName?: boolean
   lastName?: boolean
   userName?: boolean
@@ -790,6 +828,7 @@ export type authSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
 
 export type authSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  logical_id?: boolean
   firstName?: boolean
   lastName?: boolean
   userName?: boolean
@@ -801,6 +840,7 @@ export type authSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
 
 export type authSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  logical_id?: boolean
   firstName?: boolean
   lastName?: boolean
   userName?: boolean
@@ -812,6 +852,7 @@ export type authSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
 
 export type authSelectScalar = {
   id?: boolean
+  logical_id?: boolean
   firstName?: boolean
   lastName?: boolean
   userName?: boolean
@@ -820,7 +861,7 @@ export type authSelectScalar = {
   tenantId?: boolean
 }
 
-export type authOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "firstName" | "lastName" | "userName" | "email" | "passwordHash" | "tenantId", ExtArgs["result"]["auth"]>
+export type authOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "logical_id" | "firstName" | "lastName" | "userName" | "email" | "passwordHash" | "tenantId", ExtArgs["result"]["auth"]>
 export type authInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tenants?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
   sessions?: boolean | Prisma.auth$sessionsArgs<ExtArgs>
@@ -843,6 +884,7 @@ export type $authPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
+    logical_id: string | null
     firstName: string
     lastName: string | null
     userName: string
@@ -1276,6 +1318,7 @@ export interface Prisma__authClient<T, Null = never, ExtArgs extends runtime.Typ
  */
 export interface authFieldRefs {
   readonly id: Prisma.FieldRef<"auth", 'Int'>
+  readonly logical_id: Prisma.FieldRef<"auth", 'String'>
   readonly firstName: Prisma.FieldRef<"auth", 'String'>
   readonly lastName: Prisma.FieldRef<"auth", 'String'>
   readonly userName: Prisma.FieldRef<"auth", 'String'>

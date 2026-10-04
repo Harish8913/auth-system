@@ -38,6 +38,7 @@ export type SessionsSumAggregateOutputType = {
 
 export type SessionsMinAggregateOutputType = {
   id: number | null
+  logical_id: string | null
   userId: number | null
   familyId: string | null
   token_hash: string | null
@@ -47,6 +48,7 @@ export type SessionsMinAggregateOutputType = {
 
 export type SessionsMaxAggregateOutputType = {
   id: number | null
+  logical_id: string | null
   userId: number | null
   familyId: string | null
   token_hash: string | null
@@ -56,6 +58,7 @@ export type SessionsMaxAggregateOutputType = {
 
 export type SessionsCountAggregateOutputType = {
   id: number
+  logical_id: number
   userId: number
   familyId: number
   token_hash: number
@@ -77,6 +80,7 @@ export type SessionsSumAggregateInputType = {
 
 export type SessionsMinAggregateInputType = {
   id?: true
+  logical_id?: true
   userId?: true
   familyId?: true
   token_hash?: true
@@ -86,6 +90,7 @@ export type SessionsMinAggregateInputType = {
 
 export type SessionsMaxAggregateInputType = {
   id?: true
+  logical_id?: true
   userId?: true
   familyId?: true
   token_hash?: true
@@ -95,6 +100,7 @@ export type SessionsMaxAggregateInputType = {
 
 export type SessionsCountAggregateInputType = {
   id?: true
+  logical_id?: true
   userId?: true
   familyId?: true
   token_hash?: true
@@ -191,6 +197,7 @@ export type sessionsGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 
 export type SessionsGroupByOutputType = {
   id: number
+  logical_id: string | null
   userId: number
   familyId: string
   token_hash: string
@@ -223,6 +230,7 @@ export type sessionsWhereInput = {
   OR?: Prisma.sessionsWhereInput[]
   NOT?: Prisma.sessionsWhereInput | Prisma.sessionsWhereInput[]
   id?: Prisma.IntFilter<"sessions"> | number
+  logical_id?: Prisma.StringNullableFilter<"sessions"> | string | null
   userId?: Prisma.IntFilter<"sessions"> | number
   familyId?: Prisma.StringFilter<"sessions"> | string
   token_hash?: Prisma.StringFilter<"sessions"> | string
@@ -233,6 +241,7 @@ export type sessionsWhereInput = {
 
 export type sessionsOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  logical_id?: Prisma.SortOrderInput | Prisma.SortOrder
   userId?: Prisma.SortOrder
   familyId?: Prisma.SortOrder
   token_hash?: Prisma.SortOrder
@@ -243,6 +252,7 @@ export type sessionsOrderByWithRelationInput = {
 
 export type sessionsWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  logical_id?: string
   token_hash?: string
   AND?: Prisma.sessionsWhereInput | Prisma.sessionsWhereInput[]
   OR?: Prisma.sessionsWhereInput[]
@@ -252,10 +262,11 @@ export type sessionsWhereUniqueInput = Prisma.AtLeast<{
   expiresAt?: Prisma.DateTimeFilter<"sessions"> | Date | string
   isRevoked?: Prisma.BoolFilter<"sessions"> | boolean
   users?: Prisma.XOR<Prisma.AuthScalarRelationFilter, Prisma.authWhereInput>
-}, "id" | "token_hash">
+}, "id" | "logical_id" | "token_hash">
 
 export type sessionsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  logical_id?: Prisma.SortOrderInput | Prisma.SortOrder
   userId?: Prisma.SortOrder
   familyId?: Prisma.SortOrder
   token_hash?: Prisma.SortOrder
@@ -273,6 +284,7 @@ export type sessionsScalarWhereWithAggregatesInput = {
   OR?: Prisma.sessionsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.sessionsScalarWhereWithAggregatesInput | Prisma.sessionsScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"sessions"> | number
+  logical_id?: Prisma.StringNullableWithAggregatesFilter<"sessions"> | string | null
   userId?: Prisma.IntWithAggregatesFilter<"sessions"> | number
   familyId?: Prisma.StringWithAggregatesFilter<"sessions"> | string
   token_hash?: Prisma.StringWithAggregatesFilter<"sessions"> | string
@@ -281,6 +293,7 @@ export type sessionsScalarWhereWithAggregatesInput = {
 }
 
 export type sessionsCreateInput = {
+  logical_id?: string | null
   familyId?: string
   token_hash: string
   expiresAt: Date | string
@@ -290,6 +303,7 @@ export type sessionsCreateInput = {
 
 export type sessionsUncheckedCreateInput = {
   id?: number
+  logical_id?: string | null
   userId: number
   familyId?: string
   token_hash: string
@@ -298,6 +312,7 @@ export type sessionsUncheckedCreateInput = {
 }
 
 export type sessionsUpdateInput = {
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   familyId?: Prisma.StringFieldUpdateOperationsInput | string
   token_hash?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -307,6 +322,7 @@ export type sessionsUpdateInput = {
 
 export type sessionsUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.IntFieldUpdateOperationsInput | number
   familyId?: Prisma.StringFieldUpdateOperationsInput | string
   token_hash?: Prisma.StringFieldUpdateOperationsInput | string
@@ -316,6 +332,7 @@ export type sessionsUncheckedUpdateInput = {
 
 export type sessionsCreateManyInput = {
   id?: number
+  logical_id?: string | null
   userId: number
   familyId?: string
   token_hash: string
@@ -324,6 +341,7 @@ export type sessionsCreateManyInput = {
 }
 
 export type sessionsUpdateManyMutationInput = {
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   familyId?: Prisma.StringFieldUpdateOperationsInput | string
   token_hash?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -332,6 +350,7 @@ export type sessionsUpdateManyMutationInput = {
 
 export type sessionsUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userId?: Prisma.IntFieldUpdateOperationsInput | number
   familyId?: Prisma.StringFieldUpdateOperationsInput | string
   token_hash?: Prisma.StringFieldUpdateOperationsInput | string
@@ -351,6 +370,7 @@ export type sessionsOrderByRelationAggregateInput = {
 
 export type sessionsCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  logical_id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   familyId?: Prisma.SortOrder
   token_hash?: Prisma.SortOrder
@@ -365,6 +385,7 @@ export type sessionsAvgOrderByAggregateInput = {
 
 export type sessionsMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  logical_id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   familyId?: Prisma.SortOrder
   token_hash?: Prisma.SortOrder
@@ -374,6 +395,7 @@ export type sessionsMaxOrderByAggregateInput = {
 
 export type sessionsMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  logical_id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   familyId?: Prisma.SortOrder
   token_hash?: Prisma.SortOrder
@@ -437,6 +459,7 @@ export type BoolFieldUpdateOperationsInput = {
 }
 
 export type sessionsCreateWithoutUsersInput = {
+  logical_id?: string | null
   familyId?: string
   token_hash: string
   expiresAt: Date | string
@@ -445,6 +468,7 @@ export type sessionsCreateWithoutUsersInput = {
 
 export type sessionsUncheckedCreateWithoutUsersInput = {
   id?: number
+  logical_id?: string | null
   familyId?: string
   token_hash: string
   expiresAt: Date | string
@@ -482,6 +506,7 @@ export type sessionsScalarWhereInput = {
   OR?: Prisma.sessionsScalarWhereInput[]
   NOT?: Prisma.sessionsScalarWhereInput | Prisma.sessionsScalarWhereInput[]
   id?: Prisma.IntFilter<"sessions"> | number
+  logical_id?: Prisma.StringNullableFilter<"sessions"> | string | null
   userId?: Prisma.IntFilter<"sessions"> | number
   familyId?: Prisma.StringFilter<"sessions"> | string
   token_hash?: Prisma.StringFilter<"sessions"> | string
@@ -491,6 +516,7 @@ export type sessionsScalarWhereInput = {
 
 export type sessionsCreateManyUsersInput = {
   id?: number
+  logical_id?: string | null
   familyId?: string
   token_hash: string
   expiresAt: Date | string
@@ -498,6 +524,7 @@ export type sessionsCreateManyUsersInput = {
 }
 
 export type sessionsUpdateWithoutUsersInput = {
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   familyId?: Prisma.StringFieldUpdateOperationsInput | string
   token_hash?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -506,6 +533,7 @@ export type sessionsUpdateWithoutUsersInput = {
 
 export type sessionsUncheckedUpdateWithoutUsersInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   familyId?: Prisma.StringFieldUpdateOperationsInput | string
   token_hash?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -514,6 +542,7 @@ export type sessionsUncheckedUpdateWithoutUsersInput = {
 
 export type sessionsUncheckedUpdateManyWithoutUsersInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   familyId?: Prisma.StringFieldUpdateOperationsInput | string
   token_hash?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -524,6 +553,7 @@ export type sessionsUncheckedUpdateManyWithoutUsersInput = {
 
 export type sessionsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  logical_id?: boolean
   userId?: boolean
   familyId?: boolean
   token_hash?: boolean
@@ -534,6 +564,7 @@ export type sessionsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
 
 export type sessionsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  logical_id?: boolean
   userId?: boolean
   familyId?: boolean
   token_hash?: boolean
@@ -544,6 +575,7 @@ export type sessionsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
 
 export type sessionsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  logical_id?: boolean
   userId?: boolean
   familyId?: boolean
   token_hash?: boolean
@@ -554,6 +586,7 @@ export type sessionsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 
 export type sessionsSelectScalar = {
   id?: boolean
+  logical_id?: boolean
   userId?: boolean
   familyId?: boolean
   token_hash?: boolean
@@ -561,7 +594,7 @@ export type sessionsSelectScalar = {
   isRevoked?: boolean
 }
 
-export type sessionsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "familyId" | "token_hash" | "expiresAt" | "isRevoked", ExtArgs["result"]["sessions"]>
+export type sessionsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "logical_id" | "userId" | "familyId" | "token_hash" | "expiresAt" | "isRevoked", ExtArgs["result"]["sessions"]>
 export type sessionsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   users?: boolean | Prisma.authDefaultArgs<ExtArgs>
 }
@@ -579,6 +612,7 @@ export type $sessionsPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
+    logical_id: string | null
     userId: number
     familyId: string
     token_hash: string
@@ -1009,6 +1043,7 @@ export interface Prisma__sessionsClient<T, Null = never, ExtArgs extends runtime
  */
 export interface sessionsFieldRefs {
   readonly id: Prisma.FieldRef<"sessions", 'Int'>
+  readonly logical_id: Prisma.FieldRef<"sessions", 'String'>
   readonly userId: Prisma.FieldRef<"sessions", 'Int'>
   readonly familyId: Prisma.FieldRef<"sessions", 'String'>
   readonly token_hash: Prisma.FieldRef<"sessions", 'String'>

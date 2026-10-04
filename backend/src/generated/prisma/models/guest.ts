@@ -38,6 +38,7 @@ export type GuestSumAggregateOutputType = {
 
 export type GuestMinAggregateOutputType = {
   id: number | null
+  logical_id: string | null
   name: string | null
   roleDescription: string | null
   email: string | null
@@ -47,6 +48,7 @@ export type GuestMinAggregateOutputType = {
 
 export type GuestMaxAggregateOutputType = {
   id: number | null
+  logical_id: string | null
   name: string | null
   roleDescription: string | null
   email: string | null
@@ -56,6 +58,7 @@ export type GuestMaxAggregateOutputType = {
 
 export type GuestCountAggregateOutputType = {
   id: number
+  logical_id: number
   name: number
   roleDescription: number
   email: number
@@ -77,6 +80,7 @@ export type GuestSumAggregateInputType = {
 
 export type GuestMinAggregateInputType = {
   id?: true
+  logical_id?: true
   name?: true
   roleDescription?: true
   email?: true
@@ -86,6 +90,7 @@ export type GuestMinAggregateInputType = {
 
 export type GuestMaxAggregateInputType = {
   id?: true
+  logical_id?: true
   name?: true
   roleDescription?: true
   email?: true
@@ -95,6 +100,7 @@ export type GuestMaxAggregateInputType = {
 
 export type GuestCountAggregateInputType = {
   id?: true
+  logical_id?: true
   name?: true
   roleDescription?: true
   email?: true
@@ -191,6 +197,7 @@ export type guestGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 
 export type GuestGroupByOutputType = {
   id: number
+  logical_id: string | null
   name: string
   roleDescription: string
   email: string
@@ -223,6 +230,7 @@ export type guestWhereInput = {
   OR?: Prisma.guestWhereInput[]
   NOT?: Prisma.guestWhereInput | Prisma.guestWhereInput[]
   id?: Prisma.IntFilter<"guest"> | number
+  logical_id?: Prisma.StringNullableFilter<"guest"> | string | null
   name?: Prisma.StringFilter<"guest"> | string
   roleDescription?: Prisma.StringFilter<"guest"> | string
   email?: Prisma.StringFilter<"guest"> | string
@@ -233,6 +241,7 @@ export type guestWhereInput = {
 
 export type guestOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  logical_id?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
   roleDescription?: Prisma.SortOrder
   email?: Prisma.SortOrder
@@ -243,6 +252,7 @@ export type guestOrderByWithRelationInput = {
 
 export type guestWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  logical_id?: string
   email_tenantId?: Prisma.guestEmailTenantIdCompoundUniqueInput
   AND?: Prisma.guestWhereInput | Prisma.guestWhereInput[]
   OR?: Prisma.guestWhereInput[]
@@ -253,10 +263,11 @@ export type guestWhereUniqueInput = Prisma.AtLeast<{
   status?: Prisma.StringFilter<"guest"> | string
   tenantId?: Prisma.IntFilter<"guest"> | number
   organization?: Prisma.XOR<Prisma.OrganizationsScalarRelationFilter, Prisma.organizationsWhereInput>
-}, "id" | "email_tenantId">
+}, "id" | "logical_id" | "email_tenantId">
 
 export type guestOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  logical_id?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
   roleDescription?: Prisma.SortOrder
   email?: Prisma.SortOrder
@@ -274,6 +285,7 @@ export type guestScalarWhereWithAggregatesInput = {
   OR?: Prisma.guestScalarWhereWithAggregatesInput[]
   NOT?: Prisma.guestScalarWhereWithAggregatesInput | Prisma.guestScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"guest"> | number
+  logical_id?: Prisma.StringNullableWithAggregatesFilter<"guest"> | string | null
   name?: Prisma.StringWithAggregatesFilter<"guest"> | string
   roleDescription?: Prisma.StringWithAggregatesFilter<"guest"> | string
   email?: Prisma.StringWithAggregatesFilter<"guest"> | string
@@ -282,6 +294,7 @@ export type guestScalarWhereWithAggregatesInput = {
 }
 
 export type guestCreateInput = {
+  logical_id?: string | null
   name: string
   roleDescription: string
   email: string
@@ -291,6 +304,7 @@ export type guestCreateInput = {
 
 export type guestUncheckedCreateInput = {
   id?: number
+  logical_id?: string | null
   name: string
   roleDescription: string
   email: string
@@ -299,6 +313,7 @@ export type guestUncheckedCreateInput = {
 }
 
 export type guestUpdateInput = {
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   roleDescription?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
@@ -308,6 +323,7 @@ export type guestUpdateInput = {
 
 export type guestUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   roleDescription?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
@@ -317,6 +333,7 @@ export type guestUncheckedUpdateInput = {
 
 export type guestCreateManyInput = {
   id?: number
+  logical_id?: string | null
   name: string
   roleDescription: string
   email: string
@@ -325,6 +342,7 @@ export type guestCreateManyInput = {
 }
 
 export type guestUpdateManyMutationInput = {
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   roleDescription?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
@@ -333,6 +351,7 @@ export type guestUpdateManyMutationInput = {
 
 export type guestUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   roleDescription?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
@@ -347,6 +366,7 @@ export type guestEmailTenantIdCompoundUniqueInput = {
 
 export type guestCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  logical_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   roleDescription?: Prisma.SortOrder
   email?: Prisma.SortOrder
@@ -361,6 +381,7 @@ export type guestAvgOrderByAggregateInput = {
 
 export type guestMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  logical_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   roleDescription?: Prisma.SortOrder
   email?: Prisma.SortOrder
@@ -370,6 +391,7 @@ export type guestMaxOrderByAggregateInput = {
 
 export type guestMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  logical_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   roleDescription?: Prisma.SortOrder
   email?: Prisma.SortOrder
@@ -435,6 +457,7 @@ export type guestUncheckedUpdateManyWithoutOrganizationNestedInput = {
 }
 
 export type guestCreateWithoutOrganizationInput = {
+  logical_id?: string | null
   name: string
   roleDescription: string
   email: string
@@ -443,6 +466,7 @@ export type guestCreateWithoutOrganizationInput = {
 
 export type guestUncheckedCreateWithoutOrganizationInput = {
   id?: number
+  logical_id?: string | null
   name: string
   roleDescription: string
   email: string
@@ -480,6 +504,7 @@ export type guestScalarWhereInput = {
   OR?: Prisma.guestScalarWhereInput[]
   NOT?: Prisma.guestScalarWhereInput | Prisma.guestScalarWhereInput[]
   id?: Prisma.IntFilter<"guest"> | number
+  logical_id?: Prisma.StringNullableFilter<"guest"> | string | null
   name?: Prisma.StringFilter<"guest"> | string
   roleDescription?: Prisma.StringFilter<"guest"> | string
   email?: Prisma.StringFilter<"guest"> | string
@@ -489,6 +514,7 @@ export type guestScalarWhereInput = {
 
 export type guestCreateManyOrganizationInput = {
   id?: number
+  logical_id?: string | null
   name: string
   roleDescription: string
   email: string
@@ -496,6 +522,7 @@ export type guestCreateManyOrganizationInput = {
 }
 
 export type guestUpdateWithoutOrganizationInput = {
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   roleDescription?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
@@ -504,6 +531,7 @@ export type guestUpdateWithoutOrganizationInput = {
 
 export type guestUncheckedUpdateWithoutOrganizationInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   roleDescription?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
@@ -512,6 +540,7 @@ export type guestUncheckedUpdateWithoutOrganizationInput = {
 
 export type guestUncheckedUpdateManyWithoutOrganizationInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  logical_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   roleDescription?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
@@ -522,6 +551,7 @@ export type guestUncheckedUpdateManyWithoutOrganizationInput = {
 
 export type guestSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  logical_id?: boolean
   name?: boolean
   roleDescription?: boolean
   email?: boolean
@@ -532,6 +562,7 @@ export type guestSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
 
 export type guestSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  logical_id?: boolean
   name?: boolean
   roleDescription?: boolean
   email?: boolean
@@ -542,6 +573,7 @@ export type guestSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 
 export type guestSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  logical_id?: boolean
   name?: boolean
   roleDescription?: boolean
   email?: boolean
@@ -552,6 +584,7 @@ export type guestSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 
 export type guestSelectScalar = {
   id?: boolean
+  logical_id?: boolean
   name?: boolean
   roleDescription?: boolean
   email?: boolean
@@ -559,7 +592,7 @@ export type guestSelectScalar = {
   tenantId?: boolean
 }
 
-export type guestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "roleDescription" | "email" | "status" | "tenantId", ExtArgs["result"]["guest"]>
+export type guestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "logical_id" | "name" | "roleDescription" | "email" | "status" | "tenantId", ExtArgs["result"]["guest"]>
 export type guestInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
 }
@@ -577,6 +610,7 @@ export type $guestPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
+    logical_id: string | null
     name: string
     roleDescription: string
     email: string
@@ -1007,6 +1041,7 @@ export interface Prisma__guestClient<T, Null = never, ExtArgs extends runtime.Ty
  */
 export interface guestFieldRefs {
   readonly id: Prisma.FieldRef<"guest", 'Int'>
+  readonly logical_id: Prisma.FieldRef<"guest", 'String'>
   readonly name: Prisma.FieldRef<"guest", 'String'>
   readonly roleDescription: Prisma.FieldRef<"guest", 'String'>
   readonly email: Prisma.FieldRef<"guest", 'String'>
