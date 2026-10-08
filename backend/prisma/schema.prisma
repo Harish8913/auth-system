@@ -16,7 +16,7 @@ model auth {
   id           Int     @id @unique @default(autoincrement())
   logical_id   String? @unique @default(uuid())
   firstName    String
-  lastName     String?
+  lastName     String? 
   userName     String
   email        String
   passwordHash String
