@@ -18,7 +18,7 @@ export const authZ = (...allowedRoles: string[]) => {
       console.log(payload);
       const hashAccess = payload.role.some((role) =>
         allowedRoles.includes(role),
-      );
+      ); 
 
       if (!hashAccess) {
         return res
