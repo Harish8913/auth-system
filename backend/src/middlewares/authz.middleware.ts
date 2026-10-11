@@ -15,7 +15,7 @@ export const authZ = (...allowedRoles: string[]) => {
         token,
         process.env.ACCESS_JWT_SECRET || "",
       ) as JwtData;
-      console.log(payload);
+      console.log(payload); 
       const hashAccess = payload.role.some((role) =>
         allowedRoles.includes(role),
       ); 
