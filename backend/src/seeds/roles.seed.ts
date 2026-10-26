@@ -18,7 +18,7 @@ await prisma.roles
 await prisma.permissions.createMany({
   data: [
     {
-      id: 1,
+      id: 1, 
       action: "developer:read",
       description: "Developer account is read only",
     },
