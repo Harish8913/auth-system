@@ -1019,6 +1019,7 @@ export type RolesScalarFieldEnum = (typeof RolesScalarFieldEnum)[keyof typeof Ro
 export const PermissionsScalarFieldEnum = {
   id: 'id',
   logical_id: 'logical_id',
+  action: 'action',
   description: 'description'
 } as const
 

@@ -16,7 +16,7 @@ model auth {
   id           Int     @id @unique @default(autoincrement())
   logical_id   String? @unique @default(uuid())
   firstName    String
-  lastName     String? 
+  lastName     String?
   userName     String
   email        String
   passwordHash String
@@ -64,6 +64,7 @@ model roles {
 model permissions {
   id              Int     @id @default(autoincrement())
   logical_id      String? @unique @default(uuid())
+  action          String
   description     String
   rolesPermission roles[]
 }
