@@ -222,13 +222,13 @@ export type permissionsOrderByWithRelationInput = {
 export type permissionsWhereUniqueInput = Prisma.AtLeast<{
   id?: number
   logical_id?: string
+  action?: string
   AND?: Prisma.permissionsWhereInput | Prisma.permissionsWhereInput[]
   OR?: Prisma.permissionsWhereInput[]
   NOT?: Prisma.permissionsWhereInput | Prisma.permissionsWhereInput[]
-  action?: Prisma.StringFilter<"permissions"> | string
   description?: Prisma.StringFilter<"permissions"> | string
   rolesPermission?: Prisma.RolesListRelationFilter
-}, "id" | "logical_id">
+}, "id" | "logical_id" | "action">
 
 export type permissionsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder

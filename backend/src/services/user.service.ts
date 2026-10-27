@@ -36,3 +36,15 @@ export const registerUserService = async (body: UserType) => {
     throw err;
   }
 };
+
+export const deleteUserService = async (userId: string) => {
+  try {
+    const result = await prisma.auth.delete({
+      where: { logical_id: userId },
+    });
+
+    return result;
+  } catch (err) {
+    throw err;
+  }
+};

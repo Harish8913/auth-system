@@ -64,7 +64,7 @@ model roles {
 model permissions {
   id              Int     @id @default(autoincrement())
   logical_id      String? @unique @default(uuid())
-  action          String
+  action          String  @unique 
   description     String
   rolesPermission roles[]
 }

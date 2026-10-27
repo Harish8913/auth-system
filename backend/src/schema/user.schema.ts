@@ -11,4 +11,9 @@ export const User = z.object({
   roleId: z.number(),
 });
 
+export const DeleteUser = z.object({
+  id: z.string()
+})
+
 export type UserType = z.infer<typeof User>;
+export type DeleteUser = z.infer<typeof DeleteUser>;
