@@ -7,4 +7,4 @@ const router = Router();
 router.post("/user", authZ("ADMIN", "DEVELOPER"), registerUser);
 router.delete("/user/:id", deleteUser);
 
-export default router;
+export default router; 
