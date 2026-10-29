@@ -1,10 +1,6 @@
 import type { Request, Response, NextFunction } from "express";
-import jwt, { type JwtPayload } from "jsonwebtoken";
-
-interface JwtData extends JwtPayload {
-  userName: string;
-  role: string[];
-}
+import jwt from "jsonwebtoken";
+import type { JwtData } from "../types/auth.types.js";
 
 export const authZ = (...allowedRoles: string[]) => {
   return (req: Request, res: Response, next: NextFunction) => {
@@ -15,10 +11,10 @@ export const authZ = (...allowedRoles: string[]) => {
         token,
         process.env.ACCESS_JWT_SECRET || "",
       ) as JwtData;
-      console.log(payload); 
+      console.log(payload);
       const hashAccess = payload.role.some((role) =>
         allowedRoles.includes(role),
-      ); 
+      );
 
       if (!hashAccess) {
         return res
